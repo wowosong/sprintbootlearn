@@ -1,21 +1,12 @@
 package com.example.demo.controller;
 
+import com.example.demo.SimpleMessage.SimpleMessage;
 import com.example.demo.domain.UserInfo;
 import com.example.demo.service.userService;
-//import com.hanboard.educloud.framework.web.message.SimpleMessage;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 @RestController
-@RequestMapping(value = "demo")
+//@RequestMapping(value = "demo")
 public class HelloWorldController {
 
     private  userService userService;
@@ -33,11 +24,15 @@ public class HelloWorldController {
         System.out.println(name+"-----------------------------------");
         return userService.getUserInfo(name);
     }
+    @GetMapping(value="/{name}")
+    public SimpleMessage get1Info(@PathVariable String name){
+        return  userService.get1Info(name);
+    }
     @GetMapping(value = "/test")
     public String data(){
         return "test";
     }
-    @GetMapping(value="/{name}")
+    @GetMapping(value="/test/{name}")
     public UserInfo getInfo(@PathVariable String name){
         return  userService.getUserInfo(name);
     }
