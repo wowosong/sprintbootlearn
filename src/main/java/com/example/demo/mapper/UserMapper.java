@@ -1,5 +1,6 @@
 package com.example.demo.mapper;
 
+import com.example.demo.SimpleMessage.SimpleMessage;
 import com.example.demo.domain.UserInfo;
 import io.swagger.models.auth.In;
 import org.apache.catalina.User;
@@ -15,4 +16,7 @@ public interface UserMapper extends  BaseMapper<UserInfo>{
     void insertUser(UserInfo userInfo);
     UserInfo queryInfo(@Param("name") String name);
     UserInfo queryInfoById(@Param("id")Integer id);
+    void deleteUser(UserInfo userInfo);
+    void updateUserInfo(UserInfo userInfo);
+
 }

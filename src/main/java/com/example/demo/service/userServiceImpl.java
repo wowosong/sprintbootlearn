@@ -11,43 +11,58 @@ public class userServiceImpl  implements  userService{
     @Autowired
     private UserMapper userMapper;
     @Override
-    public  String insertUser(UserInfo userinfo) {
-//        String id = UUIDGeneratorUtil.generate();
-//        Integer id=1;
+    public  SimpleMessage insertUser(UserInfo userinfo) {
         UserInfo userList=userMapper.queryInfoById(userinfo.getId());
-
         if(!userList.getId().toString().isEmpty()){
-            return  "id重复";
+            return  SimpleMessage.warn("id重复");
         }
         userinfo.setId(userinfo.getId());
         userinfo.setName(userinfo.getName());
         userinfo.setPassword(userinfo.getPassword());
         userinfo.setEmail(userinfo.getEmail());
-        System.out.println("========================================");
-        System.out.println(userinfo);
         userMapper.insertUser(userinfo);
-        return "创建成功";
+        return  SimpleMessage.info("创建成功");
     };
     @Override
-    public UserInfo getUserInfo(String name){
-        System.out.println(name+"1111111111111111111111111111");
+    public SimpleMessage getUserInfo(String name){
         UserInfo userInfo= userMapper.queryInfo(name);
-        System.out.println(userInfo);
-        return userInfo;
-    }
-    @Override
-    public SimpleMessage get1Info(String name){
-        System.out.println(name+"1111111111111111111111111111");
-        UserInfo userInfo= userMapper.queryInfo(name);
-        System.out.println(userInfo);
         return SimpleMessage.info(userInfo);
     }
     @Override
-    public UserInfo getUserById(Integer id) {
-        System.out.println(id+"1111111111111111111111111111");
+    public SimpleMessage get1Info(String name){
+        UserInfo userInfo= userMapper.queryInfo(name);
+        return SimpleMessage.info(userInfo);
+    }
+    @Override
+    public SimpleMessage getUserById(Integer id) {
         UserInfo userInfo= userMapper.queryInfoById(id);
-        System.out.println(userInfo);
-        return userInfo;
+        if(userInfo==null){
+            return SimpleMessage.warn("用户不存在");
+        }
+        return SimpleMessage.info(userInfo);
     }
 
+    @Override
+    public SimpleMessage deleteUser(UserInfo userInfo) {
+        Integer id=userInfo.getId();
+        UserInfo userinfo=userMapper.queryInfoById(id);
+        if(userinfo==null){
+            return SimpleMessage.warn("用户不存在");
+        }
+        userMapper.deleteUser(userInfo);
+        return SimpleMessage.info("删除成功");
+    }
+
+    @Override
+    public SimpleMessage updateUser(UserInfo userInfo) {
+        Integer id=userInfo.getId();
+        UserInfo userinfo=userMapper.queryInfoById(id);
+        if(userinfo==null){
+            return SimpleMessage.warn("用户不存在");
+        }
+        userinfo.setName(userInfo.getName());
+        userinfo.setEmail(userInfo.getEmail());
+        userMapper.updateUserInfo(userInfo);
+        return SimpleMessage.info("更新成功");
+    }
 }

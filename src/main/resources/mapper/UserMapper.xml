@@ -17,7 +17,13 @@
     <select id="queryInfo" parameterType="java.lang.String" resultType="com.example.demo.domain.UserInfo">
         select id,name,password,email from userinfo where name = #{name}
     </select>
+    <update id="updateUserInfo">
+        update  userinfo set name=#{name} ,email=#{email}where id=#{id}
+    </update>
     <select id="queryInfoById" resultType="com.example.demo.domain.UserInfo">
         select * from userinfo where  id=#{id};
     </select>
+    <delete id="deleteUser">
+        delete from userinfo where id=#{id};
+    </delete>
 </mapper>

@@ -2,12 +2,11 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    <!-- 配置设置 -->
+
     <settings>
-        <!--oracle设置为null 解决为空时问题-->
+           <!--oracle设置为null 解决为空时问题-->
         <!-- 设置JDBC类型为空时,某些驱动程序 要指定值,default:OTHER-->
         <setting name="jdbcTypeForNull" value="NULL"/>
-
-    </settings>
+        </settings>
 <!--    <typeAliases type="com.example.demo.domain.UserInfo" alias="UserInfo"></typeAliases>-->
 </configuration>
