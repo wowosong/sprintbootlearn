@@ -6,14 +6,16 @@ import com.example.demo.SimpleMessage.SimpleMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class userServiceImpl  implements  userService{
     @Autowired
     private UserMapper userMapper;
     @Override
     public  SimpleMessage insertUser(UserInfo userinfo) {
-        UserInfo userList=userMapper.queryInfoById(userinfo.getId());
-        if(!userList.getId().toString().isEmpty()){
+        List<UserInfo> userList=userMapper.queryInfoById(userinfo.getId());
+        if(userList.size()>0){
             return  SimpleMessage.warn("id重复");
         }
         userinfo.setId(userinfo.getId());
@@ -35,8 +37,8 @@ public class userServiceImpl  implements  userService{
     }
     @Override
     public SimpleMessage getUserById(Integer id) {
-        UserInfo userInfo= userMapper.queryInfoById(id);
-        if(userInfo==null){
+        List<UserInfo> userInfo= userMapper.queryInfoById(id);
+        if(userInfo.size()==0){
             return SimpleMessage.warn("用户不存在");
         }
         return SimpleMessage.info(userInfo);
@@ -45,8 +47,8 @@ public class userServiceImpl  implements  userService{
     @Override
     public SimpleMessage deleteUser(UserInfo userInfo) {
         Integer id=userInfo.getId();
-        UserInfo userinfo=userMapper.queryInfoById(id);
-        if(userinfo==null){
+        List<UserInfo> userinfo=userMapper.queryInfoById(id);
+        if(userinfo.size()==0){
             return SimpleMessage.warn("用户不存在");
         }
         userMapper.deleteUser(userInfo);
@@ -56,12 +58,12 @@ public class userServiceImpl  implements  userService{
     @Override
     public SimpleMessage updateUser(UserInfo userInfo) {
         Integer id=userInfo.getId();
-        UserInfo userinfo=userMapper.queryInfoById(id);
-        if(userinfo==null){
+        List<UserInfo> userList=userMapper.queryInfoById(id);
+        if(userList.size()==0){
             return SimpleMessage.warn("用户不存在");
         }
-        userinfo.setName(userInfo.getName());
-        userinfo.setEmail(userInfo.getEmail());
+        userInfo.setName(userInfo.getName());
+        userInfo.setEmail(userInfo.getEmail());
         userMapper.updateUserInfo(userInfo);
         return SimpleMessage.info("更新成功");
     }
