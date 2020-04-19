@@ -15,4 +15,5 @@ public interface userService {
     SimpleMessage get1Info(String name);
     SimpleMessage deleteUser(UserInfo userInfo);
     SimpleMessage updateUser(UserInfo userInfo);
+    SimpleMessage getUser(Integer id);
 }

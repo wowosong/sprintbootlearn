@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.cuisongliu</groupId>
+  <artifactId>orderbyhelper-spring-boot-starter</artifactId>
+  <version>1.0.2</version>
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId>
+      <version>1.5.3.RELEASE</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.cuisongliu</groupId>
+      <artifactId>orderbyhelper-spring-boot-autoconfigure</artifactId>
+      <version>1.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>tk.mybatis</groupId>
+      <artifactId>orderby-helper</artifactId>
+      <version>0.0.2</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+  <url>https://github.com/cuisongliu/orderbyhelper-boot-starter</url>
+  <description>MyBatis OrderByHelper integration with springboot.</description>
+  <name>orderbyhelper-spring-boot-starter</name>
+  <packaging>jar</packaging>
+  <scm>
+    <connection>scm:git:git@github.com:cuisongliu/orderbyhelper-boot-starter.git</connection>
+    <developerConnection>scm:git:git@github.com:cuisongliu/orderbyhelper-boot-starter.git</developerConnection>
+    <url>https://github.com/cuisongliu/orderbyhelper-boot-starter</url>
+  </scm>
+  <issueManagement>
+    <system>Github Issue Tracker</system>
+    <url>https://github.com/cuisongliu/orderbyhelper-boot-starter/issues</url>
+  </issueManagement>
+  <licenses>
+    <license>
+      <name>The MIT License (MIT)</name>
+      <url>https://opensource.org/licenses/mit-license.php</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <name>cuisongliu</name>
+      <email>cuisongliu@qq.com</email>
+    </developer>
+  </developers>
+</project>

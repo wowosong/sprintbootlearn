@@ -62,9 +62,12 @@ public class userServiceImpl  implements  userService{
         if(userList.size()==0){
             return SimpleMessage.warn("用户不存在");
         }
-        userInfo.setName(userInfo.getName());
-        userInfo.setEmail(userInfo.getEmail());
         userMapper.updateUserInfo(userInfo);
         return SimpleMessage.info("更新成功");
+    }
+    @Override
+    public SimpleMessage getUser(Integer id){
+        UserInfo userInfo= userMapper.getUser(id);
+        return SimpleMessage.info(userInfo);
     }
 }
