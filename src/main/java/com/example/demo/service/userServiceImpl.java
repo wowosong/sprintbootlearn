@@ -5,10 +5,16 @@ import com.example.demo.mapper.UserMapper;
 import com.example.demo.SimpleMessage.SimpleMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
 @Component
+@Service
+@Validated
+@Transactional(rollbackFor = Exception.class)
 public class userServiceImpl  implements  userService{
     @Autowired
     private UserMapper userMapper;
@@ -18,10 +24,6 @@ public class userServiceImpl  implements  userService{
         if(userList.size()>0){
             return  SimpleMessage.warn("id重复");
         }
-        userinfo.setId(userinfo.getId());
-        userinfo.setName(userinfo.getName());
-        userinfo.setPassword(userinfo.getPassword());
-        userinfo.setEmail(userinfo.getEmail());
         userMapper.insertUser(userinfo);
         return  SimpleMessage.info("创建成功");
     };
@@ -62,8 +64,6 @@ public class userServiceImpl  implements  userService{
         if(userList.size()==0){
             return SimpleMessage.warn("用户不存在");
         }
-        userInfo.setName(userInfo.getName());
-        userInfo.setEmail(userInfo.getEmail());
         userMapper.updateUserInfo(userInfo);
         return SimpleMessage.info("更新成功");
     }
