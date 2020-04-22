@@ -13,9 +13,11 @@ import java.util.List;
 public interface UserMapper extends  BaseMapper<UserInfo>{
     void insertUser(UserInfo userInfo);
     UserInfo queryInfo(String name);
-    List<UserInfo> queryInfoById(Integer id);
+    UserInfo queryInfoById(Integer id);
     void deleteUser(UserInfo userInfo);
     void updateUserInfo(UserInfo userInfo);
     @Select("select id,name,email from userinfo where id=#{id}")
     UserInfo getUser(Integer id);
+    void batchInsert(List<UserInfo> ListUserInfo);
+    List<UserInfo> getMutiUser();
 }

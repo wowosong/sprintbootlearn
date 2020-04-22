@@ -3,25 +3,31 @@ package com.example.demo.service;
 import com.example.demo.domain.UserInfo;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.SimpleMessage.SimpleMessage;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 @Component
+@Service
+@Validated
+@Transactional(rollbackFor = Exception.class)
 public class userServiceImpl  implements  userService{
     @Autowired
     private UserMapper userMapper;
     @Override
     public  SimpleMessage insertUser(UserInfo userinfo) {
-        List<UserInfo> userList=userMapper.queryInfoById(userinfo.getId());
-        if(userList.size()>0){
+        UserInfo userList=userMapper.queryInfoById(userinfo.getId());
+        System.out.println(userList);
+        if(!Objects.isNull(userList)){
             return  SimpleMessage.warn("id重复");
         }
-        userinfo.setId(userinfo.getId());
-        userinfo.setName(userinfo.getName());
-        userinfo.setPassword(userinfo.getPassword());
-        userinfo.setEmail(userinfo.getEmail());
         userMapper.insertUser(userinfo);
         return  SimpleMessage.info("创建成功");
     };
@@ -37,8 +43,8 @@ public class userServiceImpl  implements  userService{
     }
     @Override
     public SimpleMessage getUserById(Integer id) {
-        List<UserInfo> userInfo= userMapper.queryInfoById(id);
-        if(userInfo.size()==0){
+        UserInfo userInfo= userMapper.queryInfoById(id);
+        if(Objects.isNull(userInfo)){
             return SimpleMessage.warn("用户不存在");
         }
         return SimpleMessage.info(userInfo);
@@ -47,8 +53,8 @@ public class userServiceImpl  implements  userService{
     @Override
     public SimpleMessage deleteUser(UserInfo userInfo) {
         Integer id=userInfo.getId();
-        List<UserInfo> userinfo=userMapper.queryInfoById(id);
-        if(userinfo.size()==0){
+        UserInfo userinfo=userMapper.queryInfoById(id);
+        if(Objects.isNull(userinfo)){
             return SimpleMessage.warn("用户不存在");
         }
         userMapper.deleteUser(userInfo);
@@ -58,16 +64,21 @@ public class userServiceImpl  implements  userService{
     @Override
     public SimpleMessage updateUser(UserInfo userInfo) {
         Integer id=userInfo.getId();
-        List<UserInfo> userList=userMapper.queryInfoById(id);
-        if(userList.size()==0){
+        UserInfo userinfo=userMapper.queryInfoById(id);
+        if(Objects.isNull(userinfo)){
             return SimpleMessage.warn("用户不存在");
         }
         userMapper.updateUserInfo(userInfo);
         return SimpleMessage.info("更新成功");
     }
     @Override
-    public SimpleMessage getUser(Integer id){
-        UserInfo userInfo= userMapper.getUser(id);
+    public SimpleMessage getUser(Integer id) {
+        UserInfo userInfo = userMapper.getUser(id);
         return SimpleMessage.info(userInfo);
+    }
+    @Override
+    public SimpleMessage batchInsertUser(List<UserInfo> listUserInfo){
+        userMapper.batchInsert(listUserInfo);
+        return SimpleMessage.info("批量增加成功");
     }
 }
