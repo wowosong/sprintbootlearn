@@ -15,4 +15,5 @@ public interface UserMapper extends  BaseMapper<UserInfo>{
     List<UserInfo> queryInfoById(Integer id);
     void deleteUser(UserInfo userInfo);
     void updateUserInfo(UserInfo userInfo);
+    void batchInsert(List<UserInfo> ListUserInfo);
 }

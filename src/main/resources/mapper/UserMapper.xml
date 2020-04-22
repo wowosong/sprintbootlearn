@@ -14,6 +14,10 @@
     <insert id="insertUser"  parameterType="com.example.demo.domain.UserInfo">
         INSERT  INTO userinfo (id,name,password,email) value (#{id},#{name},#{password},#{email})
     </insert>
+    <insert id="batchInsert">
+        INSERT  INTO userinfo (id,name,password,email) values
+        <foreach collection="list" item="item" separator=",">(#{item.id},#{item.name},#{item.password},#{item.email})</foreach>
+    </insert>
     <select id="queryInfo" parameterType="java.lang.String" resultType="com.example.demo.domain.UserInfo">
         select id,name,password,email from userinfo where name = #{name}
     </select>

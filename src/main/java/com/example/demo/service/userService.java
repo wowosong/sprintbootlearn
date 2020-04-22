@@ -7,6 +7,8 @@ import org.apache.catalina.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface userService {
     SimpleMessage insertUser(UserInfo userinfo);
@@ -15,4 +17,5 @@ public interface userService {
     SimpleMessage get1Info(String name);
     SimpleMessage deleteUser(UserInfo userInfo);
     SimpleMessage updateUser(UserInfo userInfo);
+    SimpleMessage batchInsertUser(List<UserInfo> listUserInfo);
 }

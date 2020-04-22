@@ -7,6 +7,8 @@ import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
+import java.util.List;
+
 @RestController
 //@RequestMapping(value = "demo")
 public class HelloWorldController {
@@ -49,5 +51,9 @@ public class HelloWorldController {
     @PostMapping(value = "updateUser")
     public SimpleMessage updateUser(@RequestBody UserInfo userInfo){
         return userService.updateUser(userInfo);
+    }
+    @PostMapping(value = "batchInsert")
+    public  SimpleMessage batchInsert(@RequestBody List<UserInfo> listUserInfo){
+        return userService.batchInsertUser(listUserInfo);
     }
 }
