@@ -54,15 +54,15 @@ public class HelloWorldController {
             }
             return userService.insertUser(userinfo);
     };
-    @PutMapping(value = "deleteUser")
+    @PutMapping(value = "/deleteUser")
     public SimpleMessage deleteUser(@RequestBody UserInfo userInfo){
         return  userService.deleteUser(userInfo);
     }
-    @PostMapping(value = "updateUser")
+    @PostMapping(value = "/updateUser")
     public SimpleMessage updateUser(@RequestBody UserInfo userInfo){
         return userService.updateUser(userInfo);
     }
-    @PostMapping(value = "batchInsert")
+    @PostMapping(value = "/batchInsert")
     public  SimpleMessage batchInsert(@RequestBody List<UserInfo> listUserInfo){
         return userService.batchInsertUser(listUserInfo);
     }
