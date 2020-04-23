@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.SimpleMessage.SimpleMessage;
 import com.example.demo.domain.UserInfo;
 import com.example.demo.service.userService;
+import com.sun.imageio.plugins.common.I18N;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,8 +29,13 @@ public class HelloWorldController {
     }
     @GetMapping(value="/{name}")
     public SimpleMessage get1Info(@PathVariable String name){
+        String i="123";
+        int i1=Integer.parseInt(i);
+        long l=Long.parseLong(i);
+        System.out.println('1'+1);
         return  userService.get1Info(name);
     }
+
     @GetMapping(value = "/test")
     public String data(){
         return "test";
@@ -44,15 +50,15 @@ public class HelloWorldController {
             System.out.println("1231312311111111111111111111");
             return userService.insertUser(userinfo);
     };
-    @PutMapping(value = "deleteUser")
+    @PutMapping(value = "/deleteUser")
     public SimpleMessage deleteUser(@RequestBody UserInfo userInfo){
         return  userService.deleteUser(userInfo);
     }
-    @PostMapping(value = "updateUser")
+    @PostMapping(value = "/updateUser")
     public SimpleMessage updateUser(@RequestBody UserInfo userInfo){
         return userService.updateUser(userInfo);
     }
-    @PostMapping(value = "batchInsert")
+    @PostMapping(value = "/batchInsert")
     public  SimpleMessage batchInsert(@RequestBody List<UserInfo> listUserInfo){
         return userService.batchInsertUser(listUserInfo);
     }
