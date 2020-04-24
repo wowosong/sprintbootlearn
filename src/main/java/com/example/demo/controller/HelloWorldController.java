@@ -6,7 +6,11 @@ import com.example.demo.service.userService;
 import com.sun.imageio.plugins.common.I18N;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.util.Collection;
 import java.util.List;
 
@@ -22,11 +26,11 @@ public class HelloWorldController {
     public String index() {
         return "Hello World";
     }
-    @RequestMapping(value = "/user/{name}",method = RequestMethod.GET)
-    public SimpleMessage getUserInfo(@PathVariable String name){
-        System.out.println(name+"-----------------------------------");
-        return userService.getUserInfo(name);
-    }
+//    @RequestMapping(value = "/user/{name}",method = RequestMethod.GET)
+//    public SimpleMessage getUserInfo(@PathVariable String name){
+//        System.out.println(name+"-----------------------------------");
+//        return userService.getUserInfo(name);
+//    }
     @GetMapping(value="/{name}")
     public SimpleMessage get1Info(@PathVariable String name){
         String i="123";
@@ -44,10 +48,16 @@ public class HelloWorldController {
     public SimpleMessage getInfo(@PathVariable String name){
         return  userService.getUserInfo(name);
     }
+    @GetMapping(value="/user/{id}")
+    public SimpleMessage getUser(@PathVariable Integer id){
+        return  userService.getUser(id);
+    }
     @PostMapping(value = "/insertUser")
-    public SimpleMessage insertUser(@RequestBody UserInfo userinfo){
-            System.out.println(userinfo);
-            System.out.println("1231312311111111111111111111");
+    public SimpleMessage insertUser(@RequestBody @Valid UserInfo userinfo, BindingResult bindingResult){
+
+            for(ObjectError error:bindingResult.getAllErrors()){
+                return  SimpleMessage.warn(error.getDefaultMessage());
+            }
             return userService.insertUser(userinfo);
     };
     @PutMapping(value = "/deleteUser")

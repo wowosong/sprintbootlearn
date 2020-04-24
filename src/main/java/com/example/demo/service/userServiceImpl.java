@@ -71,9 +71,13 @@ public class userServiceImpl  implements  userService{
         userMapper.updateUserInfo(userInfo);
         return SimpleMessage.info("更新成功");
     }
-
     @Override
-    public SimpleMessage batchInsertUser(List<UserInfo> listUserInfo) {
+    public SimpleMessage getUser(Integer id) {
+        UserInfo userInfo = userMapper.getUser(id);
+        return SimpleMessage.info(userInfo);
+    }
+    @Override
+    public SimpleMessage batchInsertUser(List<UserInfo> listUserInfo){
         userMapper.batchInsert(listUserInfo);
         return SimpleMessage.info("批量增加成功");
     }
