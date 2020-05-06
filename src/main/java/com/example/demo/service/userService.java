@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public interface userService {
@@ -19,4 +20,5 @@ public interface userService {
     SimpleMessage updateUser(UserInfo userInfo);
     SimpleMessage getUser(Integer id);
     SimpleMessage batchInsertUser(List<UserInfo> listUserInfo);
+    SimpleMessage queryUser(Map map);
 }
