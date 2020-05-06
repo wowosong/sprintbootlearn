@@ -12,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 @Component
@@ -24,7 +25,7 @@ public class userServiceImpl  implements  userService{
     @Override
     public  SimpleMessage insertUser(UserInfo userinfo) {
         UserInfo userList=userMapper.queryInfoById(userinfo.getId());
-        System.out.println(userList);
+
         if(!Objects.isNull(userList)){
             return  SimpleMessage.warn("id重复");
         }
@@ -80,5 +81,11 @@ public class userServiceImpl  implements  userService{
     public SimpleMessage batchInsertUser(List<UserInfo> listUserInfo){
         userMapper.batchInsert(listUserInfo);
         return SimpleMessage.info("批量增加成功");
+    }
+
+    @Override
+    public SimpleMessage queryUser(Map map) {
+        List<UserInfo> userinfo=userMapper.queryUser(map);
+        return SimpleMessage.info(userinfo);
     }
 }

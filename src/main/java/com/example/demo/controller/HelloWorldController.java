@@ -13,11 +13,15 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 //@RequestMapping(value = "demo")
 public class HelloWorldController {
     private  userService userService;
+    public HelloWorldController(){
+
+    }
     @Autowired
     public HelloWorldController(userService userService) {
         this.userService = userService;
@@ -26,11 +30,10 @@ public class HelloWorldController {
     public String index() {
         return "Hello World";
     }
-//    @RequestMapping(value = "/user/{name}",method = RequestMethod.GET)
-//    public SimpleMessage getUserInfo(@PathVariable String name){
-//        System.out.println(name+"-----------------------------------");
-//        return userService.getUserInfo(name);
-//    }
+    @RequestMapping(value = "/queryUser",method = RequestMethod.GET)
+    public SimpleMessage queryUser(@RequestParam Map map){
+        return userService.queryUser(map) ;
+    }
     @GetMapping(value="/{name}")
     public SimpleMessage get1Info(@PathVariable String name){
         String i="123";
@@ -60,7 +63,7 @@ public class HelloWorldController {
             }
             return userService.insertUser(userinfo);
     };
-    @PutMapping(value = "/deleteUser")
+    @RequestMapping(value = "/deleteUser",method = RequestMethod.PUT)
     public SimpleMessage deleteUser(@RequestBody UserInfo userInfo){
         return  userService.deleteUser(userInfo);
     }
