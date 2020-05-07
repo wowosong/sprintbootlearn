@@ -31,12 +31,15 @@
         select * from userinfo where id=#{id};
     </select>
     <select id="queryUser" resultType="com.example.demo.domain.UserInfo" parameterType="map">
-        select * from userinfo <where>
+        select * from users <where>
         <if test="''!=name and null !=name">
             name=#{name}
         </if>
         <if test="''!=email and null !=email">
             and  email=#{email}
+        </if>
+        <if test="''!=id and null!=id">
+            and id=#{id}
         </if>
         </where>
     </select>
