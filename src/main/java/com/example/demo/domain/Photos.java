@@ -1,6 +1,8 @@
 package com.example.demo.domain;
 
 
+import java.util.Date;
+
 public class Photos {
 
   private long id;
@@ -8,7 +10,7 @@ public class Photos {
   private String urlS;
   private String urlT;
   private String about;
-  private java.sql.Timestamp timestamp;
+  private Date timestamp;
   private long order;
   private long authorId;
   private long albumId;
@@ -59,11 +61,11 @@ public class Photos {
   }
 
 
-  public java.sql.Timestamp getTimestamp() {
+  public Date getTimestamp() {
     return timestamp;
   }
 
-  public void setTimestamp(java.sql.Timestamp timestamp) {
+  public void setTimestamp(Date timestamp) {
     this.timestamp = timestamp;
   }
 

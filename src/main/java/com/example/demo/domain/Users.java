@@ -1,6 +1,8 @@
 package com.example.demo.domain ;
 
 
+import java.util.Date;
+
 public class Users {
 
   private long id;
@@ -10,15 +12,15 @@ public class Users {
   private long liked;
   private String passwordHash;
   private long roleId;
-  private long confirmed;
-  private long likePublic;
+  private boolean confirmed;
+  private boolean likePublic;
   private String name;
   private String location;
   private String website;
   private String background;
   private String aboutMe;
-  private java.sql.Timestamp memberSince;
-  private java.sql.Timestamp lastSeen;
+  private Date memberSince;
+  private Date lastSeen;
   private String avatarHash;
 
 
@@ -85,20 +87,20 @@ public class Users {
   }
 
 
-  public long getConfirmed() {
+  public boolean getConfirmed() {
     return confirmed;
   }
 
-  public void setConfirmed(long confirmed) {
+  public void setConfirmed(boolean confirmed) {
     this.confirmed = confirmed;
   }
 
 
-  public long getLikePublic() {
+  public boolean getLikePublic() {
     return likePublic;
   }
 
-  public void setLikePublic(long likePublic) {
+  public void setLikePublic(boolean likePublic) {
     this.likePublic = likePublic;
   }
 
@@ -148,7 +150,7 @@ public class Users {
   }
 
 
-  public java.sql.Timestamp getMemberSince() {
+  public Date getMemberSince() {
     return memberSince;
   }
 
@@ -157,7 +159,7 @@ public class Users {
   }
 
 
-  public java.sql.Timestamp getLastSeen() {
+  public Date getLastSeen() {
     return lastSeen;
   }
 

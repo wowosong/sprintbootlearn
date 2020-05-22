@@ -1,12 +1,14 @@
 package com.example.demo.domain;
 
 
+import java.util.Date;
+
 public class Comments {
 
   private long id;
   private String body;
-  private java.sql.Timestamp timestamp;
-  private long disabled;
+  private Date timestamp;
+  private boolean disabled;
   private long authorId;
   private long photoId;
 
@@ -29,20 +31,20 @@ public class Comments {
   }
 
 
-  public java.sql.Timestamp getTimestamp() {
+  public Date getTimestamp() {
     return timestamp;
   }
 
-  public void setTimestamp(java.sql.Timestamp timestamp) {
+  public void setTimestamp(Date timestamp) {
     this.timestamp = timestamp;
   }
 
 
-  public long getDisabled() {
+  public boolean getDisabled() {
     return disabled;
   }
 
-  public void setDisabled(long disabled) {
+  public void setDisabled(boolean disabled) {
     this.disabled = disabled;
   }
 

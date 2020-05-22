@@ -1,11 +1,13 @@
 package com.example.demo.domain;
 
 
+import java.util.Date;
+
 public class LikePhoto {
 
   private long likePhotoId;
   private long photoLikedId;
-  private java.sql.Timestamp timestamp;
+  private Date timestamp;
 
 
   public long getLikePhotoId() {
@@ -26,11 +28,11 @@ public class LikePhoto {
   }
 
 
-  public java.sql.Timestamp getTimestamp() {
+  public Date getTimestamp() {
     return timestamp;
   }
 
-  public void setTimestamp(java.sql.Timestamp timestamp) {
+  public void setTimestamp(Date timestamp) {
     this.timestamp = timestamp;
   }
 

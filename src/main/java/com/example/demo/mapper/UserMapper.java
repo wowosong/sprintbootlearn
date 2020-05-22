@@ -21,7 +21,7 @@ public interface UserMapper extends  BaseMapper<Users>{
     void deleteUser(User user);
     @Options(useGeneratedKeys = true,keyColumn = "id")
     void updateUser(User user);
-    @Select("select id,name,email from users where id=#{id}")
+//    @Select("select id,name,email from users where id=#{id}")
     Users getUser(Integer id);
     List<User> getMutiUser();
 
