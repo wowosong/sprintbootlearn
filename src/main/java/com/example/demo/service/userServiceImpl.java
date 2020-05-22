@@ -1,16 +1,14 @@
 package com.example.demo.service;
 
-import com.example.demo.domain.UserInfo;
-import com.example.demo.mapper.UserMapper;
 import com.example.demo.SimpleMessage.SimpleMessage;
-import org.apache.catalina.User;
+import com.example.demo.domain.Users;
+import com.example.demo.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -23,69 +21,70 @@ public class userServiceImpl  implements  userService{
     @Autowired
     private UserMapper userMapper;
     @Override
-    public  SimpleMessage insertUser(UserInfo userinfo) {
-        UserInfo userList=userMapper.queryInfoById(userinfo.getId());
+    public  SimpleMessage insertUser(Users users) {
+        Users userList= userMapper.queryInfoById(users.getId());
 
         if(!Objects.isNull(userList)){
             return  SimpleMessage.warn("id重复");
         }
-        userMapper.insertUser(userinfo);
+        userMapper.insertUser(users);
         return  SimpleMessage.info("创建成功");
     };
     @Override
-    public SimpleMessage getUserInfo(String name){
-        UserInfo userInfo= userMapper.queryInfo(name);
-        return SimpleMessage.info(userInfo);
+    public SimpleMessage getUsers(String name){
+        Users users= userMapper.queryInfo(name);
+        return SimpleMessage.info(users);
     }
     @Override
     public SimpleMessage get1Info(String name){
-        UserInfo userInfo= userMapper.queryInfo(name);
-        return SimpleMessage.info(userInfo);
-    }
-    @Override
-    public SimpleMessage getUserById(Integer id) {
-        UserInfo userInfo= userMapper.queryInfoById(id);
-        if(Objects.isNull(userInfo)){
-            return SimpleMessage.warn("用户不存在");
-        }
-        return SimpleMessage.info(userInfo);
+        Users Users= userMapper.queryInfo(name);
+        return SimpleMessage.info(Users);
     }
 
     @Override
-    public SimpleMessage deleteUser(UserInfo userInfo) {
-        Integer id=userInfo.getId();
-        UserInfo userinfo=userMapper.queryInfoById(id);
-        if(Objects.isNull(userinfo)){
+    public SimpleMessage getUserById(Integer id) {
+        Users Users= userMapper.queryInfoById(id);
+        if(Objects.isNull(Users)){
             return SimpleMessage.warn("用户不存在");
         }
-        userMapper.deleteUser(userInfo);
+        return SimpleMessage.info(Users);
+    }
+    @Override
+    public SimpleMessage deleteUser(Users users) {
+        long id=users.getId();
+        Users Usersinfo=userMapper.queryInfoById(id);
+        if(Objects.isNull(Usersinfo)){
+            return SimpleMessage.warn("用户不存在");
+        }
+        userMapper.deleteUser(users);
         return SimpleMessage.info("删除成功");
     }
 
     @Override
-    public SimpleMessage updateUser(UserInfo userInfo) {
-        Integer id=userInfo.getId();
-        UserInfo userinfo=userMapper.queryInfoById(id);
-        if(Objects.isNull(userinfo)){
+    public SimpleMessage updateUser(Users users) {
+        long id=users.getId();
+        Users usersinfo=userMapper.queryInfoById(id);
+        if(Objects.isNull(usersinfo)){
             return SimpleMessage.warn("用户不存在");
         }
-        userMapper.updateUserInfo(userInfo);
+        userMapper.updateUsers(users);
         return SimpleMessage.info("更新成功");
     }
     @Override
     public SimpleMessage getUser(Integer id) {
-        UserInfo userInfo = userMapper.getUser(id);
-        return SimpleMessage.info(userInfo);
+        Users users = userMapper.getUser(id);
+        return SimpleMessage.info(users);
     }
+
     @Override
-    public SimpleMessage batchInsertUser(List<UserInfo> listUserInfo){
-        userMapper.batchInsert(listUserInfo);
+    public SimpleMessage batchInsertUser(List<Users> listUsers){
+        userMapper.batchInsert(listUsers);
         return SimpleMessage.info("批量增加成功");
     }
 
     @Override
     public SimpleMessage queryUser(Map map) {
-        List<UserInfo> userinfo=userMapper.queryUser(map);
-        return SimpleMessage.info(userinfo);
+        List<Users> users=userMapper.queryUser(map);
+        return SimpleMessage.info(users);
     }
 }
