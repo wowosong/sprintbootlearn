@@ -1,17 +1,26 @@
 package com.example.demo.domain ;
 
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 public class Users {
-
+  @NotNull
   private long id;
+  @NotNull
+  @NotBlank
+  @Email
   private String email;
+  @NotBlank
+  @Length(min=6, max=20)
   private String username;
   private String status;
   private long liked;
   private String passwordHash;
-  private long roleId;
+  private String roleId;
   private boolean confirmed;
   private boolean likePublic;
   private String name;
@@ -78,11 +87,11 @@ public class Users {
   }
 
 
-  public long getRoleId() {
+  public String getRoleId() {
     return roleId;
   }
 
-  public void setRoleId(long roleId) {
+  public void setRoleId(String roleId) {
     this.roleId = roleId;
   }
 
@@ -154,7 +163,7 @@ public class Users {
     return memberSince;
   }
 
-  public void setMemberSince(java.sql.Timestamp memberSince) {
+  public void setMemberSince(Date memberSince) {
     this.memberSince = memberSince;
   }
 
@@ -163,7 +172,7 @@ public class Users {
     return lastSeen;
   }
 
-  public void setLastSeen(java.sql.Timestamp lastSeen) {
+  public void setLastSeen(Date lastSeen) {
     this.lastSeen = lastSeen;
   }
 
