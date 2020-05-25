@@ -22,7 +22,8 @@ public class userServiceImpl  implements  userService{
     private UserMapper userMapper;
     @Override
     public  SimpleMessage insertUser(Users users) {
-        Users userList= userMapper.queryInfoById(users.getId());
+//        Users userList= userMapper.queryInfoById(users.getId());
+        Users userList=userMapper.selectByPrimaryKey(users.getId());
 
         if(!Objects.isNull(userList)){
             return  SimpleMessage.warn("id重复");

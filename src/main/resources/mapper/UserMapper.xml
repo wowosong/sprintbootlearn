@@ -23,7 +23,10 @@
         select id,name,password,email from userinfo where name = #{name}
     </select>
     <update id="updateUser">
-        update  Users set name=#{name} ,email = #{email} where id=#{id}
+        update  users set name=#{name} ,email = #{email} where id=#{id}
+    </update>
+    <update id="updateUsers">
+        update  users set name=#{name} ,email = #{email} where id=#{id}
     </update>
     <select id="queryInfoById" resultType="com.example.demo.domain.Users">
         select * from userinfo where  id = #{id};

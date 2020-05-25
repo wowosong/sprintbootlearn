@@ -1,19 +1,30 @@
 package com.example.demo.configuration;
-//import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
-//import org.apache.ibatis.mapping.VendorDatabaseIdProvider;
-////import org.apache.ibatis.session.SqlSessionFactory;
-//import org.mybatis.spring.SqlSessionFactoryBean;
-//import org.mybatis.spring.annotation.MapperScan;
-//import org.springframework.beans.factory.annotation.Qualifier;
-//import org.springframework.boot.context.properties.ConfigurationProperties;
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.context.annotation.Primary;
-//import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
-//import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
-import javax.sql.DataSource;
-import java.util.Properties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+@Configuration
+@EnableSwagger2
 public class SwaggerConfiguration {
-
+    private ApiInfo apiInfo() {
+        return new ApiInfoBuilder().title("API接口文档")
+                .description("用户信息管理")
+                .version("1.0.0")
+                .build();
+    }
+    @Bean
+    public Docket createRestApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(apiInfo())
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.example.demo.controller")) //这里写的是API接口所在的包位置
+                .paths(PathSelectors.any())
+                .build();
+    }
 }
