@@ -16,7 +16,7 @@ import java.util.Map;
 public interface UserMapper extends  BaseMapper<Users>{
     void insertUser(User user);
     Users queryInfo(String name);
-    Users queryInfoById(long id);
+    Users queryInfoById(String id);
     List<Users> queryUser(Map map);
     void deleteUser(User user);
     @Options(useGeneratedKeys = true,keyColumn = "id")
@@ -29,4 +29,8 @@ public interface UserMapper extends  BaseMapper<Users>{
     void batchInsert(List<Users> listUsers);
 
     void updateUsers(Users users);
+
+    void registerUser(Users users);
+
+    Users queryUserByEmail(String email);
 }

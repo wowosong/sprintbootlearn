@@ -11,11 +11,14 @@ import java.util.Map;
 public interface userService {
     SimpleMessage insertUser(Users Users);
     SimpleMessage getUsers(String name);
-    SimpleMessage getUserById(Integer id);
-    SimpleMessage get1Info(String name);
+    SimpleMessage getUserById(String id);
+
     SimpleMessage deleteUser(Users Users);
     SimpleMessage updateUser(Users Users);
     SimpleMessage getUser(Integer id);
     SimpleMessage batchInsertUser(List<Users> listUsers);
     SimpleMessage queryUser(Map map);
+    SimpleMessage registerUser(Users users);
+    SimpleMessage login();
+    SimpleMessage logout();
 }

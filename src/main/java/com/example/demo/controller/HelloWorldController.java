@@ -26,14 +26,14 @@ public class HelloWorldController {
 //    public HelloWorldController(){
 //
 //    }
-//    @Autowired
-//    public HelloWorldController(userService userService) {
-//        this.userService = userService;
-//    }
-//    @RequestMapping(value = "/hello",method = RequestMethod.GET)
-//    public String index() {
-//        return "Hello World";
-//    }
+    @Autowired
+    public HelloWorldController(userService userService) {
+        this.userService = userService;
+    }
+    @RequestMapping(value = "/hello",method = RequestMethod.GET)
+    public String index() {
+        return "Hello World";
+    }
     @CrossOrigin(maxAge = 3600)
     @ApiOperation(value="获取用户",notes = "通过多个关键字查询用户")
     @RequestMapping(value = "/queryUser",method = RequestMethod.GET)
@@ -57,10 +57,11 @@ public class HelloWorldController {
 //    public SimpleMessage getInfo(@PathVariable String name){
 //        return  userService.getUsers(name);
 //    }
-//    @GetMapping(value="/user/{id}")
-//    public SimpleMessage getUser(@PathVariable Integer id){
-//        return  userService.getUser(id);
-//    }
+    @ApiOperation(value = "获取用户信息",notes ="通过id获取用户信息" )
+    @GetMapping(value="/user/{id}")
+    public SimpleMessage getUser(@PathVariable Integer id){
+        return  userService.getUser(id);
+    }
     @ApiOperation(value="插入用户",notes = "插入用户")
     @PostMapping(value = "/insertUser")
     public SimpleMessage insertUser(@ApiParam(value = "插入用户",required = true)@RequestBody @Valid Users users, BindingResult bindingResult){
@@ -70,6 +71,12 @@ public class HelloWorldController {
             }
             return userService.insertUser(users);
     };
+    @ApiOperation(value="注册用户",notes = "注册用户")
+    @PostMapping(value = "/register")
+    public SimpleMessage registerUser(@ApiParam(value = "注册用户")@RequestBody Users users){
+//        System.out.println(users.toString());
+        return userService.registerUser(users);
+    }
     @ApiOperation(value="删除用户",notes = "删除用户")
     @RequestMapping(value = "/deleteUser",method = RequestMethod.PUT)
     public SimpleMessage deleteUser(@ApiParam(value = "删除用户",required = true)@RequestBody Users users){
