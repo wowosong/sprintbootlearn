@@ -5,6 +5,7 @@ import com.example.demo.service.userService;
 import com.example.demo.domain.*;
 //import com.sun.imageio.plugins.common.I18N;
 //import org.apache.catalina.User;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -25,6 +26,11 @@ public class HelloWorldController {
     @Autowired
     public HelloWorldController(userService userService) {
         this.userService = userService;
+    }
+    @RequestMapping
+    public PageInfo<Users> getAll(@PathVariable String name) {
+        List<Users> userInfoList = (List<Users>) userService.getUsers(name);
+        return new PageInfo<Users>(userInfoList);
     }
     @RequestMapping(value = "/hello",method = RequestMethod.GET)
     public String index() {
