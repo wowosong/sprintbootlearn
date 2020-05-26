@@ -8,25 +8,31 @@
         </constructor>
         <id property="id" column="id"/>
         <result property="name" column="name"/>
-        <result property="passwordHash" column="password_hash"/>
+        <result property="passwordHash" column="passwordHash"/>
         <result property="email" column="email"/>
 
     </resultMap>
     <insert id="insertUser"  parameterType="com.example.demo.domain.Users">
-        INSERT  INTO userinfo (id,name,password,email) value (#{id},#{name},#{password},#{email})
+        INSERT  INTO users (id,username,password_hash,email) value (#{id},#{username},#{passwordHash},#{email})
     </insert>
     <insert id="batchInsert">
-        INSERT  INTO userinfo (id,name,password,email) values
-        <foreach collection="list" item="item" separator=",">(#{item.id},#{item.name},#{item.password},#{item.email})</foreach>
+        INSERT  INTO users (id,username,password_hash,email) values
+        <foreach collection="list" item="item" separator=",">(#{item.id},#{item.username},#{item.passwordHash},#{item.email})</foreach>
+    </insert>
+    <insert id="registerUser" parameterType="com.example.demo.domain.Users">
+        insert into users(username,password_hash,email,member_since,confirmed,liked) value (#{username},#{passwordHash},#{email},#{memberSince},#{confirmed},#{liked})
     </insert>
     <select id="queryInfo" parameterType="java.lang.String" resultType="com.example.demo.domain.Users">
-        select id,name,password,email from userinfo where name = #{name}
+        select id,name,email from users where name = #{name}
     </select>
     <update id="updateUser">
-        update  Users set name=#{name} ,email = #{email} where id=#{id}
+        update  users set name=#{name} ,email = #{email} where id=#{id}
+    </update>
+    <update id="updateUsers">
+        update  users set name=#{name} ,email = #{email} where id=#{id}
     </update>
     <select id="queryInfoById" resultType="com.example.demo.domain.Users">
-        select * from userinfo where  id = #{id};
+        select * from users where  id = #{id};
     </select>
     <select id="getMutiUser" resultType="org.apache.catalina.User" parameterType="java.util.Map">
         select * from userinfo where id=#{id};
@@ -46,6 +52,9 @@
     </select>
     <select id="getUser" resultType="com.example.demo.domain.Users">
         select id,name,email from users where id=#{id}
+    </select>
+    <select id="queryUserByEmail" resultType="com.example.demo.domain.Users">
+         select id,name,email from users where email=#{email}
     </select>
     <delete id="deleteUser">
         delete from userinfo where id = #{id};

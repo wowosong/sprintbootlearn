@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class Users {
   @NotNull
-  private long id;
+  private String  id;
   @NotNull
   @NotBlank
   @Email
@@ -33,11 +33,11 @@ public class Users {
   private String avatarHash;
 
 
-  public long getId() {
+  public String getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(String id) {
     this.id = id;
   }
 
@@ -184,5 +184,8 @@ public class Users {
   public void setAvatarHash(String avatarHash) {
     this.avatarHash = avatarHash;
   }
-
+  @Override
+    public  String toString(){
+      return this.name+this.aboutMe+this.email+this.location;
+  }
 }

@@ -3,12 +3,16 @@ package com.example.demo.service;
 import com.example.demo.SimpleMessage.SimpleMessage;
 import com.example.demo.domain.Users;
 import com.example.demo.mapper.UserMapper;
+import com.example.demo.utils.UUIDGeneratorUtil;
+import org.apache.tomcat.util.security.MD5Encoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
+import com.example.demo.utils.MD5;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -23,7 +27,6 @@ public class userServiceImpl  implements  userService{
     @Override
     public  SimpleMessage insertUser(Users users) {
         Users userList= userMapper.queryInfoById(users.getId());
-
         if(!Objects.isNull(userList)){
             return  SimpleMessage.warn("id重复");
         }
@@ -35,14 +38,9 @@ public class userServiceImpl  implements  userService{
         Users users= userMapper.queryInfo(name);
         return SimpleMessage.info(users);
     }
-    @Override
-    public SimpleMessage get1Info(String name){
-        Users Users= userMapper.queryInfo(name);
-        return SimpleMessage.info(Users);
-    }
 
     @Override
-    public SimpleMessage getUserById(Integer id) {
+    public SimpleMessage getUserById(String id) {
         Users Users= userMapper.queryInfoById(id);
         if(Objects.isNull(Users)){
             return SimpleMessage.warn("用户不存在");
@@ -51,7 +49,7 @@ public class userServiceImpl  implements  userService{
     }
     @Override
     public SimpleMessage deleteUser(Users users) {
-        long id=users.getId();
+        String id=users.getId();
         Users Usersinfo=userMapper.queryInfoById(id);
         if(Objects.isNull(Usersinfo)){
             return SimpleMessage.warn("用户不存在");
@@ -62,7 +60,7 @@ public class userServiceImpl  implements  userService{
 
     @Override
     public SimpleMessage updateUser(Users users) {
-        long id=users.getId();
+        String id=users.getId();
         Users usersinfo=userMapper.queryInfoById(id);
         if(Objects.isNull(usersinfo)){
             return SimpleMessage.warn("用户不存在");
@@ -86,5 +84,35 @@ public class userServiceImpl  implements  userService{
     public SimpleMessage queryUser(Map map) {
         List<Users> users=userMapper.queryUser(map);
         return SimpleMessage.info(users);
+    }
+
+    @Override
+    public SimpleMessage registerUser(Users users) {
+        Users userinfo=userMapper.queryInfo(users.getUsername());
+//        users.setId(UUIDGeneratorUtil.generate());
+        if(!Objects.isNull(userinfo)){
+            return SimpleMessage.warn("用户已经存在");
+        }
+        Users userEmamil=userMapper.queryUserByEmail(users.getEmail());
+        String md5=MD5.getMD5(users.getPasswordHash(),64);
+        if(!Objects.isNull(userEmamil)){
+            return SimpleMessage.warn("邮箱已经存在");
+        }
+        users.setMemberSince(MD5.getTimestamp());
+        users.setPasswordHash(md5);
+        users.setLiked(1);
+        users.setConfirmed(true);
+        userMapper.registerUser(users);
+        return SimpleMessage.info("注册成功");
+    }
+
+    @Override
+    public SimpleMessage login() {
+        return null;
+    }
+
+    @Override
+    public SimpleMessage logout() {
+        return null;
     }
 }
