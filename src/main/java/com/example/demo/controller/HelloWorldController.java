@@ -1,10 +1,8 @@
 package com.example.demo.controller;
 
 import com.example.demo.SimpleMessage.SimpleMessage;
+import com.example.demo.domain.Users;
 import com.example.demo.service.userService;
-import com.example.demo.domain.*;
-//import com.sun.imageio.plugins.common.I18N;
-//import org.apache.catalina.User;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -15,18 +13,18 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+
 
 @RestController
 @Api(value = "用户信息")
 //@RequestMapping(value = "demo")
 public class HelloWorldController {
     private  userService userService;
-//    public HelloWorldController(){
-//
-//    }
+    public HelloWorldController(){
+
+    }
     @Autowired
     public HelloWorldController(userService userService) {
         this.userService = userService;
@@ -65,7 +63,7 @@ public class HelloWorldController {
 //    }
     @ApiOperation(value = "获取用户信息",notes ="通过id获取用户信息" )
     @GetMapping(value="/user/{id}")
-    public SimpleMessage getUser(@PathVariable Integer id){
+    public SimpleMessage getUser(@PathVariable String id){
         return  userService.getUser(id);
     }
     @ApiOperation(value="插入用户",notes = "插入用户")
@@ -80,7 +78,6 @@ public class HelloWorldController {
     @ApiOperation(value="注册用户",notes = "注册用户")
     @PostMapping(value = "/register")
     public SimpleMessage registerUser(@ApiParam(value = "注册用户")@RequestBody Users users){
-//        System.out.println(users.toString());
         return userService.registerUser(users);
     }
     @ApiOperation(value="删除用户",notes = "删除用户")

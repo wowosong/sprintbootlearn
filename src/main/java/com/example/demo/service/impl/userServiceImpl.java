@@ -1,8 +1,9 @@
-package com.example.demo.service;
+package com.example.demo.service.impl;
 
 import com.example.demo.SimpleMessage.SimpleMessage;
 import com.example.demo.domain.Users;
 import com.example.demo.mapper.UserMapper;
+import com.example.demo.service.userService;
 import com.example.demo.utils.UUIDGeneratorUtil;
 import org.apache.tomcat.util.security.MD5Encoder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import java.util.Objects;
 @Service
 @Validated
 @Transactional(rollbackFor = Exception.class)
-public class userServiceImpl  implements  userService{
+public class userServiceImpl  implements userService {
     @Autowired
     private UserMapper userMapper;
     @Override
@@ -69,7 +70,7 @@ public class userServiceImpl  implements  userService{
         return SimpleMessage.info("更新成功");
     }
     @Override
-    public SimpleMessage getUser(Integer id) {
+    public SimpleMessage getUser(String id) {
         Users users = userMapper.getUser(id);
         return SimpleMessage.info(users);
     }

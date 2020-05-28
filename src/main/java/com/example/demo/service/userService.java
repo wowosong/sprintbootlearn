@@ -15,7 +15,7 @@ public interface userService {
 
     SimpleMessage deleteUser(Users Users);
     SimpleMessage updateUser(Users Users);
-    SimpleMessage getUser(Integer id);
+    SimpleMessage getUser(String  id);
     SimpleMessage batchInsertUser(List<Users> listUsers);
     SimpleMessage queryUser(Map map);
     SimpleMessage registerUser(Users users);

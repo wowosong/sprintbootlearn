@@ -9,17 +9,5 @@
         <setting name="jdbcTypeForNull" value="NULL"/>
         </settings>
 <!--    <typeAliases type="com.example.demo.domain.UserInfo" alias="UserInfo"></typeAliases>-->
-    <plugins>
-        <plugin interceptor=""></plugin>
-    </plugins> <environments default="">
-    <environments default="">
-        <environment id="">
-            <transactionManager type=""></transactionManager>
-            <dataSource type=""></dataSource>
-        </environment>
-    </environments>
 
-    <mappers>
-        <mapper></mapper>
-    </mappers>
 </configuration>

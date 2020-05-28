@@ -26,15 +26,13 @@ public class Roles {
     this.name = name;
   }
 
-
-  public String getDefault() {
+  public String getIsDefault() {
     return isDefault;
   }
 
-  public void setDefault(String isDefault) {
+  public void setIsDefault(String isDefault) {
     this.isDefault = isDefault;
   }
-
 
   public long getPermissions() {
     return permissions;

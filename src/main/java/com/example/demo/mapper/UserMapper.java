@@ -22,7 +22,7 @@ public interface UserMapper extends  BaseMapper<Users>{
     @Options(useGeneratedKeys = true,keyColumn = "id")
     void updateUser(User user);
 //    @Select("select id,name,email from users where id=#{id}")
-    Users getUser(Integer id);
+    Users getUser(String id);
     List<User> getMutiUser();
     void insertUser(Users users);
     void deleteUser(Users users);
