@@ -6,6 +6,8 @@ import com.example.demo.mapper.RoleMapper;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.service.userService;
 import com.example.demo.utils.UUIDGeneratorUtil;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.tomcat.util.security.MD5Encoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,6 +26,7 @@ import java.util.Objects;
 @Validated
 @Transactional(rollbackFor = Exception.class)
 public class userServiceImpl  implements userService {
+    private static final Log logger= LogFactory.getLog(userService.class);
     @Autowired
     private UserMapper userMapper;
     @Autowired
@@ -32,9 +35,9 @@ public class userServiceImpl  implements userService {
     public  SimpleMessage insertUser(Users users) {
         Users userList= userMapper.queryInfoById(users.getId());
         if(!Objects.isNull(userList)){
+            logger.info(users);
             return  SimpleMessage.warn("id重复");
         }
-//        users.setRoleId();
         userMapper.insertUser(users);
         return  SimpleMessage.info("创建成功");
     };

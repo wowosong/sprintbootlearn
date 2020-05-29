@@ -35,4 +35,8 @@ public class RoleController {
     public SimpleMessage editRole(@ApiParam(value = "获取角色") @RequestBody Roles roles){
         return  roleService.editRole(roles);
     }
+    @GetMapping(value = "/getrole")
+    public SimpleMessage getRole(){
+        return roleService.getRole();
+    }
 }

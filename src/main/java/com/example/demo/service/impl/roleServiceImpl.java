@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
+import javax.management.relation.Role;
+import java.util.List;
 import java.util.Objects;
 
 @Component
@@ -27,6 +29,7 @@ public class roleServiceImpl implements roleService {
             return  SimpleMessage.warn("该角色已存在");
         }
         roleMapper.addRole(roles);
+//        roleMapper.insert(roles);
         return SimpleMessage.info("操作成功");
     }
 
@@ -50,4 +53,11 @@ public class roleServiceImpl implements roleService {
         Roles roleinfo=roleMapper.getRoleByName(name);
         return SimpleMessage.info(roleinfo);
     }
+
+    @Override
+    public SimpleMessage getRole() {
+        List<Roles> roleinfo=roleMapper.select(null);
+        return SimpleMessage.info(roleinfo);
+    }
+
 }
