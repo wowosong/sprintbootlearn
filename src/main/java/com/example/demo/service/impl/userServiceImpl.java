@@ -2,6 +2,7 @@ package com.example.demo.service.impl;
 
 import com.example.demo.SimpleMessage.SimpleMessage;
 import com.example.demo.domain.Users;
+import com.example.demo.mapper.RoleMapper;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.service.userService;
 import com.example.demo.utils.UUIDGeneratorUtil;
@@ -25,12 +26,15 @@ import java.util.Objects;
 public class userServiceImpl  implements userService {
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private RoleMapper roleMapper;
     @Override
     public  SimpleMessage insertUser(Users users) {
         Users userList= userMapper.queryInfoById(users.getId());
         if(!Objects.isNull(userList)){
             return  SimpleMessage.warn("id重复");
         }
+//        users.setRoleId();
         userMapper.insertUser(users);
         return  SimpleMessage.info("创建成功");
     };

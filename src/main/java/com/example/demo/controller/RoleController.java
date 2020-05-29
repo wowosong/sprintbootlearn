@@ -9,6 +9,8 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.management.relation.Role;
+
 @RestController
 @Api(value = "角色管理")
 public class RoleController {
@@ -21,7 +23,16 @@ public class RoleController {
     @PostMapping(value = "/addRole")
     public SimpleMessage addRole(@ApiParam(value = "增加角色") @RequestBody Roles role){
         System.out.println(role);
-        roleService.addRole(role);
-        return  SimpleMessage.info("操作成功");
+        return roleService.addRole(role);
     };
+    @ApiOperation(value = "获取角色",notes="获取角色")
+    @GetMapping(value = "/getRole/{name}")
+    public SimpleMessage getRole(@ApiParam(value = "获取角色") @PathVariable String name){
+        return  roleService.getRoleByName(name);
+    }
+    @ApiOperation(value = "编辑角色",notes="编辑角色")
+    @PostMapping(value = "/editRole")
+    public SimpleMessage editRole(@ApiParam(value = "获取角色") @RequestBody Roles roles){
+        return  roleService.editRole(roles);
+    }
 }

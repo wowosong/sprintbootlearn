@@ -10,4 +10,9 @@ import tk.mybatis.mapper.common.BaseMapper;
 public interface RoleMapper extends BaseMapper<Roles> {
     void getRole();
     void addRole(Roles role);
+    Roles getRoleByName(String name);
+
+    Roles getRoleById(String id);
+
+    void updateRole(Roles roles);
 }

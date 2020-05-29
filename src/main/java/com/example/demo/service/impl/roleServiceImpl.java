@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
+import java.util.Objects;
+
 @Component
 @Validated
 @Service
@@ -20,13 +22,22 @@ public class roleServiceImpl implements roleService {
     private RoleMapper roleMapper;
     @Override
     public SimpleMessage addRole(Roles roles) {
+        Roles role=roleMapper.getRoleByName(roles.getName());
+        if(!Objects.isNull(role)){
+            return  SimpleMessage.warn("该角色已存在");
+        }
         roleMapper.addRole(roles);
         return SimpleMessage.info("操作成功");
     }
 
     @Override
-    public SimpleMessage editRole() {
-        return null;
+    public SimpleMessage editRole(Roles roles) {
+        Roles roleinfo=roleMapper.getRoleById(roles.getId());
+        if(Objects.isNull(roleinfo)){
+            return  SimpleMessage.warn("该角色不存在");
+        }
+        roleMapper.updateRole(roles);
+        return SimpleMessage.info("操作成功");
     }
 
     @Override
@@ -35,7 +46,8 @@ public class roleServiceImpl implements roleService {
     }
 
     @Override
-    public SimpleMessage getRole() {
-        return null;
+    public SimpleMessage getRoleByName(String name) {
+        Roles roleinfo=roleMapper.getRoleByName(name);
+        return SimpleMessage.info(roleinfo);
     }
 }

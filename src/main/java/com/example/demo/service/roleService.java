@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface roleService {
     SimpleMessage addRole(Roles roles);
-    SimpleMessage editRole();
+    SimpleMessage editRole(Roles roles);
     SimpleMessage deleteRole();
-    SimpleMessage getRole();
+    SimpleMessage getRoleByName(String name);
 }

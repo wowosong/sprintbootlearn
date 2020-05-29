@@ -12,10 +12,19 @@
         <result property="permissions" column="permissions"/>
     </resultMap>
     <insert id="addRole" parameterType="com.example.demo.domain.Roles">
-        insert into roles value (#{id},#{name},#{permissions},#{isDefault})
+        insert into roles value (#{id},#{name},#{permissions},#{`isDefault`})
     </insert>
+    <update id="updateRole" parameterType="com.example.demo.domain.Roles">
+        update roles set name =#{name}, `default`= #{isDefault} where id = #{id}
+    </update>
     <select id="getRole">
         select * from roles;
+    </select>
+    <select id="getRoleByName" resultType="com.example.demo.domain.Roles">
+        select  * from roles where name=#{name}
+    </select>
+    <select id="getRoleById" resultType="com.example.demo.domain.Roles">
+        select * from roles where id=#{id}
     </select>
 
 </mapper>
