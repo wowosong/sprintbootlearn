@@ -11,7 +11,7 @@ import tk.mybatis.mapper.common.BaseMapper;
 import java.util.List;
 import java.util.Map;
 
-@Mapper
+//@Mapper
 @Repository
 public interface UserMapper extends  BaseMapper<Users>{
     void insertUser(User user);

@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.SimpleMessage.SimpleMessage;
 import com.example.demo.domain.Users;
 import com.example.demo.service.userService;
+//import com.example.demo.domain.*;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -65,6 +66,11 @@ public class HelloWorldController {
     @GetMapping(value="/user/{id}")
     public SimpleMessage getUser(@PathVariable String id){
         return  userService.getUser(id);
+    }
+    @ApiOperation(value = "获取用户信息",notes ="通过id获取用户信息" )
+    @GetMapping(value="/{id}")
+    public SimpleMessage getUserById(@PathVariable String id){
+        return  userService.getUserById(id);
     }
     @ApiOperation(value="插入用户",notes = "插入用户")
     @PostMapping(value = "/insertUser")

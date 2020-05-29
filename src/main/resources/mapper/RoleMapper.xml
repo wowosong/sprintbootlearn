@@ -10,10 +10,9 @@
         <result property="name" column="name"/>
         <result property="isDefault" column="isDefault"/>
         <result property="permissions" column="permissions"/>
-
     </resultMap>
     <insert id="addRole" parameterType="com.example.demo.domain.Roles">
-        insert into roles (id,name,permissions,isDefault) value (#{id},#{name},#{permissions},#{isDefault})
+        insert into roles value (#{id},#{name},#{permissions},#{isDefault})
     </insert>
     <select id="getRole">
         select * from roles;

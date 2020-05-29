@@ -7,7 +7,7 @@ import tk.mybatis.mapper.common.BaseMapper;
 
 @Mapper
 @Repository
-public interface RoleMapper extends BaseMapper {
+public interface RoleMapper extends BaseMapper<Roles> {
     void getRole();
     void addRole(Roles role);
 }

@@ -20,17 +20,17 @@ public class Users {
   private String status;
   private long liked;
   private String passwordHash;
-  private String roleId;
+  private String role_Id;
   private boolean confirmed;
-  private boolean likePublic;
+  private boolean like_public;
   private String name;
   private String location;
   private String website;
   private String background;
-  private String aboutMe;
-  private Date memberSince;
-  private Date lastSeen;
-  private String avatarHash;
+  private String about_me;
+  private Date member_since;
+  private Date last_seen;
+  private String avatar_hash;
 
 
   public String getId() {
@@ -88,11 +88,11 @@ public class Users {
 
 
   public String getRoleId() {
-    return roleId;
+    return role_Id;
   }
 
-  public void setRoleId(String roleId) {
-    this.roleId = roleId;
+  public void setRoleId(String role_Id) {
+    this.role_Id = role_Id;
   }
 
 
@@ -106,11 +106,11 @@ public class Users {
 
 
   public boolean getLikePublic() {
-    return likePublic;
+    return like_public;
   }
 
   public void setLikePublic(boolean likePublic) {
-    this.likePublic = likePublic;
+    this.like_public = like_public;
   }
 
 
@@ -151,41 +151,41 @@ public class Users {
 
 
   public String getAboutMe() {
-    return aboutMe;
+    return about_me;
   }
 
   public void setAboutMe(String aboutMe) {
-    this.aboutMe = aboutMe;
+    this.about_me = about_me;
   }
 
 
   public Date getMemberSince() {
-    return memberSince;
+    return member_since;
   }
 
   public void setMemberSince(Date memberSince) {
-    this.memberSince = memberSince;
+    this.member_since = member_since;
   }
 
 
   public Date getLastSeen() {
-    return lastSeen;
+    return last_seen;
   }
 
   public void setLastSeen(Date lastSeen) {
-    this.lastSeen = lastSeen;
+    this.last_seen = last_seen;
   }
 
 
   public String getAvatarHash() {
-    return avatarHash;
+    return avatar_hash;
   }
 
   public void setAvatarHash(String avatarHash) {
-    this.avatarHash = avatarHash;
+    this.avatar_hash = avatar_hash;
   }
   @Override
     public  String toString(){
-      return this.name+this.aboutMe+this.email+this.location;
+      return this.name+this.about_me+this.email+this.location;
   }
 }

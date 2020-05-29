@@ -42,11 +42,12 @@ public class userServiceImpl  implements userService {
 
     @Override
     public SimpleMessage getUserById(String id) {
-        Users Users= userMapper.queryInfoById(id);
-        if(Objects.isNull(Users)){
+//        Users users= userMapper.selectByPrimaryKey(id);
+        Users users= userMapper.queryInfoById(id);
+        if(Objects.isNull(users)){
             return SimpleMessage.warn("用户不存在");
         }
-        return SimpleMessage.info(Users);
+        return SimpleMessage.info(users);
     }
     @Override
     public SimpleMessage deleteUser(Users users) {
