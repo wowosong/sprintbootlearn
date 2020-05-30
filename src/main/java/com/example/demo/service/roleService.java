@@ -11,4 +11,5 @@ public interface roleService {
     SimpleMessage deleteRole();
     SimpleMessage getRoleByName(String name);
     SimpleMessage getRole();
+//    SimpleMessage getRole(String name);
 }

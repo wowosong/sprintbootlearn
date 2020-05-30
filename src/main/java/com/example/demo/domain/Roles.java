@@ -1,10 +1,13 @@
 package com.example.demo.domain;
 
 
+import javax.persistence.Column;
+
 public class Roles {
 
   private String id;
   private String name;
+  @Column(name = "[default]")
   private String isDefault;
   private long permissions;
 

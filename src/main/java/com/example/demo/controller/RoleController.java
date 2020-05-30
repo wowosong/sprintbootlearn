@@ -22,8 +22,8 @@ public class RoleController {
     @ApiOperation(value = "添加角色",notes = "添加角色")
     @PostMapping(value = "/addRole")
     public SimpleMessage addRole(@ApiParam(value = "增加角色") @RequestBody Roles role){
-        System.out.println(role);
-        return roleService.addRole(role);
+
+       return roleService.addRole(role);
     };
     @ApiOperation(value = "获取角色",notes="获取角色")
     @GetMapping(value = "/getRole/{name}")

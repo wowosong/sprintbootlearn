@@ -5,12 +5,13 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 import tk.mybatis.mapper.common.BaseMapper;
 
+import javax.management.relation.Role;
+
 @Mapper
 @Repository
 public interface RoleMapper extends BaseMapper<Roles> {
-    void getRole();
-    void addRole(Roles role);
     Roles getRoleByName(String name);
+    void addRole(Roles role);
 
     Roles getRoleById(String id);
 
