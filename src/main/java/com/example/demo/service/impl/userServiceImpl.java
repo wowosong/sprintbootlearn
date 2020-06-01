@@ -6,10 +6,9 @@ import com.example.demo.domain.Users;
 import com.example.demo.mapper.RoleMapper;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.service.userService;
-import com.example.demo.utils.UUIDGeneratorUtil;
+import com.example.demo.utils.MD5;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.tomcat.util.security.MD5Encoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -18,7 +17,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import com.example.demo.utils.MD5;
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -48,6 +46,7 @@ public class userServiceImpl  implements userService {
     @Override
     public SimpleMessage getUsers(String name){
         Users users= userMapper.queryInfo(name);
+
         return SimpleMessage.info(users);
     }
 
@@ -102,7 +101,6 @@ public class userServiceImpl  implements userService {
     @Override
     public SimpleMessage registerUser(Users users) {
         Users userinfo=userMapper.queryInfo(users.getUsername());
-//        users.setId(UUIDGeneratorUtil.generate());
         if(!Objects.isNull(userinfo)){
             return SimpleMessage.warn("用户已经存在");
         }
@@ -115,6 +113,7 @@ public class userServiceImpl  implements userService {
         users.setPasswordHash(md5);
         users.setLiked(1);
         users.setConfirmed(true);
+        users.setRoleId(users.getRoleId());
         userMapper.registerUser(users);
 //        userMapper.save(users);
         return SimpleMessage.info("注册成功");

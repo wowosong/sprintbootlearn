@@ -3,7 +3,6 @@ package com.example.demo.controller;
 import com.example.demo.SimpleMessage.SimpleMessage;
 import com.example.demo.domain.Users;
 import com.example.demo.service.userService;
-//import com.example.demo.domain.*;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -13,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
@@ -35,7 +35,12 @@ public class HelloWorldController {
         List<Users> userInfoList = (List<Users>) userService.getUsers(name);
         return new PageInfo<Users>(userInfoList);
     }
-    @RequestMapping(value = "/hello",method = RequestMethod.GET)
+    @RequestMapping("/g0")
+    public  SimpleMessage get(@RequestParam(value = "name", required = true,defaultValue = "admin") String name){
+        return SimpleMessage.info("");
+    }
+
+    @RequestMapping(value = "/hello",method = RequestMethod.GET,consumes = "application/json")
     public String index() {
         return "Hello World";
     }

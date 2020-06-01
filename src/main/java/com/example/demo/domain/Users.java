@@ -1,4 +1,6 @@
 package com.example.demo.domain ;
+import
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
@@ -27,7 +29,9 @@ public class Users {
   private String website;
   private String background;
   private String about_me;
+//  @JsonFormat(pattern = "yyyy/MM/dd",timezone = "GMT+8")
   private Date member_since;
+//  @JsonFormat(pattern = "yyyy/MM/dd")
   private Date last_seen;
   private String avatar_hash;
 
