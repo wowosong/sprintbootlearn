@@ -1,13 +1,15 @@
 package com.example.demo.domain;
 
 
-import javax.persistence.Column;
+import lombok.Data;
 
+import javax.persistence.Column;
+@Data
 public class Roles {
 
   private String id;
   private String name;
-  @Column(name = "[default]")
+  @Column(name = "default")
   private String isDefault;
   private long permissions;
 

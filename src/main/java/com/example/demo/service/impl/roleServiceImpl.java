@@ -54,7 +54,7 @@ public class roleServiceImpl implements roleService {
 
     @Override
     public SimpleMessage getRole() {
-        List<Roles> roleinfo=roleMapper.select(null);
+        List<Roles> roleinfo=roleMapper.query(null);
         return SimpleMessage.info(roleinfo);
     }
 }

@@ -6,8 +6,9 @@ import org.springframework.stereotype.Repository;
 import tk.mybatis.mapper.common.BaseMapper;
 
 import javax.management.relation.Role;
+import java.util.List;
 
-@Mapper
+//@Mapper
 @Repository
 public interface RoleMapper extends BaseMapper<Roles> {
     Roles getRoleByName(String name);
@@ -16,4 +17,6 @@ public interface RoleMapper extends BaseMapper<Roles> {
     Roles getRoleById(String id);
 
     void updateRole(Roles roles);
+
+    List<Roles> query(Object o);
 }

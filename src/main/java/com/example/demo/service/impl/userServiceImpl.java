@@ -1,6 +1,7 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.SimpleMessage.SimpleMessage;
+import com.example.demo.domain.Roles;
 import com.example.demo.domain.Users;
 import com.example.demo.mapper.RoleMapper;
 import com.example.demo.mapper.UserMapper;
@@ -10,12 +11,15 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.tomcat.util.security.MD5Encoder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import com.example.demo.utils.MD5;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -112,6 +116,7 @@ public class userServiceImpl  implements userService {
         users.setLiked(1);
         users.setConfirmed(true);
         userMapper.registerUser(users);
+//        userMapper.save(users);
         return SimpleMessage.info("注册成功");
     }
 
