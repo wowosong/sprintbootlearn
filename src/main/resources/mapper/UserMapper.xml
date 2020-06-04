@@ -29,7 +29,6 @@
     </insert>
     <insert id="batchInsert">
         INSERT  INTO users (id,username,password_hash,email) values
-        <foreach collection="collection" open="" item="" index="" close=""></foreach>
         <foreach collection="list" item="item" separator=",">(#{item.id},#{item.username},#{item.passwordHash},#{item.email})</foreach>
     </insert>
     <insert id="registerUser" parameterType="com.example.demo.domain.Users">

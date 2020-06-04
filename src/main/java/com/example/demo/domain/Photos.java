@@ -3,26 +3,33 @@ package com.example.demo.domain;
 
 import lombok.Data;
 
+import javax.persistence.Column;
 import java.util.Date;
-@Data
+//@Data
 public class Photos {
 
-  private long id;
+  private String id;
+  @Column(name = "照片获取地址url")
   private String url;
   private String urlS;
   private String urlT;
+  @Column(name = "照片描述")
   private String about;
+  @Column(name = "上传时间")
   private Date timestamp;
+  @Column(name = "照片快速排序")
   private long order;
-  private long authorId;
-  private long albumId;
+  @Column(name = "照片上传者Id")
+  private String authorId;
+  @Column(name = "照片上传到相册Id")
+  private String albumId;
 
 
-  public long getId() {
+  public String getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(String  id) {
     this.id = id;
   }
 
@@ -81,20 +88,20 @@ public class Photos {
   }
 
 
-  public long getAuthorId() {
+  public String getAuthorId() {
     return authorId;
   }
 
-  public void setAuthorId(long authorId) {
+  public void setAuthorId(String authorId) {
     this.authorId = authorId;
   }
 
 
-  public long getAlbumId() {
+  public String getAlbumId() {
     return albumId;
   }
 
-  public void setAlbumId(long albumId) {
+  public void setAlbumId(String albumId) {
     this.albumId = albumId;
   }
 

@@ -80,7 +80,6 @@ public class HelloWorldController {
     @ApiOperation(value="插入用户",notes = "插入用户")
     @PostMapping(value = "/insertUser")
     public SimpleMessage insertUser(@ApiParam(value = "插入用户",required = true)@RequestBody @Valid Users users, BindingResult bindingResult){
-
             for(ObjectError error:bindingResult.getAllErrors()){
                 return  SimpleMessage.warn(error.getDefaultMessage());
             }

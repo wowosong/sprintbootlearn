@@ -3,28 +3,39 @@ package com.example.demo.domain;
 
 import lombok.Data;
 
+import javax.persistence.Column;
 import java.util.Date;
 @Data
 public class Albums {
 
-  private long id;
+  private String id;
+  @Column(name = "相册标题")
   private String title;
+  @Column(name="相册描述")
   private String about;
+  @Column(name = "封面")
   private String cover;
+  @Column(name = "照片是否最新或最热")
   private long type;
+
   private String tag;
-  private long noPublic;
-  private long noComment;
-  private long ascOrder;
+  @Column(name = "是否公开")
+  private boolean noPublic;
+  @Column(name = "是否允许评论")
+  private boolean noComment;
+  @Column(name = "照片按照上传时间排序方式")
+  private String  ascOrder;
+  @Column(name = "相册创建时间")
   private Date timestamp;
-  private long authorId;
+  @Column(name = "相册创建者id")
+  private String authorId;
 
 
-  public long getId() {
+  public String  getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(String id) {
     this.id = id;
   }
 
@@ -74,29 +85,29 @@ public class Albums {
   }
 
 
-  public long getNoPublic() {
+  public boolean getNoPublic() {
     return noPublic;
   }
 
-  public void setNoPublic(long noPublic) {
+  public void setNoPublic(boolean noPublic) {
     this.noPublic = noPublic;
   }
 
 
-  public long getNoComment() {
+  public boolean getNoComment() {
     return noComment;
   }
 
-  public void setNoComment(long noComment) {
+  public void setNoComment(boolean noComment) {
     this.noComment = noComment;
   }
 
 
-  public long getAscOrder() {
+  public String getAscOrder() {
     return ascOrder;
   }
 
-  public void setAscOrder(long ascOrder) {
+  public void setAscOrder(String ascOrder) {
     this.ascOrder = ascOrder;
   }
 
@@ -110,11 +121,11 @@ public class Albums {
   }
 
 
-  public long getAuthorId() {
+  public String getAuthorId() {
     return authorId;
   }
 
-  public void setAuthorId(long authorId) {
+  public void setAuthorId(String authorId) {
     this.authorId = authorId;
   }
 

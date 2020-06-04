@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.AlbumsMapper">
+    <resultMap id="roleResultMap" type="com.example.demo.domain.Albums">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="about" column="about"/>
+        <result property="cover" column="cover"/>
+        <result property="type" column="type"/>
+        <result property="tag" column="tag"/>
+        <result property="noPublic" column="noPublic"/>
+        <result property="noComment" column="noComment"/>
+        <result property="timestamp" column="timestamp"/>
+        <result property="ascOrder" column="ascOrder"/>
+        <result property="timestamp" column="timestamp"/>
+        <result property="authorId" column="authorId"/>
+    </resultMap>
+    <insert id="addAlbums"></insert>
+    <select id="getAlbumsById" resultType="com.example.demo.domain.Albums"></select>
+
+
+</mapper>

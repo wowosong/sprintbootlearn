@@ -3,23 +3,29 @@ package com.example.demo.domain;
 
 import lombok.Data;
 
+import javax.persistence.Column;
 import java.util.Date;
 @Data
 public class Comments {
 
-  private long id;
+  private String id;
+  @Column(name = "评论内容")
   private String body;
+  @Column(name = "评论时间")
   private Date timestamp;
+  @Column(name = "是否可以删除")
   private boolean disabled;
-  private long authorId;
-  private long photoId;
+  @Column(name = "评论者Id")
+  private String authorId;
+  @Column(name = "评论对应的照片Id")
+  private String photoId;
 
 
-  public long getId() {
+  public String getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(String id) {
     this.id = id;
   }
 
@@ -51,20 +57,20 @@ public class Comments {
   }
 
 
-  public long getAuthorId() {
+  public String getAuthorId() {
     return authorId;
   }
 
-  public void setAuthorId(long authorId) {
+  public void setAuthorId(String authorId) {
     this.authorId = authorId;
   }
 
 
-  public long getPhotoId() {
+  public String getPhotoId() {
     return photoId;
   }
 
-  public void setPhotoId(long photoId) {
+  public void setPhotoId(String photoId) {
     this.photoId = photoId;
   }
 

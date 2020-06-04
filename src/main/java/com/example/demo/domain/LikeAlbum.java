@@ -3,29 +3,32 @@ package com.example.demo.domain;
 
 import lombok.Data;
 
+import javax.persistence.Column;
 import java.util.Date;
 @Data
 public class LikeAlbum {
-
-  private long likeAlbumId;
-  private long albumLikedId;
+  @Column(name = "收藏相册Id")
+  private String likeAlbumId;
+  @Column(name = "被收藏相册Id")
+  private String albumLikedId;
+  @Column(name = "收藏时间")
   private Date timestamp;
 
 
-  public long getLikeAlbumId() {
+  public String getLikeAlbumId() {
     return likeAlbumId;
   }
 
-  public void setLikeAlbumId(long likeAlbumId) {
+  public void setLikeAlbumId(String likeAlbumId) {
     this.likeAlbumId = likeAlbumId;
   }
 
 
-  public long getAlbumLikedId() {
+  public String getAlbumLikedId() {
     return albumLikedId;
   }
 
-  public void setAlbumLikedId(long albumLikedId) {
+  public void setAlbumLikedId(String albumLikedId) {
     this.albumLikedId = albumLikedId;
   }
 

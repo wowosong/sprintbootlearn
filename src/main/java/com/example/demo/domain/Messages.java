@@ -3,23 +3,29 @@ package com.example.demo.domain;
 
 import lombok.Data;
 
+import javax.persistence.Column;
 import java.util.Date;
 //@Data
 public class Messages {
 
-  private long id;
+  private String id;
+  @Column(name = "消息内容")
   private String body;
+  @Column(name = "消息发送时间")
   private Date timestamp;
+  @Column(name = "消息")
   private boolean disabled;
+  @Column(name = "消息产生者")
   private String authorId;
+  @Column(name = "")
   private String userId;
 
 
-  public long getId() {
+  public String getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(String id) {
     this.id = id;
   }
 

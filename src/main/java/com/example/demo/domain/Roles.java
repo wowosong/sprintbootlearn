@@ -11,7 +11,7 @@ public class Roles {
   private String name;
   @Column(name = "default")
   private String isDefault;
-  private long permissions;
+  private String permissions;
 
 
   public String getId() {
@@ -39,11 +39,11 @@ public class Roles {
     this.isDefault = isDefault;
   }
 
-  public long getPermissions() {
+  public String getPermissions() {
     return permissions;
   }
 
-  public void setPermissions(long permissions) {
+  public void setPermissions(String permissions) {
     this.permissions = permissions;
   }
 

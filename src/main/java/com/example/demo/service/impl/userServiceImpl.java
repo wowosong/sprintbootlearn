@@ -115,7 +115,6 @@ public class userServiceImpl  implements userService {
         users.setConfirmed(true);
         users.setRoleId(users.getRoleId());
         userMapper.registerUser(users);
-//        userMapper.save(users);
         return SimpleMessage.info("注册成功");
     }
 

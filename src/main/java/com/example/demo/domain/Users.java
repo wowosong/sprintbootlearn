@@ -4,6 +4,8 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
+
+import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 //@Data
@@ -13,25 +15,41 @@ public class Users {
   @NotNull
   @NotBlank
   @Email
+  @Column(name = "邮箱")
   private String email;
   @NotBlank
   @Length(min=6, max=20)
+  @Column(name = "用户名")
   private String username;
+  @Column(name = "账号状态")
   private String status;
+  @Column(name = "")
   private long liked;
+  @Column(name = "密钥")
   private String passwordHash;
+  @Column(name = "角色")
   private String role_Id;
+  @Column(name = "是否确认")
   private boolean confirmed;
+  @Column(name = "是否公开我的喜欢")
   private boolean like_public;
+  @Column(name = "姓名")
   private String name;
+  @Column(name = "地址")
   private String location;
+  @Column(name = "网址")
   private String website;
+  @Column(name = "")
   private String background;
+  @Column(name = "关于我")
   private String about_me;
   @JsonFormat(pattern = "yyyy/MM/dd",timezone = "GMT+8")
+  @Column(name = "注册时间")
   private Date member_since;
   @JsonFormat(pattern = "yyyy/MM/dd")
+  @Column(name = "上次登录时间")
   private Date last_seen;
+  @Column(name = "头像")
   private String avatar_hash;
 
 

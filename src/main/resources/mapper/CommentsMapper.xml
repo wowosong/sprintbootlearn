@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.CommentsMapper">
+    <resultMap id="roleResultMap" type="com.example.demo.domain.Comments">
+        <id property="id" column="id"/>
+        <result property="body" column="body"/>
+        <result property="timestamp" column="timestamp"/>
+        <result property="disabled" column="disabled"/>
+        <result property="authorId" column="authorId"/>
+        <result property="photoId" column="photoId"/>
+    </resultMap>
+    <insert id="postComments">
+
+    </insert>
+    <update id="editComments"></update>
+    <delete id="deleteComments"></delete>
+    <select id="getCommentsByphotoId" resultType="com.example.demo.domain.Comments"></select>
+    <select id="getCommentsByUserId" resultType="com.example.demo.domain.Comments"></select>
+
+
+</mapper>
