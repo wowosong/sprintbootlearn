@@ -3,7 +3,8 @@
     "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
-    <settings>
+    <properties resource="application.properties"></properties>
+        <settings>
            <!--oracle设置为null 解决为空时问题-->
         <!-- 设置JDBC类型为空时,某些驱动程序 要指定值,default:OTHER-->
         <setting name="jdbcTypeForNull" value="NULL"/>
@@ -12,12 +13,12 @@
 <!--    <plugins>-->
 <!--        <plugin interceptor=""></plugin>-->
 <!--    </plugins>-->
-<!--    <environments default="">-->
-<!--        <environment id="">-->
-<!--                &lt;!&ndash; 事务管理器工厂配置 &ndash;&gt;-->
-<!--                <transactionManager type="org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory"/>-->
-<!--                &lt;!&ndash; 数据源工厂配置，使用工厂来创建数据源 &ndash;&gt;-->
-<!--                <dataSource type="org.apache.ibatis.datasource.pooled.PooledDataSourceFactory">-->
+<!--    <environments default="test">-->
+<!--        <environment id="test">-->
+                <!-- 事务管理器工厂配置 -->
+<!--                <transactionManager type="JDBC"/>-->
+                <!-- 数据源工厂配置，使用工厂来创建数据源 -->
+<!--                <dataSource type="POOLED">-->
 <!--                    <property name="driver" value="com.mysql.jdbc.Driver"/>-->
 <!--                    <property name="url" value="jdbc:mysql://47.105.184.98:3306/album?characterEncoding=utf-8&amp;useSSL=false"/>-->
 <!--                    <property name="username" value="root"/>-->
@@ -27,7 +28,7 @@
 <!--    </environments>-->
 
     <mappers>
-        <mapper resource="com.example.demo.mapper.UserMapper"></mapper>
-        <mapper resource="com.example.demo.mapper.RoleMapper"></mapper>
+        <package name="com.example.demo.mapper" ></package>
+<!--        <package name="com.example.demo.mapper.RoleMapper"></package>-->
     </mappers>
 </configuration>

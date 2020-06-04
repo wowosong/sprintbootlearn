@@ -8,7 +8,7 @@ import tk.mybatis.mapper.common.BaseMapper;
 import javax.management.relation.Role;
 import java.util.List;
 
-//@Mapper
+@Mapper
 @Repository
 public interface RoleMapper extends BaseMapper<Roles> {
     Roles getRoleByName(String name);
