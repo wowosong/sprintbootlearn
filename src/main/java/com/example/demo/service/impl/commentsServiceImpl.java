@@ -21,7 +21,7 @@ public class commentsServiceImpl  implements commentsService {
     }
 
     @Override
-    public void getCommentsAll() {
+    public void getComments() {
 
     }
 }
