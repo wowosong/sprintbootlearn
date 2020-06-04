@@ -10,4 +10,6 @@ public interface AlbumsMapper {
     Albums getAlbumsById(String albumsId);
 
     void addAlbums(Albums albums);
+
+    void deleteAlbums(String albumsId);
 }

@@ -20,9 +20,9 @@ public class Albums {
 
   private String tag;
   @Column(name = "是否公开")
-  private boolean noPublic;
+  private Boolean noPublic;
   @Column(name = "是否允许评论")
-  private boolean noComment;
+  private Boolean noComment;
   @Column(name = "照片按照上传时间排序方式")
   private String  ascOrder;
   @Column(name = "相册创建时间")
@@ -85,20 +85,20 @@ public class Albums {
   }
 
 
-  public boolean getNoPublic() {
+  public Boolean getNoPublic() {
     return noPublic;
   }
 
-  public void setNoPublic(boolean noPublic) {
+  public void setNoPublic(Boolean noPublic) {
     this.noPublic = noPublic;
   }
 
 
-  public boolean getNoComment() {
+  public Boolean getNoComment() {
     return noComment;
   }
 
-  public void setNoComment(boolean noComment) {
+  public void setNoComment(Boolean noComment) {
     this.noComment = noComment;
   }
 

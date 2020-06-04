@@ -10,6 +10,6 @@ import java.util.List;
 public interface photoService {
     public SimpleMessage postPhoto(Photos photos);
     public SimpleMessage getPhotoByAlbums(String albumsId);
-    public SimpleMessage deletePhoto(String photoId);
+    public SimpleMessage deletePhoto(Photos photos);
     public SimpleMessage editPhoto(Photos photos);
 }

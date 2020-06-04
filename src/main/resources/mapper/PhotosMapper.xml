@@ -2,25 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.PhotoMapper">
-    <resultMap id="roleResultMap" type="com.example.demo.domain.Photos">
+    <resultMap id="photoResultMap" type="com.example.demo.domain.Photos">
         <id property="id" column="id"/>
         <result property="url" column="url"/>
-        <result property="urlS" column="urlS"/>
-        <result property="urlT" column="urlT"/>
+        <result property="urlS" column="url_s"/>
+        <result property="urlT" column="url_t"/>
         <result property="about" column="about"/>
         <result property="timestamp" column="timestamp"/>
         <result property="order" column="order"/>
-        <result property="authorId" column="authorId"/>
-        <result property="albumId" column="albumId"/>
+        <result property="authorId" column="author_id"/>
+        <result property="albumId" column="album_id"/>
     </resultMap>
 
-    <insert id="addPhotos">
-        insert  photos(id,url,urlS,urlT,about,`timestamp`,`order`,authorId,albumId ) value(#{id},#{url},#{urlS},#{urlT},#{about},#{timestamp},#{order},#{authorId},#{albumsId})
+    <insert id="addPhotos" useGeneratedKeys="true" keyProperty="id">
+        insert  photos(url,url_s,url_t,about,`timestamp`,`order`,author_id,album_id ) value(#{url},#{urlS},#{urlT},#{about},#{timestamp},#{order},#{authorId},#{albumId})
     </insert>
-    <update id="editPhotos"></update>
-    <delete id="deletePhotos"></delete>
-    <select id="getPhotosByAlbumsId" resultType="com.example.demo.domain.Photos"></select>
-    <select id="getPhotosById" resultType="com.example.demo.domain.Photos"></select>
+    <update id="editPhotos">
+        update photos set about = (#{about}) where id=#{id}
+    </update>
+    <delete id="deletePhotos">
+        delete  from photos where id=#{id}
+    </delete>
+    <select id="getPhotosByAlbumsId"  resultMap="photoResultMap" parameterType="string">
+        select  * from photos where  album_id =#{albumsId}
+    </select>
+    <select id="getPhotosById" resultType="com.example.demo.domain.Photos">
+        select  *from photos where  id=#{id}
+    </select>
 
 
 </mapper>

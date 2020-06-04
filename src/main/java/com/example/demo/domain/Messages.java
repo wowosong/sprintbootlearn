@@ -14,7 +14,7 @@ public class Messages {
   @Column(name = "消息发送时间")
   private Date timestamp;
   @Column(name = "消息")
-  private boolean disabled;
+  private Boolean disabled;
   @Column(name = "消息产生者")
   private String authorId;
   @Column(name = "")
@@ -47,7 +47,6 @@ public class Messages {
     this.timestamp = timestamp;
   }
 
-
   public boolean getDisabled() {
     return disabled;
   }
@@ -55,7 +54,6 @@ public class Messages {
   public void setDisabled(boolean disabled) {
     this.disabled = disabled;
   }
-
 
   public String getAuthorId() {
     return authorId;

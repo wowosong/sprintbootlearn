@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.SimpleMessage.SimpleMessage;
 import com.example.demo.domain.Albums;
 import com.example.demo.mapper.AlbumsMapper;
 import com.example.demo.service.albumsService;
@@ -19,28 +20,30 @@ public class albumsServiceImpl  implements albumsService {
     @Autowired
     private AlbumsMapper albumsMapper;
     @Override
-    public void addAlbums(Albums albums) {
-
+    public SimpleMessage addAlbums(Albums albums) {
+        albumsMapper.addAlbums(albums);
+        return SimpleMessage.info("操作成功");
     }
 
     @Override
-    public Albums editAlbums(String id) {
-        return null;
+    public SimpleMessage editAlbums(String id) {
+        return SimpleMessage.info("操作成功");
     }
 
     @Override
-    public Albums getAlbumsByUserId(String id) {
-        return null;
+    public SimpleMessage getAlbumsById(String albumsId) {
+        Albums albums=albumsMapper.getAlbumsById(albumsId);
+        return SimpleMessage.info(albums);
     }
 
     @Override
-    public void deleteAlbums(String albumsId) {
-
+    public SimpleMessage deleteAlbums(String albumsId) {
+        albumsMapper.deleteAlbums(albumsId);
+        return SimpleMessage.info("操作成功");
     }
 
     @Override
-    public void focusAlbums(String albumsId) {
-
+    public SimpleMessage focusAlbums(String albumsId) {
+        return SimpleMessage.info("操作成功");
     }
-
 }

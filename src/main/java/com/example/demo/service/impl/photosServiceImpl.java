@@ -5,7 +5,10 @@ import com.example.demo.domain.Albums;
 import com.example.demo.domain.Photos;
 import com.example.demo.mapper.AlbumsMapper;
 import com.example.demo.mapper.PhotoMapper;
+import com.example.demo.mapper.UserMapper;
 import com.example.demo.service.photoService;
+import com.example.demo.utils.MD5;
+import com.sun.org.apache.xalan.internal.xsltc.dom.SAXImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,36 +29,44 @@ public class photosServiceImpl implements photoService {
     private PhotoMapper photoMapper;
     @Autowired
     AlbumsMapper albumsMapper;
+//    @Autowired
+//    UserMapper userMapper;
     @Override
     public SimpleMessage postPhoto(Photos photos) {
+        photos.setTimestamp(MD5.getTimestamp());
+        Albums albums=albumsMapper.getAlbumsById(photos.getAlbumId());
+        if(Objects.isNull(albums)){
+            return SimpleMessage.warn("不存在");
+        }
+        photos.setAuthorId(1);
         photoMapper.addPhotos(photos);
         return SimpleMessage.info("添加成功");
     }
 
     @Override
-    public SimpleMessage getPhotoByAlbums(String albumsId) {
-        Albums albums=albumsMapper.getAlbumsById(albumsId);
+    public SimpleMessage getPhotoByAlbums(String albumId) {
+        Albums albums=albumsMapper.getAlbumsById(albumId);
         if(Objects.isNull(albums)){
             SimpleMessage.warn("不存在该相册");
         }
-        Photos photos=photoMapper.getPhotosByAlbumsId(albumsId);
-        return SimpleMessage.info(photos);
+        List<Photos> photosList=photoMapper.getPhotosByAlbumsId(albumId);
+        return SimpleMessage.info(photosList);
     }
 
     @Override
-    public SimpleMessage deletePhoto(String photoId) {
-        Photos photos=photoMapper.getPhotosById(photoId);
-        if(Objects.isNull(photos)){
+    public SimpleMessage deletePhoto(Photos photos) {
+        Photos photosInfo=photoMapper.getPhotosById(photos.getId());
+        if(Objects.isNull(photosInfo)){
             return  SimpleMessage.warn("照片不存在！");
         }
-        photoMapper.deletePhotos(photoId);
+        photoMapper.deletePhotos(photos.getId());
         return SimpleMessage.info("删除成功");
     }
 
     @Override
     public SimpleMessage editPhoto(Photos photos) {
-
-        return null;
+        photoMapper.editPhotos(photos);
+        return SimpleMessage.info("操作成功");
     }
 
 }

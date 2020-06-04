@@ -24,15 +24,15 @@ public class Users {
   @Column(name = "账号状态")
   private String status;
   @Column(name = "")
-  private long liked;
+  private Long liked;
   @Column(name = "密钥")
   private String passwordHash;
   @Column(name = "角色")
   private String role_Id;
   @Column(name = "是否确认")
-  private boolean confirmed;
+  private Boolean confirmed;
   @Column(name = "是否公开我的喜欢")
-  private boolean like_public;
+  private Boolean like_public;
   @Column(name = "姓名")
   private String name;
   @Column(name = "地址")
@@ -89,11 +89,11 @@ public class Users {
   }
 
 
-  public long getLiked() {
+  public Long getLiked() {
     return liked;
   }
 
-  public void setLiked(long liked) {
+  public void setLiked(Long liked) {
     this.liked = liked;
   }
 
@@ -116,20 +116,20 @@ public class Users {
   }
 
 
-  public boolean getConfirmed() {
+  public Boolean getConfirmed() {
     return confirmed;
   }
 
-  public void setConfirmed(boolean confirmed) {
+  public void setConfirmed(Boolean confirmed) {
     this.confirmed = confirmed;
   }
 
 
-  public boolean getLikePublic() {
+  public Boolean getLikePublic() {
     return like_public;
   }
 
-  public void setLikePublic(boolean likePublic) {
+  public void setLikePublic(Boolean likePublic) {
     this.like_public = like_public;
   }
 

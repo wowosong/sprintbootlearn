@@ -11,7 +11,7 @@ import java.util.List;
 public interface PhotoMapper {
     void addPhotos(Photos photos);
     Photos editPhotos(Photos photos);
-    Photos getPhotosByAlbumsId(String albumsId);
+    List<Photos> getPhotosByAlbumsId(String albumsId);
     void  deletePhotos(String photoId);
 
     Photos getPhotosById(String photoId);

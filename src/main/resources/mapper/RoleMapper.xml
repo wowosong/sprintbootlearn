@@ -8,7 +8,7 @@
         <result property="isDefault" column="default"/>
         <result property="permissions" column="permissions"/>
     </resultMap>
-    <insert id="addRole" parameterType="com.example.demo.domain.Roles">
+    <insert id="addRole" parameterType="com.example.demo.domain.Roles" useGeneratedKeys="true" keyProperty="id">
         insert into roles (id,name,permissions,`default`) value  (#{id},#{name},#{permissions},#{isDefault})
     </insert>
     <update id="updateRole" parameterType="com.example.demo.domain.Roles">

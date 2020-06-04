@@ -14,7 +14,7 @@ public class Comments {
   @Column(name = "评论时间")
   private Date timestamp;
   @Column(name = "是否可以删除")
-  private boolean disabled;
+  private Boolean disabled;
   @Column(name = "评论者Id")
   private String authorId;
   @Column(name = "评论对应的照片Id")
@@ -48,11 +48,11 @@ public class Comments {
   }
 
 
-  public boolean getDisabled() {
+  public Boolean getDisabled() {
     return disabled;
   }
 
-  public void setDisabled(boolean disabled) {
+  public void setDisabled(Boolean disabled) {
     this.disabled = disabled;
   }
 

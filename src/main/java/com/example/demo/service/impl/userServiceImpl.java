@@ -111,7 +111,7 @@ public class userServiceImpl  implements userService {
         }
         users.setMemberSince(MD5.getTimestamp());
         users.setPasswordHash(md5);
-        users.setLiked(1);
+        users.setLiked(1L);
         users.setConfirmed(true);
         users.setRoleId(users.getRoleId());
         userMapper.registerUser(users);

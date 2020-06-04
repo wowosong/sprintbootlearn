@@ -5,7 +5,7 @@ import lombok.Data;
 
 import javax.persistence.Column;
 import java.util.Date;
-//@Data
+@Data
 public class Photos {
 
   private String id;
@@ -18,9 +18,9 @@ public class Photos {
   @Column(name = "上传时间")
   private Date timestamp;
   @Column(name = "照片快速排序")
-  private long order;
+  private Integer order;
   @Column(name = "照片上传者Id")
-  private String authorId;
+  private Integer authorId;
   @Column(name = "照片上传到相册Id")
   private String albumId;
 
@@ -79,20 +79,20 @@ public class Photos {
   }
 
 
-  public long getOrder() {
+  public Integer getOrder() {
     return order;
   }
 
-  public void setOrder(long order) {
+  public void setOrder(Integer order) {
     this.order = order;
   }
 
 
-  public String getAuthorId() {
+  public Integer getAuthorId() {
     return authorId;
   }
 
-  public void setAuthorId(String authorId) {
+  public void setAuthorId(Integer authorId) {
     this.authorId = authorId;
   }
 
@@ -101,7 +101,7 @@ public class Photos {
     return albumId;
   }
 
-  public void setAlbumId(String albumId) {
+  public void setAlbumId(String  albumId) {
     this.albumId = albumId;
   }
 

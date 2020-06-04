@@ -9,15 +9,22 @@
         <result property="cover" column="cover"/>
         <result property="type" column="type"/>
         <result property="tag" column="tag"/>
-        <result property="noPublic" column="noPublic"/>
-        <result property="noComment" column="noComment"/>
+        <result property="noPublic" column="no_public"/>
+        <result property="noComment" column="no_comment"/>
         <result property="timestamp" column="timestamp"/>
-        <result property="ascOrder" column="ascOrder"/>
+        <result property="ascOrder" column="asc_order"/>
         <result property="timestamp" column="timestamp"/>
-        <result property="authorId" column="authorId"/>
+        <result property="authorId" column="author_id"/>
     </resultMap>
-    <insert id="addAlbums"></insert>
-    <select id="getAlbumsById" resultType="com.example.demo.domain.Albums"></select>
+    <insert id="addAlbums" useGeneratedKeys="true" keyProperty="id">
+        insert into albums(title, about, cover, type, tag, no_public, no_comment, asc_order, `timestamp`, author_id) value (#{title},#{about},#{cover},#{type},#{tag},#{noPublic},#{noComment},#{ascOrder},#{timestamp},#{authorId})
+    </insert>
+    <delete id="deleteAlbums">
+        delete from albums where id=#{id}
+    </delete>
+    <select id="getAlbumsById" resultType="com.example.demo.domain.Albums">
+        select  * from albums where id=#{id}
+    </select>
 
 
 </mapper>
