@@ -6,9 +6,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface commentsService {
-    public void postComments(Comments comments);
-    public void editComments(Comments comments);
+    public SimpleMessage postComments(Comments comments);
+    public SimpleMessage editComments(Comments comments);
     public SimpleMessage getCommentsByUserId(String userId);
-    public void getComments();
+    public SimpleMessage getComments();
     public  SimpleMessage getCommentsByphotoId(String photoid);
 }

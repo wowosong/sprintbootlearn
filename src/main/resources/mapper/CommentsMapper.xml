@@ -2,21 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.CommentsMapper">
-    <resultMap id="roleResultMap" type="com.example.demo.domain.Comments">
+    <resultMap id="CommentResultMap" type="com.example.demo.domain.Comments">
         <id property="id" column="id"/>
         <result property="body" column="body"/>
         <result property="timestamp" column="timestamp"/>
         <result property="disabled" column="disabled"/>
-        <result property="authorId" column="authorId"/>
-        <result property="photoId" column="photoId"/>
+        <result property="authorId" column="author_id"/>
+        <result property="photoId" column="photo_id"/>
     </resultMap>
-    <insert id="postComments">
-
+    <insert id="postComments" useGeneratedKeys="true" keyProperty="id">
+        insert  into comments(body, `timestamp`, disabled, author_id, photo_id) VALUE (#{body},#{timestamp},#{disabled},#{authorId},#{photoId})
     </insert>
     <update id="editComments"></update>
     <delete id="deleteComments"></delete>
     <select id="getCommentsByphotoId" resultType="com.example.demo.domain.Comments"></select>
     <select id="getCommentsByUserId" resultType="com.example.demo.domain.Comments"></select>
+    <select id="getComments" resultMap="CommentResultMap">
+        select * from comments;
+    </select>
 
 
 </mapper>

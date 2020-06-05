@@ -4,20 +4,21 @@ package com.example.demo.domain;
 import lombok.Data;
 
 import javax.persistence.Column;
+import javax.persistence.Id;
 import java.util.Date;
 @Data
 public class Comments {
-
+  @Id
   private String id;
-  @Column(name = "评论内容")
+  @Column(name = "body")
   private String body;
-  @Column(name = "评论时间")
+  @Column(name = "timestamp")
   private Date timestamp;
-  @Column(name = "是否可以删除")
+  @Column(name = "disabled")
   private Boolean disabled;
-  @Column(name = "评论者Id")
+  @Column(name = "author_id")
   private String authorId;
-  @Column(name = "评论对应的照片Id")
+  @Column(name = "photo_id")
   private String photoId;
 
 

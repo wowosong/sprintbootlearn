@@ -4,8 +4,10 @@ package com.example.demo.domain;
 import lombok.Data;
 
 import javax.persistence.Column;
+import javax.persistence.Table;
 import java.util.Date;
 @Data
+@Table(name = "albums")
 public class Albums {
 
   private String id;
