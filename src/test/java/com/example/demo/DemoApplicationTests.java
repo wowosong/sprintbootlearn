@@ -29,7 +29,7 @@ class DemoApplicationTests {
         //构建SqlSessionFactory对象
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         this.sqlSessionFactory = sqlSessionFactory;
-//        log.info("{}",sqlSessionFactory);
+        log.info("{}",sqlSessionFactory);
     }
 //    @Test
 //    void testA() throws IOException {
@@ -46,8 +46,9 @@ class DemoApplicationTests {
 //    }
     @Test
     public void queryInfo () throws IOException {
+        this.before();
         String resource = "mybatis/mybatis-config.xml";
-        //读取全局配置文件
+//        读取全局配置文件
         InputStream inputStream = Resources.getResourceAsStream(resource);
         //构建SqlSessionFactory对象
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
