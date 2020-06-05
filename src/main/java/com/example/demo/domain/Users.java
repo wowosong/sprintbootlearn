@@ -43,10 +43,10 @@ public class Users {
   private String background;
   @Column(name = "关于我")
   private String about_me;
-  @JsonFormat(pattern = "yyyy/MM/dd",timezone = "GMT+8")
+//  @JsonFormat(pattern = "yyyy/MM/dd",timezone = "GMT+8")
   @Column(name = "注册时间")
   private Date member_since;
-  @JsonFormat(pattern = "yyyy/MM/dd")
+//  @JsonFormat(pattern = "yyyy/MM/dd")
   @Column(name = "上次登录时间")
   private Date last_seen;
   @Column(name = "头像")

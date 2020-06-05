@@ -1,5 +1,7 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.SimpleMessage.IMessageCodeEnum;
+import com.example.demo.SimpleMessage.MessageCode;
 import com.example.demo.SimpleMessage.SimpleMessage;
 import com.example.demo.domain.Roles;
 import com.example.demo.domain.Users;
@@ -67,7 +69,7 @@ public class userServiceImpl  implements userService {
             return SimpleMessage.warn("用户不存在");
         }
         userMapper.deleteUser(users);
-        return SimpleMessage.info("删除成功");
+        return SimpleMessage.info(MessageCode.SUCCESS,"删除成功");
     }
 
     @Override
@@ -75,15 +77,15 @@ public class userServiceImpl  implements userService {
         String id=users.getId();
         Users usersinfo=userMapper.queryInfoById(id);
         if(Objects.isNull(usersinfo)){
-            return SimpleMessage.warn("用户不存在");
+            return SimpleMessage.warn(MessageCode.NORMAL_ERROR,"用户不存在");
         }
         userMapper.updateUsers(users);
-        return SimpleMessage.info("更新成功");
+        return SimpleMessage.info(MessageCode.SUCCESS,"更新成功");
     }
     @Override
     public SimpleMessage getUser(String id) {
         Users users = userMapper.getUser(id);
-        return SimpleMessage.info(users);
+        return SimpleMessage.info(MessageCode.SUCCESS,users);
     }
 
     @Override
@@ -114,7 +116,8 @@ public class userServiceImpl  implements userService {
         users.setLiked(1L);
         users.setConfirmed(true);
         users.setRoleId(users.getRoleId());
-        userMapper.registerUser(users);
+        userMapper.insert(users);
+//        userMapper.registerUser(users);
         return SimpleMessage.info("注册成功");
     }
 
