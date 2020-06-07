@@ -5,11 +5,12 @@ import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
 @Data
 @Table(name = "albums")
-public class Albums {
-
+public class Albums  implements Serializable {
+  private final  static long uuid=12313L;
   private String id;
   @Column(name = "相册标题")
   private String title;

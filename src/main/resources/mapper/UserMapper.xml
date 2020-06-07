@@ -38,7 +38,16 @@
         select id,name,email from users where name = #{name}
     </select>
     <update id="updateUser">
-        update  users set name=#{name} ,email = #{email} where id=#{id}
+        update  users
+        <set>
+            <if test="name!=null">name=#{name},</if>
+            <if test="email!=null">email=#{email},</if>
+        </set>
+         <where>
+             <if test="id!=null">
+                 id=#{id}
+             </if>
+         </where>
     </update>
     <update id="updateUsers">
         update  users set name=#{name} ,email = #{email} where id=#{id}
@@ -50,16 +59,17 @@
         select * from userinfo where id=#{id};
     </select>
     <select id="queryUser" resultType="com.example.demo.domain.Users" parameterType="map">
-        select * from users <where>
-        <if test="''!=name and null !=name">
-            name=#{name}
-        </if>
-        <if test="''!=email and null !=email">
-            and  email=#{email}
-        </if>
-        <if test="''!=id and null!=id">
-            and id=#{id}
-        </if>
+        select * from users
+        <where>
+            <if test="''!=name and null !=name">
+                name=#{name}
+            </if>
+            <if test="''!=email and null !=email">
+                and  email=#{email}
+            </if>
+            <if test="''!=id and null!=id">
+                and id=#{id}
+            </if>
         </where>
     </select>
     <select id="getUser" resultMap="userResultMap">

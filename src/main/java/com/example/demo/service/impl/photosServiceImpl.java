@@ -8,7 +8,6 @@ import com.example.demo.mapper.PhotoMapper;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.service.photoService;
 import com.example.demo.utils.MD5;
-import com.sun.org.apache.xalan.internal.xsltc.dom.SAXImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,8 +28,8 @@ public class photosServiceImpl implements photoService {
     private PhotoMapper photoMapper;
     @Autowired
     AlbumsMapper albumsMapper;
-//    @Autowired
-//    UserMapper userMapper;
+    @Autowired
+    UserMapper userMapper;
     @Override
     public SimpleMessage postPhoto(Photos photos) {
         photos.setTimestamp(MD5.getTimestamp());

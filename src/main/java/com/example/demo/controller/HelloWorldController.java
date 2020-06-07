@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
-
+import org.springframework.validation.Validator;
 
 @RestController
 @Api(value = "用户信息")
