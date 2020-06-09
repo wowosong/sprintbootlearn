@@ -75,7 +75,7 @@ public class photosServiceImpl implements photoService {
     }
     @Override
     public SimpleMessage getInfo(){
-        Photos photos=photoMapper.getinfo();
+        List<Photos> photos=photoMapper.getinfo();
         return SimpleMessage.info(photos);
     }
 

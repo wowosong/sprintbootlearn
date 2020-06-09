@@ -16,15 +16,15 @@
         <result property="order" column="order"/>
 <!--        <result property="authorId" column="author_id"/>-->
 <!--        <result property="albumId" column="album_id"/>-->
-        <association property="authorId" javaType="com.example.demo.domain.Users" column="id">
+        <association property="users" javaType="com.example.demo.domain.Users">
             <id property="id" column="id"/>
-<!--            <result property="name" column="name"/>-->
-<!--            <result property="username" column="username"/>-->
-<!--            <result property="email" column="email"/>-->
+            <result property="name" column="name"/>
+            <result property="username" column="username"/>
+            <result property="email" column="email"/>
         </association>
-        <collection property="albumId"  ofType="com.example.demo.domain.Albums" column="id">
+        <collection property="albums"  ofType="com.example.demo.domain.Albums">
             <id property="id" column="album_id"/>
-<!--            <result property="title" column="title"/>-->
+            <result property="title" column="title"/>
         </collection>
     </resultMap>
 
@@ -51,6 +51,6 @@
         select  * from photos where  id=#{id}
     </select>
     <select id="getinfo" resultMap="photoResultMap">
-        select p.id, url, url_s, url_t, about, "timestamp", "order", u.email,u.name,u.username,a.title from photos p left join albums a on p.album_id = a.id left join users u on a.author_id = u.id;
+        select p.id, url, url_s, url_t, p.about, p.`timestamp`,`order`, u.email,u.name,u.username,a.title from photos p left join albums a on p.album_id = a.id left join users u on a.author_id = u.id;
     </select>
 </mapper>

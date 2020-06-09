@@ -29,9 +29,9 @@ public class Photos {
   @Column(name = "album_id")
   private String albumId;
   @Transient
-  private String usersId;
+  private Users users;
   @Transient
-  private String albumsID;
+  private Albums albums;
 
   public String getId() {
     return id;

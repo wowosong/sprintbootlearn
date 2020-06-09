@@ -16,6 +16,6 @@ public interface PhotoMapper extends BaseMapper<Photos> {
     void  deletePhotos(String photoId);
 
     Photos getPhotosById(String photoId);
-    Photos getinfo();
+    List<Photos> getinfo();
     void batchPhoto(Photos photos);
 }

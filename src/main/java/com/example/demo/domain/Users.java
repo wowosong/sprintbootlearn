@@ -4,6 +4,7 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
@@ -37,6 +38,7 @@ public class Users {
   private String name;
   @Column(name = "location")
   private String location;
+  @URL
   @Column(name = "website")
   private String website;
   @Column(name = "background")
