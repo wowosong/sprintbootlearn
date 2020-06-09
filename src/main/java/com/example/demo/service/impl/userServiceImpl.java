@@ -107,7 +107,7 @@ public class userServiceImpl  implements userService {
             return SimpleMessage.warn("用户已经存在");
         }
         Users userEmamil=userMapper.queryUserByEmail(users.getEmail());
-        String md5=MD5.getMD5(users.getPasswordHash(),64);
+        String md5=MD5.getMD5(users.getPassword_hash(),64);
         if(!Objects.isNull(userEmamil)){
             return SimpleMessage.warn("邮箱已经存在");
         }

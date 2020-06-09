@@ -24,6 +24,11 @@ public class PhotoController {
     public SimpleMessage postPhoto(@ApiParam(value = "上传照片") @RequestBody Photos photos){
         return photoService.postPhoto(photos);
     };
+    @ApiOperation(value = "批量上传照片",notes = "批量上传照片")
+    @PostMapping(value = "/postBatchPhoto")
+    public SimpleMessage postBatchPhoto(@ApiParam(value = "上传照片") @RequestBody Photos photos){
+        return photoService.batchPhoto(photos);
+    };
     @ApiOperation(value = "获取相册照片",notes = "获取相册照片")
     @GetMapping(value = "/getPhotoByAlbums/{albumId}")
     public SimpleMessage getPhotoByAlbums(@ApiParam(value = "获取照片") @PathVariable String albumId){

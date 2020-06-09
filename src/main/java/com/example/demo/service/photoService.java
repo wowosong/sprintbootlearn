@@ -12,4 +12,5 @@ public interface photoService {
     public SimpleMessage getPhotoByAlbums(String albumsId);
     public SimpleMessage deletePhoto(Photos photos);
     public SimpleMessage editPhoto(Photos photos);
+    public SimpleMessage batchPhoto(Photos photos);
 }

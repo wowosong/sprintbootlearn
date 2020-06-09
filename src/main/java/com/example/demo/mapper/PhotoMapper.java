@@ -15,4 +15,6 @@ public interface PhotoMapper {
     void  deletePhotos(String photoId);
 
     Photos getPhotosById(String photoId);
+
+    void batchPhoto(Photos photos);
 }

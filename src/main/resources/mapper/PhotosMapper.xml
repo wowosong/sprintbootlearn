@@ -17,6 +17,13 @@
     <insert id="addPhotos" useGeneratedKeys="true" keyProperty="id">
         insert  photos(url,url_s,url_t,about,`timestamp`,`order`,author_id,album_id ) value(#{url},#{urlS},#{urlT},#{about},#{timestamp},#{order},#{authorId},#{albumId})
     </insert>
+    <insert id="batchPhoto">
+        insert  photos(url,url_s,url_t,about,`timestamp`,`order`,author_id,album_id ) values
+        <foreach collection="list" item="item" separator=",">
+            (#{url},#{urlS},#{urlT},#{about},#{timestamp},#{order},
+        </foreach>
+        #{authorId},#{albumId})
+    </insert>
     <update id="editPhotos">
         update photos set about = (#{about}) where id=#{id}
     </update>

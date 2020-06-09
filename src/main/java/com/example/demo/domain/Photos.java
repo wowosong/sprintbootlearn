@@ -4,24 +4,27 @@ package com.example.demo.domain;
 import lombok.Data;
 
 import javax.persistence.Column;
+import javax.persistence.Id;
 import java.util.Date;
 @Data
 public class Photos {
-
+  @Id
   private String id;
-  @Column(name = "照片获取地址url")
+  @Column(name = "url")
   private String url;
+  @Column(name="urlS")
   private String urlS;
+  @Column(name="urlT")
   private String urlT;
-  @Column(name = "照片描述")
+  @Column(name = "about")
   private String about;
-  @Column(name = "上传时间")
+  @Column(name = "timestamp")
   private Date timestamp;
-  @Column(name = "照片快速排序")
+  @Column(name = "order")
   private Integer order;
-  @Column(name = "照片上传者Id")
+  @Column(name = "authorId")
   private Integer authorId;
-  @Column(name = "照片上传到相册Id")
+  @Column(name = "albumId")
   private String albumId;
 
 

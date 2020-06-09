@@ -8,7 +8,7 @@
 <!--        </constructor>-->
         <id property="id" column="id"/>
         <result property="name" column="name"/>
-        <result property="passwordHash" column="password_hash"/>
+        <result property="password_hash" column="password_hash"/>
         <result property="email" column="email"/>
         <result property="about_me" column="about_me"/>
         <result property="avatar_hash" column="avatar_hash"/>
@@ -50,7 +50,20 @@
          </where>
     </update>
     <update id="updateUsers">
-        update  users set name=#{name} ,email = #{email} where id=#{id}
+        update  users
+        <trim prefix="set" prefixOverrides="," suffixOverrides=",">
+            <if test="name!=null">
+                name=#{name} ,
+            </if>
+            <if test="email!=null">
+                email = #{email},
+            </if>
+        </trim>
+         <where>
+             <if test="id!=null">
+                and id=#{id}
+             </if>
+         </where>
     </update>
     <select id="queryInfoById" parameterType="string" resultType="com.example.demo.domain.Users">
         select * from users where  id = #{id};

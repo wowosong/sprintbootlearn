@@ -15,41 +15,41 @@ public class Users {
   @NotNull
   @NotBlank
   @Email
-  @Column(name = "邮箱")
+  @Column(name = "email")
   private String email;
   @NotBlank
   @Length(min=6, max=20)
-  @Column(name = "用户名")
+  @Column(name = "username")
   private String username;
-  @Column(name = "账号状态")
+  @Column(name = "status")
   private String status;
-  @Column(name = "")
+  @Column(name = "liked")
   private Long liked;
-  @Column(name = "密钥")
-  private String passwordHash;
-  @Column(name = "角色")
+  @Column(name = "password_hash")
+  private String password_hash;
+  @Column(name = "role_Id")
   private String role_Id;
-  @Column(name = "是否确认")
+  @Column(name = "confirmed")
   private Boolean confirmed;
-  @Column(name = "是否公开我的喜欢")
+  @Column(name = "like_public")
   private Boolean like_public;
-  @Column(name = "姓名")
+  @Column(name = "name")
   private String name;
-  @Column(name = "地址")
+  @Column(name = "location")
   private String location;
-  @Column(name = "网址")
+  @Column(name = "website")
   private String website;
-  @Column(name = "")
+  @Column(name = "background")
   private String background;
-  @Column(name = "关于我")
+  @Column(name = "about_me")
   private String about_me;
 //  @JsonFormat(pattern = "yyyy/MM/dd",timezone = "GMT+8")
-  @Column(name = "注册时间")
+  @Column(name = "member_since")
   private Date member_since;
 //  @JsonFormat(pattern = "yyyy/MM/dd")
-  @Column(name = "上次登录时间")
+  @Column(name = "last_seen")
   private Date last_seen;
-  @Column(name = "头像")
+  @Column(name = "avatar_hash")
   private String avatar_hash;
 
 
@@ -98,12 +98,12 @@ public class Users {
   }
 
 
-  public String getPasswordHash() {
-    return passwordHash;
+  public String getPassword_hash() {
+    return password_hash;
   }
 
-  public void setPasswordHash(String passwordHash) {
-    this.passwordHash = passwordHash;
+  public void setPasswordHash(String password_hash) {
+    this.password_hash = password_hash;
   }
 
 

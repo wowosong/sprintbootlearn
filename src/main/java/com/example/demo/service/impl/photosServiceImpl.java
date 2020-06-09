@@ -68,4 +68,10 @@ public class photosServiceImpl implements photoService {
         return SimpleMessage.info("操作成功");
     }
 
+    @Override
+    public SimpleMessage batchPhoto(Photos photos) {
+        photoMapper.batchPhoto(photos);
+        return SimpleMessage.info("批量上传成功");
+    }
+
 }
