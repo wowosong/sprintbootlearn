@@ -1,20 +1,22 @@
 package com.example.demo.domain;
-
-
 import lombok.Data;
-
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.Transient;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 @Data
 public class Photos {
   @Id
+  @Column(name = "id")
   private String id;
   @Column(name = "url")
   private String url;
-  @Column(name="urlS")
+  @Column(name="url_s")
   private String urlS;
-  @Column(name="urlT")
+  @Column(name="url_t")
   private String urlT;
   @Column(name = "about")
   private String about;
@@ -22,11 +24,14 @@ public class Photos {
   private Date timestamp;
   @Column(name = "order")
   private Integer order;
-  @Column(name = "authorId")
-  private Integer authorId;
-  @Column(name = "albumId")
+  @Column(name = "author_id")
+  private String authorId;
+  @Column(name = "album_id")
   private String albumId;
-
+  @Transient
+  private String usersId;
+  @Transient
+  private String albumsID;
 
   public String getId() {
     return id;
@@ -91,11 +96,11 @@ public class Photos {
   }
 
 
-  public Integer getAuthorId() {
+  public String getAuthorId() {
     return authorId;
   }
 
-  public void setAuthorId(Integer authorId) {
+  public void setAuthorId(String authorId) {
     this.authorId = authorId;
   }
 

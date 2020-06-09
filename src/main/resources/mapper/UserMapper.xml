@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.UserMapper">
+    <cache></cache>
     <resultMap id="userResultMap" type="com.example.demo.domain.Users">
 <!--        <constructor>-->
 <!--            <idArg  column="id" javaType="int"></idArg>-->
@@ -88,7 +89,7 @@
     <select id="getUser" resultMap="userResultMap">
         select * from users where id=#{id}
     </select>
-    <select id="queryUserByEmail" resultType="com.example.demo.domain.Users">
+    <select id="queryUserByEmail" flushCache="true" resultType="com.example.demo.domain.Users">
          select id,name,email from users where email=#{email}
     </select>
     <delete id="deleteUser">

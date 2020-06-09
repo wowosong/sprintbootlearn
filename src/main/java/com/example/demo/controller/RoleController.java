@@ -9,8 +9,6 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.management.relation.Role;
-
 @RestController
 @Api(value = "角色管理")
 public class RoleController {

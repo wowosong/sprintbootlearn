@@ -1,9 +1,7 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.SimpleMessage.IMessageCodeEnum;
 import com.example.demo.SimpleMessage.MessageCode;
 import com.example.demo.SimpleMessage.SimpleMessage;
-import com.example.demo.domain.Roles;
 import com.example.demo.domain.Users;
 import com.example.demo.mapper.RoleMapper;
 import com.example.demo.mapper.UserMapper;
@@ -12,21 +10,17 @@ import com.example.demo.utils.MD5;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
-import com.example.demo.utils.MD5;
-import java.io.Serializable;
-import java.util.Date;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
 @Component
-@Service
+//@Service
 @Validated
 @Transactional(rollbackFor = Exception.class)
 public class userServiceImpl  implements userService {
@@ -48,7 +42,6 @@ public class userServiceImpl  implements userService {
     @Override
     public SimpleMessage getUsers(String name){
         Users users= userMapper.queryInfo(name);
-
         return SimpleMessage.info(users);
     }
 

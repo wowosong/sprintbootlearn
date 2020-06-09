@@ -47,11 +47,11 @@ public class Messages {
     this.timestamp = timestamp;
   }
 
-  public boolean getDisabled() {
+  public Boolean getDisabled() {
     return disabled;
   }
 
-  public void setDisabled(boolean disabled) {
+  public void setDisabled(Boolean disabled) {
     this.disabled = disabled;
   }
 

@@ -2,7 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.PhotoMapper">
-    <resultMap id="photoResultMap" type="com.example.demo.domain.Photos">
+
+    <resultMap id="photoResultMap" type="com.example.demo.domain.Photos" autoMapping="true">
+<!--        <constructor>-->
+<!--            <idArg  column="id" javaType="int"></idArg>-->
+<!--        </constructor>-->
         <id property="id" column="id"/>
         <result property="url" column="url"/>
         <result property="urlS" column="url_s"/>
@@ -10,8 +14,18 @@
         <result property="about" column="about"/>
         <result property="timestamp" column="timestamp"/>
         <result property="order" column="order"/>
-        <result property="authorId" column="author_id"/>
-        <result property="albumId" column="album_id"/>
+<!--        <result property="authorId" column="author_id"/>-->
+<!--        <result property="albumId" column="album_id"/>-->
+        <association property="authorId" javaType="com.example.demo.domain.Users" column="id">
+            <id property="id" column="id"/>
+<!--            <result property="name" column="name"/>-->
+<!--            <result property="username" column="username"/>-->
+<!--            <result property="email" column="email"/>-->
+        </association>
+        <collection property="albumId"  ofType="com.example.demo.domain.Albums" column="id">
+            <id property="id" column="album_id"/>
+<!--            <result property="title" column="title"/>-->
+        </collection>
     </resultMap>
 
     <insert id="addPhotos" useGeneratedKeys="true" keyProperty="id">
@@ -31,11 +45,12 @@
         delete  from photos where id=#{id}
     </delete>
     <select id="getPhotosByAlbumsId"  resultMap="photoResultMap" parameterType="string">
-        select  * from photos where  album_id =#{albumsId}
+        select  id, url, url_s, url_t, about, `timestamp`, `order`, author_id, album_id from photos where  album_id =#{albumsId}
     </select>
     <select id="getPhotosById" resultType="com.example.demo.domain.Photos">
-        select  *from photos where  id=#{id}
+        select  * from photos where  id=#{id}
     </select>
-
-
+    <select id="getinfo" resultMap="photoResultMap">
+        select p.id, url, url_s, url_t, about, "timestamp", "order", u.email,u.name,u.username,a.title from photos p left join albums a on p.album_id = a.id left join users u on a.author_id = u.id;
+    </select>
 </mapper>

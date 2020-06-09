@@ -16,7 +16,6 @@ public interface userService  {
     SimpleMessage insertUser(Users Users);
     SimpleMessage getUsers(String name);
     SimpleMessage getUserById(String id);
-
     SimpleMessage deleteUser(Users Users);
     SimpleMessage updateUser(Users Users);
     SimpleMessage getUser(String  id);

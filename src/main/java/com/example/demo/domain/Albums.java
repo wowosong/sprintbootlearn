@@ -1,9 +1,12 @@
 package com.example.demo.domain;
 
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 import javax.persistence.Column;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
@@ -11,26 +14,28 @@ import java.util.Date;
 @Table(name = "albums")
 public class Albums  implements Serializable {
   private final  static long uuid=12313L;
+  @Id
+  @Column(name = "id")
   private String id;
-  @Column(name = "相册标题")
+  @Column(name = "title")
   private String title;
-  @Column(name="相册描述")
+  @Column(name="about")
   private String about;
-  @Column(name = "封面")
+  @Column(name = "cover")
   private String cover;
-  @Column(name = "照片是否最新或最热")
+  @Column(name = "type")
   private long type;
 
   private String tag;
-  @Column(name = "是否公开")
+  @Column(name = "noPublic")
   private Boolean noPublic;
-  @Column(name = "是否允许评论")
+  @Column(name = "noComment")
   private Boolean noComment;
-  @Column(name = "照片按照上传时间排序方式")
+  @Column(name = "ascOrder")
   private String  ascOrder;
-  @Column(name = "相册创建时间")
+  @Column(name = "timestamp")
   private Date timestamp;
-  @Column(name = "相册创建者id")
+  @Column(name = "authorId")
   private String authorId;
 
 

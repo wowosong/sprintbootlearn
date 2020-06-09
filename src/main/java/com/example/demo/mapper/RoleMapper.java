@@ -4,8 +4,6 @@ import com.example.demo.domain.Roles;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 import tk.mybatis.mapper.common.BaseMapper;
-
-import javax.management.relation.Role;
 import java.util.List;
 
 @Mapper

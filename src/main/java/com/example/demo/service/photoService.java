@@ -13,4 +13,5 @@ public interface photoService {
     public SimpleMessage deletePhoto(Photos photos);
     public SimpleMessage editPhoto(Photos photos);
     public SimpleMessage batchPhoto(Photos photos);
+    public  SimpleMessage getInfo();
 }

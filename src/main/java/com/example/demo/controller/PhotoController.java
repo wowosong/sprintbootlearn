@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 @Api(value = "照片管理")
 public class PhotoController {
     private photoService photoService;
+    public  PhotoController(){
+
+    }
     @Autowired
     public PhotoController(photoService photoService){
         this.photoService=photoService;
@@ -33,6 +36,11 @@ public class PhotoController {
     @GetMapping(value = "/getPhotoByAlbums/{albumId}")
     public SimpleMessage getPhotoByAlbums(@ApiParam(value = "获取照片") @PathVariable String albumId){
         return photoService.getPhotoByAlbums(albumId);
+    };
+    @ApiOperation(value = "获取相册照片",notes = "获取相册照片")
+    @GetMapping(value = "/getInfo")
+    public SimpleMessage getInfo(){
+        return photoService.getInfo();
     };
     @ApiOperation(value = "编辑照片",notes = "编辑照片")
     @PostMapping(value = "/editPhoto")

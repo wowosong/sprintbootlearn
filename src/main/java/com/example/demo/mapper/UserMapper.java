@@ -4,7 +4,7 @@ import com.example.demo.domain.Users;
 import org.apache.catalina.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
+//import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 import tk.mybatis.mapper.common.BaseMapper;
 

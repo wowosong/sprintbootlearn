@@ -8,8 +8,13 @@
            <!--oracle设置为null 解决为空时问题-->
         <!-- 设置JDBC类型为空时,某些驱动程序 要指定值,default:OTHER-->
             <setting name="jdbcTypeForNull" value="NULL"/>
+<!--            开启自动映射-->
             <setting name="autoMappingBehavior" value="FULL"/>
+<!--            开启全局延迟加载-->
             <setting name="lazyLoadingEnabled" value="true"/>
+<!--            开启二级缓存-->
+            <setting name="cacheEnabled" value="true"/>
+
         </settings>
 
 <!--    <typeAliases type="com.example.demo.domain.UserInfo" alias="UserInfo"></typeAliases>-->

@@ -37,7 +37,7 @@ public class photosServiceImpl implements photoService {
         if(Objects.isNull(albums)){
             return SimpleMessage.warn("不存在");
         }
-        photos.setAuthorId(1);
+        photos.setAuthorId("1");
         photoMapper.addPhotos(photos);
         return SimpleMessage.info("添加成功");
     }
@@ -72,6 +72,11 @@ public class photosServiceImpl implements photoService {
     public SimpleMessage batchPhoto(Photos photos) {
         photoMapper.batchPhoto(photos);
         return SimpleMessage.info("批量上传成功");
+    }
+    @Override
+    public SimpleMessage getInfo(){
+        Photos photos=photoMapper.getinfo();
+        return SimpleMessage.info(photos);
     }
 
 }
