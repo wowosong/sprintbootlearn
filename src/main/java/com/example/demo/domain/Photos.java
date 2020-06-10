@@ -3,12 +3,13 @@ import lombok.Data;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Transient;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Data
-public class Photos {
+public class Photos implements Serializable {
   @Id
   @Column(name = "id")
   private String id;

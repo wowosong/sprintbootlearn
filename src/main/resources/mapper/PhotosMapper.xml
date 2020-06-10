@@ -3,9 +3,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.PhotoMapper">
 
-    <resultMap id="photoResultMap" type="com.example.demo.domain.Photos" autoMapping="true">
+    <resultMap id="photoResultMap" type="com.example.demo.domain.Photos" autoMapping="true" >
 <!--        <constructor>-->
-<!--            <idArg  column="id" javaType="int"></idArg>-->
+<!--            <idArg  column="id" javaType="string"></idArg>-->
 <!--        </constructor>-->
         <id property="id" column="id"/>
         <result property="url" column="url"/>
@@ -14,41 +14,52 @@
         <result property="about" column="about"/>
         <result property="timestamp" column="timestamp"/>
         <result property="order" column="order"/>
-        <result property="authorId" column="author_id"/>
-        <result property="albumId" column="album_id"/>
-        <association property="users" javaType="com.example.demo.domain.Users">
-            <id property="id" column="id"/>
-            <result property="name" column="name"/>
-            <result property="password_hash" column="password_hash"/>
-            <result property="email" column="email"/>
-            <result property="about_me" column="about_me"/>
-            <result property="avatar_hash" column="avatar_hash"/>
-            <result property="member_since" column="member_since"/>
-            <result property="background" column="background"/>
-            <result property="last_seen" column="last_seen"/>
-            <result property="confirmed" column="confirmed"/>
-            <result property="name" column="name"/>
-            <result property="location" column="location"/>
-            <result property="website" column="website"/>
-            <result property="status" column="status"/>
-            <result property="role_Id" column="role_Id"/>
-            <result property="liked" column="liked"/>
-            <result property="like_public" column="like_public"/>
+<!--        <result property="authorId"  column="author_id"/>-->
+        <association property="users"  column="id" javaType="com.example.demo.domain.Users" select="getUserById" fetchType="eager">
+<!--            <result property="email" column="email"/>-->
+<!--            <result property="location" column="location"/>-->
+<!--            <result property="about_me" column="about_me"/>-->
+<!--            <result property="name" column="name"/>-->
+<!--            <result property="username" column="username"/>-->
         </association>
-        <collection property="albums"  ofType="com.example.demo.domain.Albums">
-            <id property="id" column="id"/>
-            <result property="title" column="title"/>
-            <result property="about" column="about"/>
-            <result property="cover" column="cover"/>
-            <result property="type" column="type"/>
-            <result property="tag" column="tag"/>
-            <result property="noPublic" column="no_public"/>
-            <result property="noComment" column="no_comment"/>
-            <result property="timestamp" column="timestamp"/>
-            <result property="ascOrder" column="asc_order"/>
-            <result property="timestamp" column="timestamp"/>
-            <result property="authorId" column="author_id"/>
-        </collection>
+<!--        <result property="albumId" column="album_id"/>-->
+        <association property="albums" column="id"  javaType="com.example.demo.domain.Albums" select="getAlbumsById" fetchType="eager">
+<!--            <result property="title" column="title"/>-->
+<!--            <result property="about" column="about"/>-->
+        </association>
+<!--        <association property="users" javaType="com.example.demo.domain.Users">-->
+<!--            <id property="id" column="id"/>-->
+<!--            <result property="name" column="name"/>-->
+<!--            <result property="password_hash" column="password_hash"/>-->
+<!--            <result property="email" column="email"/>-->
+<!--            <result property="about_me" column="about_me"/>-->
+<!--            <result property="avatar_hash" column="avatar_hash"/>-->
+<!--            <result property="member_since" column="member_since"/>-->
+<!--            <result property="background" column="background"/>-->
+<!--            <result property="last_seen" column="last_seen"/>-->
+<!--            <result property="confirmed" column="confirmed"/>-->
+<!--            <result property="name" column="name"/>-->
+<!--            <result property="location" column="location"/>-->
+<!--            <result property="website" column="website"/>-->
+<!--            <result property="status" column="status"/>-->
+<!--            <result property="role_Id" column="role_Id"/>-->
+<!--            <result property="liked" column="liked"/>-->
+<!--            <result property="like_public" column="like_public"/>-->
+<!--        </association>-->
+<!--        <collection property="albums"  ofType="com.example.demo.domain.Albums">-->
+<!--            <id property="id" column="id"/>-->
+<!--            <result property="title" column="title"/>-->
+<!--            <result property="about" column="about"/>-->
+<!--            <result property="cover" column="cover"/>-->
+<!--            <result property="type" column="type"/>-->
+<!--            <result property="tag" column="tag"/>-->
+<!--            <result property="noPublic" column="no_public"/>-->
+<!--            <result property="noComment" column="no_comment"/>-->
+<!--            <result property="timestamp" column="timestamp"/>-->
+<!--            <result property="ascOrder" column="asc_order"/>-->
+<!--            <result property="timestamp" column="timestamp"/>-->
+<!--            <result property="authorId" column="author_id"/>-->
+<!--        </collection>-->
     </resultMap>
 
     <insert id="addPhotos" useGeneratedKeys="true" keyProperty="id">
@@ -67,13 +78,25 @@
     <delete id="deletePhotos">
         delete  from photos where id=#{id}
     </delete>
-    <select id="getPhotosByAlbumsId"  resultMap="photoResultMap" parameterType="string">
-        select  id, url, url_s, url_t, about, `timestamp`, `order`, author_id, album_id from photos where  album_id =#{albumsId}
+    <select id="getPhotosByAlbumsId"  resultType="com.example.demo.domain.Photos" parameterType="string">
+        select  id, url, url_s, url_t, about, `timestamp`, `order`, author_id as "authorId", album_id as "albumId" from photos where  album_id =#{albumsId}
+    </select>
+    <select id="getAlbumsById" resultType="com.example.demo.domain.Albums" parameterType="string">
+        select  * from albums where  id =#{id}
+    </select>
+    <select id="getUserById" resultType="com.example.demo.domain.Users" parameterType="string">
+        select  * from users where  id =#{id}
     </select>
     <select id="getPhotosById" resultType="com.example.demo.domain.Photos">
         select  * from photos where  id=#{id}
     </select>
+<!--    <select id="getinfo" resultMap="photoResultMap">-->
+<!--        select p.id, p.url, p.url_s, p.url_t, p.about, p.`timestamp`, p.`order`, p.author_id, p.album_id, a.id, a.title, a.about, a.cover, a.type, a.tag, a.author_id, u.id,u.email, u.username , u.name, u.location, u.website, u.background, u.about_me from photos p left join albums a on p.album_id = a.id left join users u on a.author_id = u.id;-->
+<!--    </select>-->
     <select id="getinfo" resultMap="photoResultMap">
-        select * from photos p left join albums a on p.album_id = a.id left join users u on a.author_id = u.id;
+        select * from photos;
     </select>
+<!--    <select id="getinfo" resultType="com.example.demo.domain.Photos">-->
+<!--        select p.id, p.url, p.url_s, p.url_t, p.about, p.`timestamp`, p.`order`, p.author_id, p.album_id, a.id, a.title, a.about, a.cover, a.type, a.tag, a.author_id, u.id,u.email, u.username , u.name, u.location, u.website, u.background, u.about_me from photos p left join albums a on p.album_id = a.id left join users u on a.author_id = u.id;-->
+<!--    </select>-->
 </mapper>

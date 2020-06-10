@@ -1,5 +1,6 @@
 package com.example.demo.domain ;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
@@ -8,9 +9,11 @@ import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Date;
 //@Data
-public class Users {
+@JsonIgnoreProperties(value = "handler")
+public class Users implements Serializable {
   @NotNull
   private String  id;
   @NotNull

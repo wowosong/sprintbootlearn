@@ -3,6 +3,7 @@ package com.example.demo.domain;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -12,6 +13,7 @@ import java.io.Serializable;
 import java.util.Date;
 @Data
 @Table(name = "albums")
+@JsonIgnoreProperties(value = "handler")
 public class Albums  implements Serializable {
   private final  static long uuid=12313L;
   @Id
