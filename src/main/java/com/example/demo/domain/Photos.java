@@ -113,4 +113,19 @@ public class Photos {
     this.albumId = albumId;
   }
 
+  public Users getUsers() {
+    return users;
+  }
+
+  public void setUsers(Users users) {
+    this.users = users;
+  }
+
+  public Albums getAlbums() {
+    return albums;
+  }
+
+  public void setAlbums(Albums albums) {
+    this.albums = albums;
+  }
 }

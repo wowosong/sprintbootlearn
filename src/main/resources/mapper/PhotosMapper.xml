@@ -14,17 +14,40 @@
         <result property="about" column="about"/>
         <result property="timestamp" column="timestamp"/>
         <result property="order" column="order"/>
-<!--        <result property="authorId" column="author_id"/>-->
-<!--        <result property="albumId" column="album_id"/>-->
+        <result property="authorId" column="author_id"/>
+        <result property="albumId" column="album_id"/>
         <association property="users" javaType="com.example.demo.domain.Users">
             <id property="id" column="id"/>
             <result property="name" column="name"/>
-            <result property="username" column="username"/>
+            <result property="password_hash" column="password_hash"/>
             <result property="email" column="email"/>
+            <result property="about_me" column="about_me"/>
+            <result property="avatar_hash" column="avatar_hash"/>
+            <result property="member_since" column="member_since"/>
+            <result property="background" column="background"/>
+            <result property="last_seen" column="last_seen"/>
+            <result property="confirmed" column="confirmed"/>
+            <result property="name" column="name"/>
+            <result property="location" column="location"/>
+            <result property="website" column="website"/>
+            <result property="status" column="status"/>
+            <result property="role_Id" column="role_Id"/>
+            <result property="liked" column="liked"/>
+            <result property="like_public" column="like_public"/>
         </association>
         <collection property="albums"  ofType="com.example.demo.domain.Albums">
-            <id property="id" column="album_id"/>
+            <id property="id" column="id"/>
             <result property="title" column="title"/>
+            <result property="about" column="about"/>
+            <result property="cover" column="cover"/>
+            <result property="type" column="type"/>
+            <result property="tag" column="tag"/>
+            <result property="noPublic" column="no_public"/>
+            <result property="noComment" column="no_comment"/>
+            <result property="timestamp" column="timestamp"/>
+            <result property="ascOrder" column="asc_order"/>
+            <result property="timestamp" column="timestamp"/>
+            <result property="authorId" column="author_id"/>
         </collection>
     </resultMap>
 
@@ -51,6 +74,6 @@
         select  * from photos where  id=#{id}
     </select>
     <select id="getinfo" resultMap="photoResultMap">
-        select p.id, url, url_s, url_t, p.about, p.`timestamp`,`order`, u.email,u.name,u.username,a.title from photos p left join albums a on p.album_id = a.id left join users u on a.author_id = u.id;
+        select * from photos p left join albums a on p.album_id = a.id left join users u on a.author_id = u.id;
     </select>
 </mapper>
