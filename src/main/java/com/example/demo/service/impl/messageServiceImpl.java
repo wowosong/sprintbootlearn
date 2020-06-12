@@ -5,6 +5,7 @@ import com.example.demo.domain.Messages;
 import com.example.demo.domain.Photos;
 import com.example.demo.mapper.MessagesMapper;
 import com.example.demo.service.messageService;
+import com.example.demo.utils.MD5;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,6 +27,7 @@ public class messageServiceImpl implements messageService {
     @Override
     public SimpleMessage PostMessage(Messages messages) {
 //        Messages messages1= messagesMapper.postMessages(messages);
+        messages.setTimestamp(MD5.getTimestamp());
         messagesMapper.insert(messages);
         return SimpleMessage.info("操作成功");
     }

@@ -113,8 +113,8 @@ public class userServiceImpl  implements userService {
         users.setLiked(1L);
         users.setConfirmed(true);
         users.setRoleId(users.getRoleId());
-        userMapper.insert(users);
-//        userMapper.registerUser(users);
+//        userMapper.insert(users);
+        userMapper.registerUser(users);
         return SimpleMessage.info("注册成功");
     }
 
