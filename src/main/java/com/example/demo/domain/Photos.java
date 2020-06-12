@@ -1,7 +1,9 @@
 package com.example.demo.domain;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -9,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 @Data
+@TableName(value = "photos")
 public class Photos implements Serializable {
   @Id
   @Column(name = "id")

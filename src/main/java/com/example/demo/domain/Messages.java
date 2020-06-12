@@ -9,15 +9,15 @@ import java.util.Date;
 public class Messages {
 
   private String id;
-  @Column(name = "消息内容")
+  @Column(name = "body")
   private String body;
-  @Column(name = "消息发送时间")
+  @Column(name = "timestamp")
   private Date timestamp;
-  @Column(name = "消息")
+  @Column(name = "disabled")
   private Boolean disabled;
-  @Column(name = "消息产生者")
+  @Column(name = "author_id")
   private String authorId;
-  @Column(name = "")
+  @Column(name = "user_id")
   private String userId;
 
 

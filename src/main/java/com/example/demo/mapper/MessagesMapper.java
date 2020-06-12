@@ -7,6 +7,5 @@ import tk.mybatis.mapper.common.BaseMapper;
 @Mapper
 @Repository
 public interface MessagesMapper extends BaseMapper<Messages> {
-
     Messages postMessages(Messages messages) ;
 }

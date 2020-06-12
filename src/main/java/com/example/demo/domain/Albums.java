@@ -26,18 +26,18 @@ public class Albums  implements Serializable {
   @Column(name = "cover")
   private String cover;
   @Column(name = "type")
-  private long type;
+  private Long type;
 
   private String tag;
-  @Column(name = "noPublic")
+  @Column(name = "no_public")
   private Boolean noPublic;
-  @Column(name = "noComment")
+  @Column(name = "no_comment")
   private Boolean noComment;
-  @Column(name = "ascOrder")
+  @Column(name = "asc_order")
   private String  ascOrder;
   @Column(name = "timestamp")
   private Date timestamp;
-  @Column(name = "authorId")
+  @Column(name = "author_id")
   private String authorId;
 
 
@@ -77,11 +77,11 @@ public class Albums  implements Serializable {
   }
 
 
-  public long getType() {
+  public Long getType() {
     return type;
   }
 
-  public void setType(long type) {
+  public void setType(Long type) {
     this.type = type;
   }
 

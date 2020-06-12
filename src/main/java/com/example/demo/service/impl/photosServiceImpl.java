@@ -33,12 +33,14 @@ public class photosServiceImpl implements photoService {
     @Override
     public SimpleMessage postPhoto(Photos photos) {
         photos.setTimestamp(MD5.getTimestamp());
-        Albums albums=albumsMapper.getAlbumsById(photos.getAlbumId());
+//        Albums albums=albumsMapper.getAlbumsById(photos.getAlbumId());
+        Albums albums=albumsMapper.selectByPrimaryKey(photos.getAlbumId());
         if(Objects.isNull(albums)){
             return SimpleMessage.warn("不存在");
         }
         photos.setAuthorId("1");
         photoMapper.addPhotos(photos);
+//        photoMapper.insert(photos);
         return SimpleMessage.info("添加成功");
     }
 
