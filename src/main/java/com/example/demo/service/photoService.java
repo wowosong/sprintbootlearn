@@ -14,4 +14,5 @@ public interface photoService {
     public SimpleMessage editPhoto(Photos photos);
     public SimpleMessage batchPhoto(Photos photos);
     public  SimpleMessage getInfo();
+    public List<Photos> selectPage();
 }

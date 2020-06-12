@@ -6,6 +6,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface albumsService {
+    /**
+     * @author huangjiusong
+     * @param albums
+     * @since
+     * @return
+     */
     public SimpleMessage addAlbums(Albums albums);
     public SimpleMessage editAlbums(String id);
     public SimpleMessage getAlbumsById(String albumsId);

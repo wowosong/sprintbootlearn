@@ -16,16 +16,16 @@
         <result property="order" column="order"/>
 <!--        <result property="authorId"  column="author_id"/>-->
         <association property="users"  column="id" javaType="com.example.demo.domain.Users" select="getUserById" fetchType="eager">
-<!--            <result property="email" column="email"/>-->
-<!--            <result property="location" column="location"/>-->
-<!--            <result property="about_me" column="about_me"/>-->
-<!--            <result property="name" column="name"/>-->
-<!--            <result property="username" column="username"/>-->
+            <result property="email" column="email"/>
+            <result property="location" column="location"/>
+            <result property="about_me" column="about_me"/>
+            <result property="name" column="name"/>
+            <result property="username" column="username"/>
         </association>
 <!--        <result property="albumId" column="album_id"/>-->
         <association property="albums" column="id"  javaType="com.example.demo.domain.Albums" select="getAlbumsById" fetchType="eager">
-<!--            <result property="title" column="title"/>-->
-<!--            <result property="about" column="about"/>-->
+            <result property="title" column="title"/>
+            <result property="about" column="about"/>
         </association>
 <!--        <association property="users" javaType="com.example.demo.domain.Users">-->
 <!--            <id property="id" column="id"/>-->

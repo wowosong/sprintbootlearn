@@ -7,4 +7,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface messageService {
     public SimpleMessage PostMessage(Messages messages);
+    public  SimpleMessage getMessage();
+    public SimpleMessage getMessageByUser(String userId);
 }

@@ -24,4 +24,5 @@ public interface userService  {
     SimpleMessage registerUser(Users users);
     SimpleMessage login();
     SimpleMessage logout();
+    SimpleMessage getAll();
 }

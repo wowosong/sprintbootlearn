@@ -7,6 +7,8 @@ import com.example.demo.mapper.RoleMapper;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.service.userService;
 import com.example.demo.utils.MD5;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
+import tk.mybatis.orderbyhelper.OrderByHelper;
 
 import java.util.List;
 import java.util.Map;
@@ -31,7 +34,8 @@ public class userServiceImpl  implements userService {
     private RoleMapper roleMapper;
     @Override
     public  SimpleMessage insertUser(Users users) {
-        Users userList= userMapper.queryInfoById(users.getId());
+//        Users userList= userMapper.queryInfoById(users.getId());
+        List<Users> userList = userMapper.select(users);
         if(!Objects.isNull(userList)){
             logger.info(users);
             return  SimpleMessage.warn("id重复");
@@ -123,4 +127,11 @@ public class userServiceImpl  implements userService {
     public SimpleMessage logout() {
         return null;
     }
+
+    @Override
+    public SimpleMessage getAll() {
+        List<Users> usersList=userMapper.selectAll();
+        return SimpleMessage.info(usersList);
+    }
+
 }

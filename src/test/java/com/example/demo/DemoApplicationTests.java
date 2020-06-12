@@ -47,16 +47,13 @@ class DemoApplicationTests {
     @Test
     public void queryInfo () throws IOException {
         this.before();
-        String resource = "mybatis/mybatis-config.xml";
-//        读取全局配置文件
-        InputStream inputStream = Resources.getResourceAsStream(resource);
-        //构建SqlSessionFactory对象
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-        this.sqlSessionFactory = sqlSessionFactory;
         try (SqlSession sqlSession = this.sqlSessionFactory.openSession(true);) {
             UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
             Users userModel = userMapper.queryInfo("路人甲Java");
             log.info("{}", userModel);
+
+        }catch (Exception e){
+            log.info("输入错误：{}",e.getMessage());
         }
     }
 }

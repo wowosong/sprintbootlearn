@@ -36,7 +36,7 @@
         insert into users(username,password_hash,email,member_since,confirmed,liked) value (#{username},#{passwordHash},#{email},#{memberSince},#{confirmed},#{liked})
     </insert>
     <select id="queryInfo" parameterType="java.lang.String" resultType="com.example.demo.domain.Users">
-        select id,name,email from users where name = #{name}
+        select * from users where name = #{name}
     </select>
     <update id="updateUser">
         update  users
@@ -99,7 +99,6 @@
                  email=#{email}
              </otherwise>
          </choose>
-
     </where>
     </select>
     <delete id="deleteUser">

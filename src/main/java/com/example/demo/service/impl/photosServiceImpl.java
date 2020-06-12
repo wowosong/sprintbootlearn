@@ -66,7 +66,7 @@ public class photosServiceImpl implements photoService {
 
     @Override
     public SimpleMessage editPhoto(Photos photos) {
-        photoMapper.editPhotos(photos);
+        photoMapper.updateByPrimaryKeySelective(photos);
         return SimpleMessage.info("操作成功");
     }
 
@@ -81,4 +81,8 @@ public class photosServiceImpl implements photoService {
         return SimpleMessage.info(photos);
     }
 
+    @Override
+    public List<Photos> selectPage() {
+        return null;
+    }
 }

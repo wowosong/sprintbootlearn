@@ -13,6 +13,7 @@ import java.util.List;
 @Data
 @TableName(value = "photos")
 public class Photos implements Serializable {
+
   @Id
   @Column(name = "id")
   private String id;

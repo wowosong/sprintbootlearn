@@ -30,12 +30,15 @@ public class HelloWorldController {
     public HelloWorldController(userService userService) {
         this.userService = userService;
     }
-    @RequestMapping
-    public PageInfo<Users> getAll(@PathVariable String name) {
-        List<Users> userInfoList = (List<Users>) userService.getUsers(name);
-        return new PageInfo<Users>(userInfoList);
+//    @RequestMapping(value = "/getAll/{name}",method = RequestMethod.GET)
+//    public SimpleMessage getAll(@PathVariable String name) {
+//        return userService.getUsers(name);
+//    }
+    @RequestMapping(value = "/getAll",method = RequestMethod.GET)
+    public SimpleMessage getAll() {
+        return userService.getAll();
     }
-    @RequestMapping("/g0")
+    @RequestMapping(value = "/g0",method = RequestMethod.GET)
     public  SimpleMessage get(@RequestParam(value = "name", required = true,defaultValue = "admin") String name){
         return SimpleMessage.info("");
     }

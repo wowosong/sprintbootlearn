@@ -21,22 +21,24 @@
 <!--    <plugins>-->
 <!--        <plugin interceptor=""></plugin>-->
 <!--    </plugins>-->
-<!--    <environments default="test">-->
-<!--        <environment id="test">-->
-                <!-- 事务管理器工厂配置 -->
-<!--                <transactionManager type="JDBC"/>-->
-                <!-- 数据源工厂配置，使用工厂来创建数据源 -->
-<!--                <dataSource type="POOLED">-->
-<!--                    <property name="driver" value="com.mysql.jdbc.Driver"/>-->
-<!--                    <property name="url" value="jdbc:mysql://47.105.184.98:3306/album?characterEncoding=utf-8&amp;useSSL=false"/>-->
-<!--                    <property name="username" value="root"/>-->
-<!--                    <property name="password" value="Root1234_56"/>-->
-<!--                </dataSource>-->
-<!--        </environment>-->
-<!--    </environments>-->
-
+    <environments default="test">
+        <environment id="test">
+<!--                 事务管理器工厂配置-->
+                <transactionManager type="JDBC">
+                </transactionManager>
+<!--                 数据源工厂配置，使用工厂来创建数据源-->
+                <dataSource type="POOLED">
+                    <property name="driver" value="com.mysql.jdbc.Driver"/>
+                    <property name="url" value="jdbc:mysql://47.105.184.98:3306/album?characterEncoding=utf-8&amp;useSSL=false"/>
+                    <property name="username" value="root"/>
+                    <property name="password" value="Root1234_56"/>
+                </dataSource>
+        </environment>
+    </environments>
     <mappers>
         <package name="com.example.demo.mapper" ></package>
 <!--        <package name="com.example.demo.mapper.RoleMapper"></package>-->
+<!--        <mapper resource="/resource/mapper/UserMapper.xml"></mapper>-->
+        <!--<mapper url="com.example.demo.mapper.UserMapper"></mapper>-->
     </mappers>
 </configuration>
