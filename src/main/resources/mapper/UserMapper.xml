@@ -90,7 +90,8 @@
         select * from users where id=#{id}
     </select>
     <select id="queryUserByEmail" resultType="com.example.demo.domain.Users">
-         select id,name,email from users <where>
+         select id,name,email from users
+         <where>
          <choose>
              <when test="email!=null and email!=''">
                  email=#{email}
@@ -99,7 +100,7 @@
                  email=#{email}
              </otherwise>
          </choose>
-    </where>
+        </where>
     </select>
     <delete id="deleteUser">
         delete from userinfo where id = #{id};

@@ -90,12 +90,12 @@
     <select id="getPhotosById" resultType="com.example.demo.domain.Photos">
         select  * from photos where  id=#{id}
     </select>
-<!--    <select id="getinfo" resultMap="photoResultMap">-->
-<!--        select p.id, p.url, p.url_s, p.url_t, p.about, p.`timestamp`, p.`order`, p.author_id, p.album_id, a.id, a.title, a.about, a.cover, a.type, a.tag, a.author_id, u.id,u.email, u.username , u.name, u.location, u.website, u.background, u.about_me from photos p left join albums a on p.album_id = a.id left join users u on a.author_id = u.id;-->
-<!--    </select>-->
     <select id="getinfo" resultMap="photoResultMap">
-        select * from photos;
+        select p.id, p.url, p.url_s, p.url_t, p.about, p.`timestamp`, p.`order`, p.author_id, p.album_id, a.id, a.title, a.about, a.cover, a.type, a.tag, a.author_id, u.id,u.email, u.username , u.name, u.location, u.website, u.background, u.about_me from photos p left join albums a on p.album_id = a.id left join users u on a.author_id = u.id;
     </select>
+<!--    <select id="getinfo" resultMap="photoResultMap">-->
+<!--        select * from photos;-->
+<!--    </select>-->
 <!--    <select id="getinfo" resultType="com.example.demo.domain.Photos">-->
 <!--        select p.id, p.url, p.url_s, p.url_t, p.about, p.`timestamp`, p.`order`, p.author_id, p.album_id, a.id, a.title, a.about, a.cover, a.type, a.tag, a.author_id, u.id,u.email, u.username , u.name, u.location, u.website, u.background, u.about_me from photos p left join albums a on p.album_id = a.id left join users u on a.author_id = u.id;-->
 <!--    </select>-->
