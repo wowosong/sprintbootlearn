@@ -9,6 +9,7 @@ import com.example.demo.service.userService;
 import com.example.demo.utils.MD5;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.catalina.User;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,8 @@ public class userServiceImpl  implements userService {
             logger.info(users);
             return  SimpleMessage.warn("id重复");
         }
-        userMapper.insertUser(users);
+//        userMapper.insertUser(users);
+        userMapper.insert(users);
         return  SimpleMessage.info("创建成功");
     };
     @Override
@@ -51,8 +53,8 @@ public class userServiceImpl  implements userService {
 
     @Override
     public SimpleMessage getUserById(String id) {
-//        Users users= userMapper.selectByPrimaryKey(id);
-        Users users= userMapper.queryInfoById(id);
+//        Users users= userMapper.queryInfoById(id);
+        Users users= userMapper.selectByPrimaryKey(id);
         if(Objects.isNull(users)){
             return SimpleMessage.warn("用户不存在");
         }
@@ -76,7 +78,8 @@ public class userServiceImpl  implements userService {
         if(Objects.isNull(usersinfo)){
             return SimpleMessage.warn(MessageCode.NORMAL_ERROR,"用户不存在");
         }
-        userMapper.updateUsers(users);
+//        userMapper.updateUsers(users);
+        userMapper.updateByPrimaryKeySelective(users);
         return SimpleMessage.info(MessageCode.SUCCESS,"更新成功");
     }
     @Override
@@ -103,9 +106,10 @@ public class userServiceImpl  implements userService {
         if(!Objects.isNull(userinfo)){
             return SimpleMessage.warn("用户已经存在");
         }
-        Users userEmamil=userMapper.queryUserByEmail(users.getEmail());
+        System.out.println(users);
+        Users userEmail=userMapper.queryUserByEmail(users.getEmail());
         String md5=MD5.getMD5(users.getPassword_hash(),64);
-        if(!Objects.isNull(userEmamil)){
+        if(!Objects.isNull(userEmail)){
             return SimpleMessage.warn("邮箱已经存在");
         }
         users.setMemberSince(MD5.getTimestamp());

@@ -33,10 +33,10 @@
         <foreach collection="list" item="item" separator=",">(#{item.id},#{item.username},#{item.passwordHash},#{item.email})</foreach>
     </insert>
     <insert id="registerUser" parameterType="com.example.demo.domain.Users">
-        insert into users(username,password_hash,email,member_since,confirmed,liked) value (#{username},#{passwordHash},#{email},#{memberSince},#{confirmed},#{liked})
+        insert into users(username,password_hash,email,member_since,confirmed,liked) value (#{username},#{password_hash},#{email},#{memberSince},#{confirmed},#{liked})
     </insert>
     <select id="queryInfo" parameterType="java.lang.String" resultType="com.example.demo.domain.Users">
-        select * from users where name = #{name}
+        select * from users where username = #{username}
     </select>
     <update id="updateUser">
         update  users

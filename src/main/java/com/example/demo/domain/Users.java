@@ -10,6 +10,7 @@ import org.hibernate.validator.constraints.URL;
 import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 //@Data
 @JsonIgnoreProperties(value = "handler")
@@ -135,7 +136,7 @@ public class Users implements Serializable {
   }
 
   public void setLikePublic(Boolean likePublic) {
-    this.like_public = like_public;
+    this.like_public = likePublic;
   }
 
 
@@ -180,7 +181,7 @@ public class Users implements Serializable {
   }
 
   public void setAboutMe(String aboutMe) {
-    this.about_me = about_me;
+    this.about_me = aboutMe;
   }
 
 
@@ -188,8 +189,8 @@ public class Users implements Serializable {
     return member_since;
   }
 
-  public void setMemberSince(Date memberSince) {
-    this.member_since = member_since;
+  public void setMemberSince(Timestamp memberSince) {
+    this.member_since = memberSince;
   }
 
 
@@ -198,7 +199,7 @@ public class Users implements Serializable {
   }
 
   public void setLastSeen(Date lastSeen) {
-    this.last_seen = last_seen;
+    this.last_seen = lastSeen;
   }
 
 
@@ -207,7 +208,7 @@ public class Users implements Serializable {
   }
 
   public void setAvatarHash(String avatarHash) {
-    this.avatar_hash = avatar_hash;
+    this.avatar_hash = avatarHash;
   }
   @Override
     public  String toString(){
