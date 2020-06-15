@@ -1,6 +1,8 @@
 package com.example.demo.service;
 
+import com.example.demo.SimpleMessage.PageQuery;
 import com.example.demo.SimpleMessage.SimpleMessage;
+import com.example.demo.SimpleMessage.SimplePage;
 import com.example.demo.domain.*;
 import org.apache.catalina.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -21,6 +23,7 @@ public interface userService  {
     SimpleMessage getUser(String  id);
     SimpleMessage batchInsertUser(List<Users> listUsers);
     SimpleMessage queryUser(Map map);
+    SimplePage queryUserByPage(PageQuery pageQuery);
     SimpleMessage registerUser(Users users);
     SimpleMessage login();
     SimpleMessage logout();

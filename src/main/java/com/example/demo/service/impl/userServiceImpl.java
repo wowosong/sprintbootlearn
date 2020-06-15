@@ -1,7 +1,9 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.SimpleMessage.MessageCode;
+import com.example.demo.SimpleMessage.PageQuery;
 import com.example.demo.SimpleMessage.SimpleMessage;
+import com.example.demo.SimpleMessage.SimplePage;
 import com.example.demo.domain.Users;
 import com.example.demo.mapper.RoleMapper;
 import com.example.demo.mapper.UserMapper;
@@ -22,7 +24,7 @@ import tk.mybatis.orderbyhelper.OrderByHelper;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-
+import org.springframework.security.crypto.password.PasswordEncoder;
 @Component
 //@Service
 @Validated
@@ -33,6 +35,8 @@ public class userServiceImpl  implements userService {
     private UserMapper userMapper;
     @Autowired
     private RoleMapper roleMapper;
+//    @Autowired
+//    private PasswordEncoder passwordEncoder;
     @Override
     public  SimpleMessage insertUser(Users users) {
 //        Users userList= userMapper.queryInfoById(users.getId());
@@ -84,8 +88,11 @@ public class userServiceImpl  implements userService {
     }
     @Override
     public SimpleMessage getUser(String id) {
-        Users users = userMapper.getUser(id);
-        return SimpleMessage.info(MessageCode.SUCCESS,users);
+//        Users users = userMapper.getUser(id);
+        Users users=new Users();
+        users.setId(id);
+        Users usersinfo = userMapper.selectOne(users);
+        return SimpleMessage.info(MessageCode.SUCCESS,usersinfo);
     }
 
     @Override
@@ -98,6 +105,16 @@ public class userServiceImpl  implements userService {
     public SimpleMessage queryUser(Map map) {
         List<Users> users=userMapper.queryUser(map);
         return SimpleMessage.info(users);
+    }
+
+    @Override
+    public SimplePage queryUserByPage(PageQuery pageQuery) {
+        Map map = pageQuery.convertFilterToMap();
+        OrderByHelper.orderBy(pageQuery.convertSort());
+        PageHelper.startPage(pageQuery.getPage(), pageQuery.getSize());
+        List<Users> list = userMapper.queryUser(map);
+        PageInfo pageInfo = new PageInfo(list);
+        return new SimplePage<Users>().convert(pageInfo);
     }
 
     @Override

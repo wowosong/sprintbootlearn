@@ -1,12 +1,12 @@
 package com.example.demo.controller;
 
+import com.example.demo.SimpleMessage.PageQuery;
 import com.example.demo.SimpleMessage.SimpleMessage;
+import com.example.demo.SimpleMessage.SimplePage;
 import com.example.demo.domain.Users;
 import com.example.demo.service.userService;
 import com.github.pagehelper.PageInfo;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -20,7 +20,7 @@ import org.springframework.validation.Validator;
 
 @RestController
 @Api(value = "用户信息")
-@CrossOrigin(value = "3600")
+//@CrossOrigin(value = "3600")
 //@RequestMapping(value = "demo")
 public class HelloWorldController {
     private  userService userService;
@@ -39,6 +39,19 @@ public class HelloWorldController {
     public SimpleMessage getAll() {
         return userService.getAll();
     }
+
+    @ApiOperation(value = "分页查询培训计划", notes = "filter:keywords=;status=;", response = Users.class)
+    @GetMapping("/query")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "page", value = "页码：第几页", dataType = "int", paramType = "query"),
+            @ApiImplicitParam(name = "size", value = "每页显示的数据条数", dataType = "int", paramType = "query"),
+            @ApiImplicitParam(name = "filter", value = "查询条件（keywords=;status=;）", paramType = "query"),
+            @ApiImplicitParam(name = "order", value = "排序规则（createTime=desc）", paramType = "query")})
+    public SimplePage<Users> queryUserByPage(PageQuery pageQuery){
+        String filter = pageQuery.getFilter();
+        pageQuery.setFilter(filter);
+        return userService.queryUserByPage(pageQuery);
+    }
     @RequestMapping(value = "/g0",method = RequestMethod.GET)
     public  SimpleMessage get(@RequestParam(value = "name", required = true,defaultValue = "admin") String name){
         return SimpleMessage.info("");
@@ -54,23 +67,6 @@ public class HelloWorldController {
     public SimpleMessage queryUser(@ApiParam(value = "用户姓名",required = true)@RequestParam Map map){
         return userService.queryUser(map);
     }
-//    @GetMapping(value="/{name}")
-//    public SimpleMessage get1Info(@PathVariable String name){
-//        String i="123";
-//        int i1=Integer.parseInt(i);
-//        long l=Long.parseLong(i);
-//        System.out.println('1'+1);
-//        return  userService.get1Info(name);
-//    }
-//
-//    @GetMapping(value = "/test")
-//    public String data(){
-//        return "test";
-//    }
-//    @GetMapping(value="/test/{name}")
-//    public SimpleMessage getInfo(@PathVariable String name){
-//        return  userService.getUsers(name);
-//    }
     @ApiOperation(value = "获取用户信息",notes ="通过id获取用户信息" )
     @GetMapping(value="/user/{id}")
     public SimpleMessage getUser(@PathVariable String id){
@@ -89,7 +85,6 @@ public class HelloWorldController {
             }
             return userService.insertUser(users);
     };
-//    @CrossOrigin(origins = "http://localhost:8081",maxAge = 3600)
     @ApiOperation(value="注册用户",notes = "注册用户")
     @PostMapping(value = "/register")
     public SimpleMessage registerUser(@ApiParam(value = "注册用户")@RequestBody Users users){
