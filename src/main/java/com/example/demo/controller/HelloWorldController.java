@@ -20,7 +20,7 @@ import org.springframework.validation.Validator;
 
 @RestController
 @Api(value = "用户信息")
-//@CrossOrigin(value = "3600")
+@CrossOrigin(value = "3600")
 //@RequestMapping(value = "demo")
 public class HelloWorldController {
     private  userService userService;
@@ -85,6 +85,7 @@ public class HelloWorldController {
             }
             return userService.insertUser(users);
     };
+    @CrossOrigin(origins = "http://localhost:8081")
     @ApiOperation(value="注册用户",notes = "注册用户")
     @PostMapping(value = "/register")
     public SimpleMessage registerUser(@ApiParam(value = "注册用户")@RequestBody Users users){
