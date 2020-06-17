@@ -1,18 +1,25 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.SimpleMessage.PageQuery;
 import com.example.demo.SimpleMessage.SimpleMessage;
+import com.example.demo.SimpleMessage.SimplePage;
 import com.example.demo.domain.Comments;
+import com.example.demo.domain.Users;
 import com.example.demo.mapper.CommentsMapper;
 import com.example.demo.service.commentsService;
 import com.example.demo.utils.MD5;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
+import tk.mybatis.orderbyhelper.OrderByHelper;
 
 import java.util.List;
+import java.util.Map;
 
 @Component
 @Validated
@@ -44,10 +51,22 @@ public class commentsServiceImpl  implements commentsService {
         Comments commentsList=commentsMapper.getCommentsByUserId(userId);
         return SimpleMessage.info(commentsList);
     }
+
+    @Override
+    public SimplePage queryCommentByPage(PageQuery pageQuery) {
+        Map map = pageQuery.convertFilterToMap();
+        OrderByHelper.orderBy(pageQuery.convertSort());
+        PageHelper.startPage(pageQuery.getPage(), pageQuery.getSize());
+        List<Comments> list = commentsMapper.getCommentsMap(map);
+        PageInfo pageInfo = new PageInfo(list);
+        return new SimplePage<Users>().convert(pageInfo);
+    }
+
     @Override
     public SimpleMessage getComments() {
 //        List<Comments> comments=commentsMapper.getComments();
         List<Comments> comments=commentsMapper.selectAll();
         return  SimpleMessage.info(comments);
     }
+
 }

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 import tk.mybatis.mapper.common.BaseMapper;
 
 import java.util.List;
+import java.util.Map;
+
 //import tk.mybatis.mapper.common.Mapper;
 @Mapper
 @Repository
@@ -18,5 +20,6 @@ public interface CommentsMapper extends BaseMapper<Comments> {
     Comments getCommentsByphotoId(String photoId);
     void deleteComments(String commentId);
 
+    List<Comments> getCommentsMap(Map map);
     List<Comments> getComments();
 }

@@ -20,6 +20,8 @@
     <select id="getComments" resultMap="CommentResultMap">
         select * from comments;
     </select>
-
+    <select id="getCommentsMap" resultType="com.example.demo.domain.Comments" parameterType="map">
+        select * from comments;
+    </select>
 
 </mapper>
