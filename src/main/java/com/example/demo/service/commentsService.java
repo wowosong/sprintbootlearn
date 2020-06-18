@@ -11,7 +11,8 @@ public interface commentsService {
     public SimpleMessage postComments(Comments comments);
     public SimpleMessage editComments(Comments comments);
     public SimpleMessage getCommentsByUserId(String userId);
-    public SimpleMessage getComments();
+//    public SimpleMessage getComments();
+    public SimplePage getComments(PageQuery pageQuery);
     public  SimpleMessage getCommentsByphotoId(String photoid);
     public  SimplePage queryCommentByPage(PageQuery pageQuery);
 }

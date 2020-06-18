@@ -33,12 +33,18 @@ public class CommentsController {
     public SimpleMessage getCommentsByUserId(@PathVariable String userId){
         return  commentsService.getCommentsByUserId(userId);
     }
+    @ApiOperation(value = "分页查询评论", notes = "filter:keywords=;status=;", response = Comments.class)
     @RequestMapping(value = "/getComments",method = RequestMethod.GET)
-    public SimpleMessage getComments(){
-        return commentsService.getComments();
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "page", value = "页码：第几页", dataType = "int", paramType = "query"),
+            @ApiImplicitParam(name = "size", value = "每页显示的数据条数", dataType = "int", paramType = "query"),
+            @ApiImplicitParam(name = "filter", value = "查询条件（keywords=;status=;）", paramType = "query"),
+            @ApiImplicitParam(name = "order", value = "排序规则（createTime=desc）", paramType = "query")})
+    public SimplePage<Comments> getComments(PageQuery pageQuery){
+        String filter = pageQuery.getFilter();
+        pageQuery.setFilter(filter);
+        return commentsService.getComments(pageQuery);
     }
-
-
     @ApiOperation(value = "分页查询评论", notes = "filter:keywords=;status=;", response = Comments.class)
     @GetMapping("/queryComments")
     @ApiImplicitParams({
@@ -46,7 +52,7 @@ public class CommentsController {
             @ApiImplicitParam(name = "size", value = "每页显示的数据条数", dataType = "int", paramType = "query"),
             @ApiImplicitParam(name = "filter", value = "查询条件（keywords=;status=;）", paramType = "query"),
             @ApiImplicitParam(name = "order", value = "排序规则（createTime=desc）", paramType = "query")})
-    public SimplePage<Comments> queryUserByPage(PageQuery pageQuery){
+    public SimplePage<Comments> queryCommentByPage(PageQuery pageQuery){
         String filter = pageQuery.getFilter();
         pageQuery.setFilter(filter);
         return commentsService.queryCommentByPage(pageQuery);

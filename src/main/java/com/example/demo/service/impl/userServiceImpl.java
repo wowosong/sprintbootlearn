@@ -11,6 +11,7 @@ import com.example.demo.service.userService;
 import com.example.demo.utils.MD5;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.sun.xml.internal.xsom.impl.scd.SCDImpl;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,12 +37,18 @@ public class userServiceImpl  implements userService {
 //    private PasswordEncoder passwordEncoder;
     @Override
     public  SimpleMessage insertUser(Users users) {
-//        Users userList= userMapper.queryInfoById(users.getId());
-        List<Users> userList = userMapper.select(users);
+        Users userList= userMapper.queryInfoById(users.getId());
+//        List<Users> userList = userMapper.select(users);
+        System.out.println(userList);
         if(!Objects.isNull(userList)){
-            logger.info(users);
             return  SimpleMessage.warn("id重复");
         }
+        String md5=MD5.getMD5(users.getPassword(),64);
+        users.setMember_since(MD5.getTimestamp());
+        users.setPassword(md5);
+        users.setLiked(1L);
+        users.setConfirmed(true);
+        users.setRole_Id(users.getRole_Id());
 //        userMapper.insertUser(users);
         userMapper.insert(users);
         return  SimpleMessage.info("创建成功");
@@ -109,6 +116,7 @@ public class userServiceImpl  implements userService {
         Map map = pageQuery.convertFilterToMap();
         OrderByHelper.orderBy(pageQuery.convertSort());
         PageHelper.startPage(pageQuery.getPage(), pageQuery.getSize());
+        System.out.println(map);
         List<Users> list = userMapper.queryUser(map);
         PageInfo pageInfo = new PageInfo(list);
         return new SimplePage<Users>().convert(pageInfo);
@@ -122,23 +130,31 @@ public class userServiceImpl  implements userService {
         }
         System.out.println(users);
         Users userEmail=userMapper.queryUserByEmail(users.getEmail());
-        String md5=MD5.getMD5(users.getPassword_hash(),64);
+        String md5=MD5.getMD5(users.getPassword(),64);
         if(!Objects.isNull(userEmail)){
             return SimpleMessage.warn("邮箱已经存在");
         }
-        users.setMemberSince(MD5.getTimestamp());
-        users.setPasswordHash(md5);
+        users.setMember_since(MD5.getTimestamp());
+        users.setPassword(md5);
         users.setLiked(1L);
         users.setConfirmed(true);
-        users.setRoleId(users.getRoleId());
-//        userMapper.insert(users);
-        userMapper.registerUser(users);
+        users.setRole_Id(users.getRole_Id());
+        userMapper.insert(users);
+//        userMapper.registerUser(users);
         return SimpleMessage.info("注册成功");
     }
 
     @Override
-    public SimpleMessage login() {
-        return null;
+    public SimpleMessage login(String username,String password) {
+        Users users=userMapper.queryInfo(username);
+        if(Objects.isNull(users)){
+            return SimpleMessage.info("不存在该学生");
+        }
+        if(users.getPassword().equals(MD5.getMD5(password, 64))){
+            return SimpleMessage.info("登录成功");
+        }else{
+            return SimpleMessage.warn("登录失败");
+        }
     }
 
     @Override

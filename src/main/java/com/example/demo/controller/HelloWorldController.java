@@ -79,17 +79,21 @@ public class HelloWorldController {
     }
     @ApiOperation(value="插入用户",notes = "插入用户")
     @PostMapping(value = "/insertUser")
-    public SimpleMessage insertUser(@ApiParam(value = "插入用户",required = true)@RequestBody @Valid Users users, BindingResult bindingResult){
-            for(ObjectError error:bindingResult.getAllErrors()){
-                return  SimpleMessage.warn(error.getDefaultMessage());
-            }
+    public SimpleMessage insertUser(@ApiParam(value = "插入用户",required = true)@RequestBody Users users){
+//            for(ObjectError error:bindingResult.getAllErrors()){
+//                return  SimpleMessage.warn(error.getDefaultMessage());
+//            }
             return userService.insertUser(users);
     };
-    @CrossOrigin(origins = "http://localhost:8081")
     @ApiOperation(value="注册用户",notes = "注册用户")
     @PostMapping(value = "/register")
     public SimpleMessage registerUser(@ApiParam(value = "注册用户")@RequestBody Users users){
         return userService.registerUser(users);
+    }
+    @ApiOperation(value="登录",notes = "登录")
+    @PostMapping(value = "/login")
+    public SimpleMessage login(@ApiParam(value = "注册用户")@RequestParam String username,@RequestParam String password){
+        return userService.login(username,password);
     }
     @ApiOperation(value="删除用户",notes = "删除用户")
     @RequestMapping(value = "/deleteUser",method = RequestMethod.PUT)

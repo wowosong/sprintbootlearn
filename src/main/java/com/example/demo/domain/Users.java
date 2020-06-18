@@ -2,12 +2,16 @@ package com.example.demo.domain ;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import org.hibernate.annotations.Table;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -16,6 +20,7 @@ import java.util.Date;
 @JsonIgnoreProperties(value = "handler")
 public class Users implements Serializable {
   @NotNull
+  @Id
   private String  id;
   @NotNull
   @NotBlank
@@ -31,7 +36,7 @@ public class Users implements Serializable {
   @Column(name = "liked")
   private Long liked;
   @Column(name = "password_hash")
-  private String password_hash;
+  private String password;
   @Column(name = "role_Id")
   private String role_Id;
   @Column(name = "confirmed")
@@ -58,7 +63,6 @@ public class Users implements Serializable {
   @Column(name = "avatar_hash")
   private String avatar_hash;
 
-
   public String getId() {
     return id;
   }
@@ -66,7 +70,6 @@ public class Users implements Serializable {
   public void setId(String id) {
     this.id = id;
   }
-
 
   public String getEmail() {
     return email;
@@ -76,7 +79,6 @@ public class Users implements Serializable {
     this.email = email;
   }
 
-
   public String getUsername() {
     return username;
   }
@@ -84,7 +86,6 @@ public class Users implements Serializable {
   public void setUsername(String username) {
     this.username = username;
   }
-
 
   public String getStatus() {
     return status;
@@ -94,7 +95,6 @@ public class Users implements Serializable {
     this.status = status;
   }
 
-
   public Long getLiked() {
     return liked;
   }
@@ -103,24 +103,21 @@ public class Users implements Serializable {
     this.liked = liked;
   }
 
-
-  public String getPassword_hash() {
-    return password_hash;
+  public String getPassword() {
+    return password;
   }
 
-  public void setPasswordHash(String password_hash) {
-    this.password_hash = password_hash;
+  public void setPassword(String password) {
+    this.password = password;
   }
 
-
-  public String getRoleId() {
+  public String getRole_Id() {
     return role_Id;
   }
 
-  public void setRoleId(String role_Id) {
+  public void setRole_Id(String role_Id) {
     this.role_Id = role_Id;
   }
-
 
   public Boolean getConfirmed() {
     return confirmed;
@@ -130,15 +127,13 @@ public class Users implements Serializable {
     this.confirmed = confirmed;
   }
 
-
-  public Boolean getLikePublic() {
+  public Boolean getLike_public() {
     return like_public;
   }
 
-  public void setLikePublic(Boolean likePublic) {
-    this.like_public = likePublic;
+  public void setLike_public(Boolean like_public) {
+    this.like_public = like_public;
   }
-
 
   public String getName() {
     return name;
@@ -148,7 +143,6 @@ public class Users implements Serializable {
     this.name = name;
   }
 
-
   public String getLocation() {
     return location;
   }
@@ -156,7 +150,6 @@ public class Users implements Serializable {
   public void setLocation(String location) {
     this.location = location;
   }
-
 
   public String getWebsite() {
     return website;
@@ -166,7 +159,6 @@ public class Users implements Serializable {
     this.website = website;
   }
 
-
   public String getBackground() {
     return background;
   }
@@ -175,41 +167,38 @@ public class Users implements Serializable {
     this.background = background;
   }
 
-
-  public String getAboutMe() {
+  public String getAbout_me() {
     return about_me;
   }
 
-  public void setAboutMe(String aboutMe) {
-    this.about_me = aboutMe;
+  public void setAbout_me(String about_me) {
+    this.about_me = about_me;
   }
 
-
-  public Date getMemberSince() {
+  public Date getMember_since() {
     return member_since;
   }
 
-  public void setMemberSince(Timestamp memberSince) {
-    this.member_since = memberSince;
+  public void setMember_since(Date member_since) {
+    this.member_since = member_since;
   }
 
-
-  public Date getLastSeen() {
+  public Date getLast_seen() {
     return last_seen;
   }
 
-  public void setLastSeen(Date lastSeen) {
-    this.last_seen = lastSeen;
+  public void setLast_seen(Date last_seen) {
+    this.last_seen = last_seen;
   }
 
-
-  public String getAvatarHash() {
+  public String getAvatar_hash() {
     return avatar_hash;
   }
 
-  public void setAvatarHash(String avatarHash) {
-    this.avatar_hash = avatarHash;
+  public void setAvatar_hash(String avatar_hash) {
+    this.avatar_hash = avatar_hash;
   }
+
   @Override
     public  String toString(){
       return this.name+this.about_me+this.email+this.location;

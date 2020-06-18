@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.PhotoMapper">
 
-    <resultMap id="photoResultMap" type="com.example.demo.domain.Photos" autoMapping="true" >
+    <resultMap id="photoResultMap" type="com.example.demo.domain.Photos" >
 <!--        <constructor>-->
 <!--            <idArg  column="id" javaType="string"></idArg>-->
 <!--        </constructor>-->
@@ -15,7 +15,7 @@
         <result property="timestamp" column="timestamp"/>
         <result property="order" column="order"/>
 <!--        <result property="authorId"  column="author_id"/>-->
-        <association property="users"  column="id" javaType="com.example.demo.domain.Users" select="getUserById" fetchType="eager">
+        <association property="users"  column="id" javaType="com.example.demo.domain.Users"  fetchType="eager">
             <result property="email" column="email"/>
             <result property="location" column="location"/>
             <result property="about_me" column="about_me"/>

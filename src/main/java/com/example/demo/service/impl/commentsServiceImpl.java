@@ -63,10 +63,16 @@ public class commentsServiceImpl  implements commentsService {
     }
 
     @Override
-    public SimpleMessage getComments() {
+    public SimplePage getComments(PageQuery pageQuery) {
+        Map map = pageQuery.convertFilterToMap();
+        OrderByHelper.orderBy(pageQuery.convertSort());
+        PageHelper.startPage(pageQuery.getPage(), pageQuery.getSize());
+        List<Comments> list = commentsMapper.queryComment(map);
+        PageInfo pageInfo = new PageInfo(list);
+        return new SimplePage<Users>().convert(pageInfo);
 //        List<Comments> comments=commentsMapper.getComments();
-        List<Comments> comments=commentsMapper.selectAll();
-        return  SimpleMessage.info(comments);
+//        List<Comments> comments=commentsMapperpper.selectAll();
+//        return  SimpleMessage.info(comments);
     }
 
 }
