@@ -19,6 +19,9 @@
     <insert id="addAlbums" useGeneratedKeys="true" keyProperty="id">
         insert into albums(title, about, cover, type, tag, no_public, no_comment, asc_order, `timestamp`, author_id) value (#{title},#{about},#{cover},#{type},#{tag},#{noPublic},#{noComment},#{ascOrder},#{timestamp},#{authorId})
     </insert>
+    <insert id="focusAlbums" useGeneratedKeys="true" keyProperty="id">
+        insert  into like_album(like_album_id, album_liked_id, `timestamp`)  value (#{likeAlbumId},#{albumLikedId},#{timestamp})
+    </insert>
     <delete id="deleteAlbums">
         delete from albums where id=#{id}
     </delete>

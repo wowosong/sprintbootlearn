@@ -25,7 +25,7 @@ public interface userService  {
     SimpleMessage queryUser(Map map);
     SimplePage queryUserByPage(PageQuery pageQuery);
     SimpleMessage registerUser(Users users);
-    SimpleMessage login();
+    SimpleMessage login(String username,String password);
     SimpleMessage logout();
     SimpleMessage getAll();
 }

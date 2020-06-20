@@ -2,6 +2,7 @@ package com.example.demo.service.impl;
 
 import com.example.demo.SimpleMessage.SimpleMessage;
 import com.example.demo.domain.Albums;
+import com.example.demo.domain.LikeAlbum;
 import com.example.demo.mapper.AlbumsMapper;
 import com.example.demo.service.albumsService;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
+import java.util.Date;
+
 @Component
 @Validated
 @Slf4j
@@ -19,6 +22,7 @@ import org.springframework.validation.annotation.Validated;
 public class albumsServiceImpl  implements albumsService {
     @Autowired
     private AlbumsMapper albumsMapper;
+
     @Override
     public SimpleMessage addAlbums(Albums albums) {
         albumsMapper.addAlbums(albums);
@@ -43,7 +47,12 @@ public class albumsServiceImpl  implements albumsService {
     }
 
     @Override
-    public SimpleMessage focusAlbums(String albumsId) {
-        return SimpleMessage.info("操作成功");
+    public SimpleMessage focusAlbums(String albumsId,String userId) {
+        LikeAlbum likeAlbum=new LikeAlbum();
+        likeAlbum.setAlbumLikedId(userId);
+        likeAlbum.setLikeAlbumId(albumsId);
+        likeAlbum.setTimestamp(new Date());
+        albumsMapper.focusAlbums(likeAlbum);
+        return SimpleMessage.info("关注成功");
     }
 }

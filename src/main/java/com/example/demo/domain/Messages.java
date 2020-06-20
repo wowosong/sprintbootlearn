@@ -4,6 +4,7 @@ package com.example.demo.domain;
 import lombok.Data;
 
 import javax.persistence.Column;
+import javax.persistence.ManyToMany;
 import java.util.Date;
 //@Data
 public class Messages {

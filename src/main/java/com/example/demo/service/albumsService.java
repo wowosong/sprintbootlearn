@@ -16,5 +16,5 @@ public interface albumsService {
     public SimpleMessage editAlbums(String id);
     public SimpleMessage getAlbumsById(String albumsId);
     public SimpleMessage  deleteAlbums(String albumsId);
-    public SimpleMessage focusAlbums(String albumsId);
+    public SimpleMessage focusAlbums(String albumsId,String userId);
 }

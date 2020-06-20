@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.UserMapper">
-    <cache></cache>
+    <cache eviction="LRU"  flushInterval="60000" size="512" readOnly="true"></cache>
     <resultMap id="userResultMap" type="com.example.demo.domain.Users">
 <!--        <constructor>-->
 <!--            <idArg  column="id" javaType="int"></idArg>-->
 <!--        </constructor>-->
         <id property="id" column="id"/>
         <result property="name" column="name"/>
-        <result property="password_hash" column="password_hash"/>
+        <result property="password" column="password_hash"/>
         <result property="email" column="email"/>
         <result property="about_me" column="about_me"/>
         <result property="avatar_hash" column="avatar_hash"/>
@@ -26,17 +26,17 @@
         <result property="like_public" column="like_public"/>
     </resultMap>
     <insert id="insertUser"  parameterType="com.example.demo.domain.Users" useGeneratedKeys="true" keyProperty="id">
-        INSERT  INTO users (id,username,password_hash,email) value (#{id},#{username},#{passwordHash},#{email})
+        INSERT  INTO users (id,username,password_hash,email) value (#{id},#{username},#{password},#{email})
     </insert>
     <insert id="batchInsert">
         INSERT  INTO users (id,username,password_hash,email) values
-        <foreach collection="list" item="item" separator=",">(#{item.id},#{item.username},#{item.passwordHash},#{item.email})</foreach>
+        <foreach collection="list" item="item" separator=",">(#{item.id},#{item.username},#{item.password},#{item.email})</foreach>
     </insert>
     <insert id="registerUser" parameterType="com.example.demo.domain.Users">
-        insert into users(username,password_hash,email,member_since,confirmed,liked) value (#{username},#{password_hash},#{email},#{memberSince},#{confirmed},#{liked})
+        insert into users(username,password_hash,email,member_since,confirmed,liked) value (#{username},#{password},#{email},#{memberSince},#{confirmed},#{liked})
     </insert>
     <select id="queryInfo" parameterType="java.lang.String" resultType="com.example.demo.domain.Users">
-        select * from users where username = #{username}
+        select id, email, username, status, liked, password_hash as "password", role_id, confirmed, like_public, name, location, website, background, about_me, member_since, last_seen, avatar_hash from users where username = #{username}
     </select>
     <update id="updateUser">
         update  users
@@ -83,6 +83,9 @@
             </if>
             <if test="''!=id and null!=id">
                 and id=#{id}
+            </if>
+            <if test="''!=keyword and null!=keyword">
+                and name=#{keyword}
             </if>
         </where>
     </select>

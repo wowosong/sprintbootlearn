@@ -23,5 +23,21 @@
     <select id="getCommentsMap" resultType="com.example.demo.domain.Comments" parameterType="map">
         select * from comments where 1=1 limit 100;
     </select>
-
+    <select id="queryComment" resultMap="CommentResultMap" parameterType="map">
+        select * from comments
+        <where>
+            <if test="timestamp!='' and timestamp!=null">
+                timestamp =#{timestamp}
+            </if>
+            <if test="disabled!=''  and disabled!=null">
+                and disabled=#{disabled}
+            </if>
+            <if test="photoId!='' and photoId!=null">
+                and photoId=#{photoId}
+            </if>
+            <if test="authorId!=''  and authorId!=null">
+               and authorId=#{authorId}
+        </if>
+        </where>
+    </select>
 </mapper>
