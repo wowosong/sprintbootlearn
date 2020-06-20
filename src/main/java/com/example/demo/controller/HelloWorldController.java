@@ -31,10 +31,6 @@ public class HelloWorldController {
     public HelloWorldController(userService userService) {
         this.userService = userService;
     }
-//    @RequestMapping(value = "/getAll/{name}",method = RequestMethod.GET)
-//    public SimpleMessage getAll(@PathVariable String name) {
-//        return userService.getUsers(name);
-//    }
     @RequestMapping(value = "/getAll",method = RequestMethod.GET)
     public SimpleMessage getAll() {
         return userService.getAll();

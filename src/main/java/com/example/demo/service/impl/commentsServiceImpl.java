@@ -55,8 +55,11 @@ public class commentsServiceImpl  implements commentsService {
     @Override
     public SimplePage queryCommentByPage(PageQuery pageQuery) {
         Map map = pageQuery.convertFilterToMap();
+        map.put("page",1);
+        map.put("size",10);
         OrderByHelper.orderBy(pageQuery.convertSort());
         PageHelper.startPage(pageQuery.getPage(), pageQuery.getSize());
+        System.out.println(map);
         List<Comments> list = commentsMapper.getCommentsMap(map);
         PageInfo pageInfo = new PageInfo(list);
         return new SimplePage<Users>().convert(pageInfo);

@@ -19,7 +19,6 @@ public interface CommentsMapper extends BaseMapper<Comments> {
     void postComments(Comments comments);
     Comments getCommentsByphotoId(String photoId);
     void deleteComments(String commentId);
-
     List<Comments> getCommentsMap(Map map);
     List<Comments> getComments();
 }
