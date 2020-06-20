@@ -11,11 +11,11 @@ import com.example.demo.service.userService;
 import com.example.demo.utils.MD5;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.sun.xml.internal.xsom.impl.scd.SCDImpl;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import tk.mybatis.orderbyhelper.OrderByHelper;
@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 @Component
-//@Service
+@Service
 @Validated
 @Transactional(rollbackFor = Exception.class)
 public class userServiceImpl  implements userService {

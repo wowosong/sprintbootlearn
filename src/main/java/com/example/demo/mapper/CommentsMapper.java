@@ -19,7 +19,7 @@ public interface CommentsMapper extends BaseMapper<Comments> {
     Comments getCommentsByUserId(String userId);
     Comments editComments(Comments comments);
     void postComments(Comments comments);
-    Comments getCommentsByphotoId(String photoId);
+    List<Comments> getCommentsByphotoId(String photoId);
     void deleteComments(String commentId);
     List<Comments> getCommentsMap(Map map);
     List<Comments> getComments();

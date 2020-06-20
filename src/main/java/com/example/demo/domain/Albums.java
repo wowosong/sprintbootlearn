@@ -4,14 +4,14 @@ package com.example.demo.domain;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
+//import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
-@Data
+//@Data
 @Table(name = "albums")
 @JsonIgnoreProperties(value = "handler")
 public class Albums  implements Serializable {
@@ -35,7 +35,7 @@ public class Albums  implements Serializable {
   private Boolean noComment;
   @Column(name = "asc_order")
   private String  ascOrder;
-  @Column(name = "timestamp")
+  @Column(name = "`timestamp`")
   private Date timestamp;
   @Column(name = "author_id")
   private String authorId;

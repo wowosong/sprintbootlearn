@@ -1,17 +1,17 @@
 package com.example.demo.domain;
 
 
-import lombok.Data;
+//import lombok.Data;
 
 import javax.persistence.Column;
 import java.util.Date;
 //@Data
 public class Follows {
-  @Column(name = "关注者Id")
+  @Column(name = "follower_id")
   private String followerId;
-  @Column(name = "被关注者Id")
+  @Column(name = "followed_id")
   private String followedId;
-  @Column(name = "关注时间")
+  @Column(name = "`timestamp`")
   private Date timestamp;
 
 

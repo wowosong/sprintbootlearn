@@ -2,25 +2,28 @@ package com.example.demo.service.impl;
 
 import com.example.demo.SimpleMessage.SimpleMessage;
 import com.example.demo.domain.Albums;
+import com.example.demo.domain.Comments;
 import com.example.demo.domain.Photos;
 import com.example.demo.mapper.AlbumsMapper;
+import com.example.demo.mapper.CommentsMapper;
 import com.example.demo.mapper.PhotoMapper;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.service.photoService;
 import com.example.demo.utils.MD5;
-import lombok.extern.slf4j.Slf4j;
+//import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 @Component
 @Validated
-@Slf4j
+//@Slf4j
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class photosServiceImpl implements photoService {
@@ -28,6 +31,8 @@ public class photosServiceImpl implements photoService {
     private PhotoMapper photoMapper;
     @Autowired
     AlbumsMapper albumsMapper;
+    @Autowired
+    private CommentsMapper commentsMapper;
     @Autowired
     UserMapper userMapper;
     @Override
@@ -39,8 +44,9 @@ public class photosServiceImpl implements photoService {
             return SimpleMessage.warn("不存在");
         }
         photos.setAuthorId("1");
-        photoMapper.addPhotos(photos);
-//        photoMapper.insert(photos);
+        photos.setTimestamp(new Date());
+//        photoMapper.addPhotos(photos);
+        photoMapper.insert(photos);
         return SimpleMessage.info("添加成功");
     }
 
@@ -56,6 +62,11 @@ public class photosServiceImpl implements photoService {
 
     @Override
     public SimpleMessage deletePhoto(Photos photos) {
+        List<Comments> comments=commentsMapper.getCommentsByphotoId(photos.getId());
+        for(Comments comment:comments){
+            commentsMapper.delete(comment);
+        }
+//        commentsMapper.delete()
         Photos photosInfo=photoMapper.getPhotosById(photos.getId());
         if(Objects.isNull(photosInfo)){
             return  SimpleMessage.warn("照片不存在！");

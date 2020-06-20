@@ -1,17 +1,17 @@
 package com.example.demo.domain;
 
 
-import lombok.Data;
+//import lombok.Data;
 
 import javax.persistence.Column;
 import java.util.Date;
-@Data
+//@Data
 public class LikeAlbum {
-  @Column(name = "收藏相册Id")
+  @Column(name = "like_album_id")
   private String likeAlbumId;
-  @Column(name = "被收藏相册Id")
+  @Column(name = "album_liked_id")
   private String albumLikedId;
-  @Column(name = "收藏时间")
+  @Column(name = "`timestamp`")
   private Date timestamp;
 
 

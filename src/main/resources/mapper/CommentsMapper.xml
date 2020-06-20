@@ -15,7 +15,9 @@
     </insert>
     <update id="editComments"></update>
     <delete id="deleteComments"></delete>
-    <select id="getCommentsByphotoId" resultType="com.example.demo.domain.Comments"></select>
+    <select id="getCommentsByphotoId" resultType="com.example.demo.domain.Comments">
+        select  * from comments where photo_id=#{photoId}
+    </select>
     <select id="getCommentsByUserId" resultType="com.example.demo.domain.Comments"></select>
     <select id="getComments" resultMap="CommentResultMap">
         select * from comments;

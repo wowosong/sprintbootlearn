@@ -57,7 +57,7 @@ public class CommentsController {
         pageQuery.setFilter(filter);
         return commentsService.queryCommentByPage(pageQuery);
     }
-    @RequestMapping(value = "/getCommentsByphotoId",method = RequestMethod.GET)
+    @RequestMapping(value = "/getCommentsByphotoId/{photoid}",method = RequestMethod.GET)
     public  SimpleMessage getCommentsByphotoId(@PathVariable String photoid){
         return commentsService.getCommentsByphotoId(photoid);
     }

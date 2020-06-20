@@ -10,7 +10,7 @@ import com.example.demo.service.commentsService;
 import com.example.demo.utils.MD5;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import lombok.extern.slf4j.Slf4j;
+//import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,7 @@ import java.util.Map;
 
 @Component
 @Validated
-@Slf4j
+//@Slf4j
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class commentsServiceImpl  implements commentsService {
@@ -47,8 +47,8 @@ public class commentsServiceImpl  implements commentsService {
         return SimpleMessage.info(commentsList);
     }
     @Override
-    public SimpleMessage getCommentsByphotoId(String userId) {
-        Comments commentsList=commentsMapper.getCommentsByUserId(userId);
+    public SimpleMessage getCommentsByphotoId(String photoId) {
+        List<Comments> commentsList=commentsMapper.getCommentsByphotoId(photoId);
         return SimpleMessage.info(commentsList);
     }
 

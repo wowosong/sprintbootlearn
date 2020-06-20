@@ -6,7 +6,7 @@ import com.example.demo.domain.Photos;
 import com.example.demo.mapper.MessagesMapper;
 import com.example.demo.service.messageService;
 import com.example.demo.utils.MD5;
-import lombok.extern.slf4j.Slf4j;
+//import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ import java.util.List;
 
 @Component
 @Service
-@Slf4j
+//@Slf4j
 @Validated
 @Transactional(rollbackFor = Exception.class)
 public class messageServiceImpl implements messageService {

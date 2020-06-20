@@ -48,15 +48,7 @@ public class HelloWorldController {
         pageQuery.setFilter(filter);
         return userService.queryUserByPage(pageQuery);
     }
-    @RequestMapping(value = "/g0",method = RequestMethod.GET)
-    public  SimpleMessage get(@RequestParam(value = "name", required = true,defaultValue = "admin") String name){
-        return SimpleMessage.info("");
-    }
 
-    @RequestMapping(value = "/hello",method = RequestMethod.GET,consumes = "application/json")
-    public String index() {
-        return "Hello World";
-    }
     @CrossOrigin(maxAge = 3600)
     @ApiOperation(value="获取用户",notes = "通过多个关键字查询用户")
     @RequestMapping(value = "/queryUser",method = RequestMethod.GET)
@@ -76,9 +68,6 @@ public class HelloWorldController {
     @ApiOperation(value="插入用户",notes = "插入用户")
     @PostMapping(value = "/insertUser")
     public SimpleMessage insertUser(@ApiParam(value = "插入用户",required = true)@RequestBody Users users){
-//            for(ObjectError error:bindingResult.getAllErrors()){
-//                return  SimpleMessage.warn(error.getDefaultMessage());
-//            }
             return userService.insertUser(users);
     };
     @ApiOperation(value="注册用户",notes = "注册用户")

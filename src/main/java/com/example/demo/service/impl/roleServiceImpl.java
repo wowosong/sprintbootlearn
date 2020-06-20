@@ -4,7 +4,7 @@ import com.example.demo.SimpleMessage.SimpleMessage;
 import com.example.demo.domain.Roles;
 import com.example.demo.mapper.RoleMapper;
 import com.example.demo.service.roleService;
-import lombok.extern.slf4j.Slf4j;
+//import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ import java.util.Objects;
 
 @Component
 @Validated
-@Slf4j
+//@Slf4j
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class roleServiceImpl implements roleService {

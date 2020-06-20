@@ -1,7 +1,7 @@
 package com.example.demo.domain ;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
+//import lombok.Data;
 import org.hibernate.annotations.Table;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;

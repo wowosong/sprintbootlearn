@@ -1,6 +1,6 @@
 package com.example.demo.domain;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.Data;
+//import lombok.Data;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Data
+//@Data
 @TableName(value = "photos")
 public class Photos implements Serializable {
 
@@ -25,9 +25,9 @@ public class Photos implements Serializable {
   private String urlT;
   @Column(name = "about")
   private String about;
-  @Column(name = "timestamp")
+  @Column(name = "`timestamp`")
   private Date timestamp;
-  @Column(name = "order")
+  @Column(name = "`order`")
   private Integer order;
   @Column(name = "author_id")
   private String authorId;

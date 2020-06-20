@@ -1,18 +1,18 @@
 package com.example.demo.domain;
 
 
-import lombok.Data;
+//import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
 import java.util.Date;
-@Data
+//@Data
 public class Comments {
   @Id
   private String id;
   @Column(name = "body")
   private String body;
-  @Column(name = "timestamp")
+  @Column(name = "`timestamp`")
   private Date timestamp;
   @Column(name = "disabled")
   private Boolean disabled;

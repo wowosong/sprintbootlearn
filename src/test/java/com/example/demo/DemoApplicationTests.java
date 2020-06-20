@@ -3,7 +3,7 @@ package com.example.demo;
 import com.example.demo.controller.HelloWorldController;
 import com.example.demo.domain.Users;
 import com.example.demo.mapper.UserMapper;
-import lombok.extern.slf4j.Slf4j;
+//import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 @SpringBootTest
-@Slf4j
+//@Slf4j
 class DemoApplicationTests {
     private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(DemoApplicationTests.class);
     private SqlSessionFactory sqlSessionFactory;
