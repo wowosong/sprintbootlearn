@@ -42,6 +42,7 @@ public class CommentsController {
             @ApiImplicitParam(name = "order", value = "排序规则（createTime=desc）", paramType = "query")})
     public SimplePage<Comments> getComments(PageQuery pageQuery){
         String filter = pageQuery.getFilter();
+        System.out.println(filter);
         pageQuery.setFilter(filter);
         return commentsService.getComments(pageQuery);
     }

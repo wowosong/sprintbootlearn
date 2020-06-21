@@ -32,6 +32,7 @@ public class commentsServiceImpl  implements commentsService {
     @Override
     public SimpleMessage postComments(Comments comments) {
         comments.setTimestamp(MD5.getTimestamp());
+        comments.setDisabled(true);
        commentsMapper.postComments(comments);
        return SimpleMessage.info("评论成功");
     }
@@ -55,8 +56,8 @@ public class commentsServiceImpl  implements commentsService {
     @Override
     public SimplePage queryCommentByPage(PageQuery pageQuery) {
         Map map = pageQuery.convertFilterToMap();
-        map.put("page",1);
-        map.put("size",10);
+//        map.put("page",1);
+//        map.put("size",10);
         OrderByHelper.orderBy(pageQuery.convertSort());
         PageHelper.startPage(pageQuery.getPage(), pageQuery.getSize());
         System.out.println(map);

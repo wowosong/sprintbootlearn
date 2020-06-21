@@ -14,6 +14,7 @@ import com.github.pagehelper.PageInfo;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -130,12 +131,14 @@ public class userServiceImpl  implements userService {
         }
         System.out.println(users);
         Users userEmail=userMapper.queryUserByEmail(users.getEmail());
-        String md5=MD5.getMD5(users.getPassword(),64);
+//        String md5=MD5.getMD5(users.getPassword(),64);
+        BCryptPasswordEncoder encoder=new BCryptPasswordEncoder(10);
+        String encodePassword=encoder.encode(users.getPassword());
         if(!Objects.isNull(userEmail)){
             return SimpleMessage.warn("邮箱已经存在");
         }
         users.setMember_since(MD5.getTimestamp());
-        users.setPassword(md5);
+        users.setPassword(encodePassword);
         users.setLiked(1L);
         users.setConfirmed(true);
         users.setRole_Id(users.getRole_Id());
@@ -148,7 +151,7 @@ public class userServiceImpl  implements userService {
     public SimpleMessage login(String username,String password) {
         Users users=userMapper.queryInfo(username);
         if(Objects.isNull(users)){
-            return SimpleMessage.info("不存在该学生");
+            return SimpleMessage.info("不存在该账号");
         }
         if(users.getPassword().equals(MD5.getMD5(password, 64))){
             return SimpleMessage.info("登录成功");

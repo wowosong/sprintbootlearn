@@ -20,7 +20,7 @@ import org.springframework.validation.Validator;
 
 @RestController
 @Api(value = "用户信息")
-@CrossOrigin(value = "3600")
+//@CrossOrigin(origins = "http://localhost:8081")
 //@RequestMapping(value = "demo")
 public class HelloWorldController {
     private  userService userService;
@@ -77,8 +77,8 @@ public class HelloWorldController {
     }
     @ApiOperation(value="登录",notes = "登录")
     @PostMapping(value = "/login")
-    public SimpleMessage login(@ApiParam(value = "注册用户")@RequestParam String username,@RequestParam String password){
-        return userService.login(username,password);
+    public SimpleMessage login(@ApiParam(value = "登录")@RequestBody Users users){
+        return userService.login(users.getUsername(),users.getPassword());
     }
     @ApiOperation(value="删除用户",notes = "删除用户")
     @RequestMapping(value = "/deleteUser",method = RequestMethod.PUT)
@@ -95,4 +95,6 @@ public class HelloWorldController {
     public  SimpleMessage batchInsert(@ApiParam(value = "批量插入用户信息",required = true)@RequestBody List<Users> listUsers){
         return userService.batchInsertUser(listUsers);
     }
+
+
 }
