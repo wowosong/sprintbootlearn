@@ -115,11 +115,15 @@ public class userServiceImpl  implements userService {
     @Override
     public SimplePage queryUserByPage(PageQuery pageQuery) {
         Map map = pageQuery.convertFilterToMap();
+        System.out.println("convertMap:"+map);
         OrderByHelper.orderBy(pageQuery.convertSort());
+        System.out.println(pageQuery.getPage()+"+++++++++"+pageQuery.getSize());
+
         PageHelper.startPage(pageQuery.getPage(), pageQuery.getSize());
-        System.out.println(map);
         List<Users> list = userMapper.queryUser(map);
+        System.out.println(map+"------------");
         PageInfo pageInfo = new PageInfo(list);
+        System.out.println(list+"llllllllllllll");
         return new SimplePage<Users>().convert(pageInfo);
     }
 

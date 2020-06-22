@@ -42,7 +42,6 @@ public  class CommentsController {
     public SimplePage<Comments> getComments(PageQuery pageQuery){
         String filter = pageQuery.getFilter();
         pageQuery.setFilter(filter);
-        System.out.println(filter);
         return commentsService.queryCommentByPage(pageQuery);
     }
     @ApiOperation(value = "查询图片评论")

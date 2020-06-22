@@ -23,10 +23,15 @@
         select * from comments;
     </select>
     <select id="getCommentsMap" resultType="com.example.demo.domain.Comments" parameterType="map">
-        select * from comments;
+        select * from comments
+        <where>
+            <if test="keyword!=null and keyword!=''">
+                and body like concat("%",#{keyword},"%")
+            </if>
+        </where>
     </select>
     <select id="queryComment" resultMap="CommentResultMap" parameterType="map">
-        select * from comments
+        select * from comments;
         <where>
             <if test="timestamp!='' and timestamp!=null">
                 timestamp =#{timestamp}
@@ -39,7 +44,7 @@
             </if>
             <if test="authorId!=''  and authorId!=null">
                and authorId=#{authorId}
-        </if>
+            </if>
         </where>
     </select>
 </mapper>

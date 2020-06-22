@@ -21,6 +21,12 @@
 <!--    <plugins>-->
 <!--        <plugin interceptor=""></plugin>-->
 <!--    </plugins>-->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!--分页参数合理化  -->
+            <property name="reasonable" value="true"/>
+        </plugin>
+    </plugins>
     <environments default="test">
         <environment id="test">
 <!--                 事务管理器工厂配置-->
