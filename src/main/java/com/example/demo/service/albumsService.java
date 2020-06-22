@@ -5,16 +5,16 @@ import com.example.demo.domain.Albums;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface albumsService {
+public  interface albumsService {
     /**
      * @author huangjiusong
      * @param albums
      * @since
      * @return
      */
-    public SimpleMessage addAlbums(Albums albums);
-    public SimpleMessage editAlbums(String id);
-    public SimpleMessage getAlbumsById(String albumsId);
-    public SimpleMessage  deleteAlbums(String albumsId);
-    public SimpleMessage focusAlbums(String albumsId,String userId);
+     SimpleMessage addAlbums(Albums albums);
+     SimpleMessage editAlbums(String id);
+     SimpleMessage getAlbumsById(String albumsId);
+     SimpleMessage  deleteAlbums(String albumsId);
+     SimpleMessage focusAlbums(String albumsId,String userId);
 }

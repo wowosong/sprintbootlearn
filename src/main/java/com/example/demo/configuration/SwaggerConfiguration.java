@@ -14,7 +14,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfiguration {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder().title("API接口文档")
-                .description("用户信息管理")
+                .description("相册")
                 .version("1.0.0")
                 .build();
     }

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.demo.service.commentsService;
 @RestController
 @Api(value = "评论管理")
-public class CommentsController {
+public  class CommentsController {
     private  commentsService commentsService;
 //    public CommentsController(){}
     @Autowired

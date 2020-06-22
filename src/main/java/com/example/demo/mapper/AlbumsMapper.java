@@ -10,10 +10,7 @@ import tk.mybatis.mapper.common.BaseMapper;
 @Mapper
 public interface AlbumsMapper extends BaseMapper<Albums> {
     Albums getAlbumsById(String albumsId);
-
     void addAlbums(Albums albums);
-
     void deleteAlbums(String albumsId);
-
     void focusAlbums(LikeAlbum likeAlbum);
 }
