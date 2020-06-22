@@ -10,7 +10,7 @@ import com.example.demo.service.commentsService;
 import com.example.demo.utils.MD5;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-//import lombok.extern.slf4j.Slf4j;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -63,7 +63,7 @@ public class commentsServiceImpl  implements commentsService {
         System.out.println(map);
         List<Comments> list = commentsMapper.getCommentsMap(map);
         PageInfo pageInfo = new PageInfo(list);
-        return new SimplePage<Users>().convert(pageInfo);
+        return new SimplePage<Comments>().convert(pageInfo);
     }
 
     @Override
@@ -73,7 +73,7 @@ public class commentsServiceImpl  implements commentsService {
         PageHelper.startPage(pageQuery.getPage(), pageQuery.getSize());
         List<Comments> list = commentsMapper.queryComment(map);
         PageInfo pageInfo = new PageInfo(list);
-        return new SimplePage<Users>().convert(pageInfo);
+        return new SimplePage<Comments>().convert(pageInfo);
 //        List<Comments> comments=commentsMapper.getComments();
 //        List<Comments> comments=commentsMapperpper.selectAll();
 //        return  SimpleMessage.info(comments);
