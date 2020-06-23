@@ -20,6 +20,7 @@ import tk.mybatis.orderbyhelper.OrderByHelper;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Component
 @Validated
@@ -56,8 +57,6 @@ public class commentsServiceImpl  implements commentsService {
     @Override
     public SimplePage queryCommentByPage(PageQuery pageQuery) {
         Map map = pageQuery.convertFilterToMap();
-//        map.put("page",1);
-//        map.put("size",10);
         OrderByHelper.orderBy(pageQuery.convertSort());
         PageHelper.startPage(pageQuery.getPage(), pageQuery.getSize());
         List<Comments> list = commentsMapper.getCommentsMap(map);
