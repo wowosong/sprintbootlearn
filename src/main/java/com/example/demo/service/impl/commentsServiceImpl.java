@@ -69,7 +69,7 @@ public class commentsServiceImpl  implements commentsService {
         Map map = pageQuery.convertFilterToMap();
         OrderByHelper.orderBy(pageQuery.convertSort());
         PageHelper.startPage(pageQuery.getPage(), pageQuery.getSize());
-        List<Comments> list = commentsMapper.queryComment(map);
+        List<?> list = commentsMapper.queryComment(map);
         PageInfo pageInfo = new PageInfo(list);
         return new SimplePage<Comments>().convert(pageInfo);
 //        List<Comments> comments=commentsMapper.getComments();

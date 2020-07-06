@@ -7,6 +7,8 @@ import com.example.demo.domain.Users;
 import com.example.demo.service.userService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.*;
+import lombok.extern.java.Log;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -14,8 +16,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.springframework.validation.Validator;
 
 @RestController
@@ -33,10 +37,52 @@ public class HelloWorldController {
     }
     @RequestMapping(value = "/getAll",method = RequestMethod.GET)
     public SimpleMessage getAll() {
+        Map map=System.getenv();
+        System.out.println(map);
+        String s="afaea";
+        System.out.println(s.substring(1,2));
+        s.endsWith("e");
+        s.startsWith("age");
+        s.trim();
+        StringBuffer sb=new StringBuffer("125f32ttt131");
+        for(int i=0;i<sb.length();i++){
+            System.out.println(sb.charAt(i));
+        }
+        Random random=new Random();
+        Calendar calendar=Calendar.getInstance();
+        calendar.get(Calendar.YEAR);
+        random.nextFloat();
+        String[] sss=s.split("ttt");
+        for (String s1:sss ) {
+            System.out.println(s1+"sssss");
+        }
+        Matcher b= Pattern.compile("\\w+").matcher("123123");
+        Locale[] locales=Locale.getAvailableLocales();
+        for(int i=0;i<locales.length;i++){
+//            System.out.println(locales[i].getDisplayCountry()+"+"+locales[i].getDisplayLanguage()+"+"+locales[i].getLanguage());
+        }
+        System.out.println(locales);
+        String strring=sb.reverse().toString();
+        Collection collection=new ArrayList();
+        collection.add("user");
+        System.out.println(collection);
+        Iterator iterator=collection.iterator();
+        while (iterator.hasNext()){
+            String dd=(String) iterator.next();
+            iterator.remove();
+            collection.remove(dd);
+            System.out.println(dd);
+        }
+        List list=new ArrayList();
+        Map map1=new HashMap();
+        map1.keySet();
+        map1.values();
+        map1.entrySet();
+        List<Users> usersList=new ArrayList<>();
+        System.out.println(strring+random.nextFloat());
         return userService.getAll();
     }
-
-    @ApiOperation(value = "分页查询培训计划", notes = "filter:keywords=;status=;", response = Users.class)
+    @ApiOperation(value = "分页查询用户", notes = "filter:keywords=;status=;", response = Users.class)
     @GetMapping("/query")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "page", value = "页码：第几页", dataType = "int", paramType = "query"),

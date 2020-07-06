@@ -16,7 +16,7 @@ import java.util.Date;
 
 @Component
 @Validated
-@Slf4j
+//@Slf4j
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class albumsServiceImpl  implements albumsService {
@@ -43,6 +43,8 @@ public class albumsServiceImpl  implements albumsService {
     @Override
     public SimpleMessage deleteAlbums(String albumsId) {
         albumsMapper.deleteAlbums(albumsId);
+        Albums albums=albumsMapper.selectByPrimaryKey(albumsId);
+        albumsMapper.deleteByPrimaryKey(albums);
         return SimpleMessage.info("操作成功");
     }
 

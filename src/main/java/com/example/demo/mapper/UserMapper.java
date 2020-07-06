@@ -27,10 +27,7 @@ public interface UserMapper extends  BaseMapper<Users>{
     void insertUser(Users users);
     void deleteUser(Users users);
     void batchInsert(List<Users> listUsers);
-
     void updateUsers(Users users);
-
     void registerUser(Users users);
-
     Users queryUserByEmail(String email);
 }

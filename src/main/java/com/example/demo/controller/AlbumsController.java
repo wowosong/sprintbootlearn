@@ -18,7 +18,7 @@ import java.util.Map;
 @Api(value = "相册管理")
 public class AlbumsController {
     private albumsService albumsService;
-    public AlbumsController(){}
+    public AlbumsController(){};
     @Autowired
     public AlbumsController(albumsService albumsService) {
         this.albumsService = albumsService;
