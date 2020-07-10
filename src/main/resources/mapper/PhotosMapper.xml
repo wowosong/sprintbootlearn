@@ -23,9 +23,16 @@
             <result property="username" column="username"/>
         </association>
 <!--        <result property="albumId" column="album_id"/>-->
-        <association property="albums" column="id"  javaType="com.example.demo.domain.Albums" select="getAlbumsById" fetchType="eager">
+        <association property="albums" column="id"  javaType="com.example.demo.domain.Albums"  fetchType="eager">
             <result property="title" column="title"/>
             <result property="about" column="about"/>
+            <result property="cover" column="cover"/>
+            <result property="timestamp" column="timestamp"/>
+            <result property="noComment" column="no_comment"/>
+            <result property="noPublic" column="no_public"/>
+            <result property="ascOrder" column="asc_order"/>
+            <result property="tag" column="tag"/>
+            <result property="authorId" column="author_id"/>
         </association>
 <!--        <association property="users" javaType="com.example.demo.domain.Users">-->
 <!--            <id property="id" column="id"/>-->
@@ -91,7 +98,7 @@
         select  * from photos where  id=#{id}
     </select>
     <select id="getinfo" resultMap="photoResultMap">
-        select p.id, p.url, p.url_s, p.url_t, p.about, p.`timestamp`, p.`order`, p.author_id, p.album_id, a.id, a.title, a.about, a.cover, a.type, a.tag, a.author_id, u.id,u.email, u.username , u.name, u.location, u.website, u.background, u.about_me from photos p left join albums a on p.album_id = a.id left join users u on a.author_id = u.id;
+        select p.id, p.url, p.url_s, p.url_t, p.about, p.`timestamp`, p.`order`, p.author_id, p.album_id, a.id, a.title, a.about, a.cover, a.type, a.tag, a.author_id,a.asc_order,a.no_comment,a.no_public, u.id,u.email, u.username , u.name, u.location, u.website, u.background, u.about_me from photos p left join albums a on p.album_id = a.id left join users u on a.author_id = u.id;
     </select>
 <!--    <select id="getinfo" resultMap="photoResultMap">-->
 <!--        select * from photos;-->
