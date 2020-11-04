@@ -5,28 +5,28 @@ node('maven-slave-140') {
     def docker_image_name
     def tag = BUILD_ID
     def docker_compose_path = '/root/docker/docker-compose/hbd'
-    def docker_compose_service = 'mobile-management-service'
+    def docker_compose_service = 'demo-fxc-service'
     // 生成 jar 包路径
     def jar_path = 'target/mobile-management-service.jar'
     // 开发、测试服务器地址
     def remote_servers = [
-        'develop': '192.168.99.149',
-        'test': '192.168.99.148']
+        'dev': '47.105.184.98',
+        'master': '47.105.184.98']
 
     stage('Settings branch params') {
         println "设置分支参数"
         if (BRANCH_NAME == 'develop') {
             // 设置构建保留的最大个数，超过指定的个数则丢弃
             properties([buildDiscarder(logRotator(numToKeepStr: '3'))])
-            docker_image_name = 'microservice/dev/mobile-management-service'
+            docker_image_name = 'microservice/dev/demo-fxc-service'
         } else if (BRANCH_NAME == 'test') {
             // 设置构建保留的最大个数，超过指定的个数则丢弃
             properties([buildDiscarder(logRotator(numToKeepStr: '3'))])
-            docker_image_name = 'microservice/test/mobile-management-service'
+            docker_image_name = 'microservice/test/demo-fxc-service'
         } else if (BRANCH_NAME == 'master') {
             // 设置构建保留的最大个数，超过指定的个数则丢弃
             properties([buildDiscarder(logRotator(numToKeepStr: '7'))])
-            docker_image_name = 'microservice/mobile-management-service'
+            docker_image_name = 'microservice/demo-fxc-service'
         } else {
             println "分支参数设置错误，当前分支：$BRANCH_NAME"
             currentBuild.result = "FAILURE"
@@ -80,7 +80,7 @@ node('maven-slave-140') {
         sh "docker rmi -f ${images_id_set.join(' ')}"
     }
 
-    if (BRANCH_NAME == 'develop' || BRANCH_NAME == 'test') {
+    if (BRANCH_NAME == 'dev' || BRANCH_NAME == 'master') {
         stage('Remote server redeploy') {
             println "重新部署远程服务器：${BRANCH_NAME}，IP：${remote_servers[BRANCH_NAME]}"
             withCredentials([usernamePassword(credentialsId: 'docker',
