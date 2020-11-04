@@ -23,6 +23,9 @@ public interface UserMapper extends  BaseMapper<Users>{
     void updateUser(User user);
 //    @Select("select id,name,email from users where id=#{id}")
     Users getUser(String id);
+    Users getUserById(String id);
+
+    Map getUserById1(String id);
     List<User> getMutiUser();
     void insertUser(Users users);
     void deleteUser(Users users);

@@ -1,11 +1,11 @@
 package com.example.demo.domain;
 
 
-//import lombok.Data;
+import lombok.Data;
 
 import javax.persistence.Column;
 import java.util.Date;
-//@Data
+@Data
 public class Follows {
   @Column(name = "follower_id")
   private String followerId;

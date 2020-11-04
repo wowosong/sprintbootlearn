@@ -4,30 +4,40 @@ package com.example.demo.domain;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.NumberFormat;
 //import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
-//@Data
+@Data
 @Table(name = "albums")
 @JsonIgnoreProperties(value = "handler")
 public class Albums  implements Serializable {
   private final  static long uuid=12313L;
   @Id
+  @NotNull(message = "不能为空")
   @Column(name = "id")
   private String id;
+  @Length(min = 1,max =50,message = "1到50个字符")
   @Column(name = "title")
   private String title;
+  @Length(min = 1,max =50 )
   @Column(name="about")
   private String about;
+  @Length(min = 1,max =64 )
   @Column(name = "cover")
   private String cover;
   @Column(name = "type")
   private Long type;
 
+  @Length(min = 1,max =64 )
+  @Column(name = "tag")
   private String tag;
   @Column(name = "no_public")
   private Boolean noPublic;
@@ -37,6 +47,7 @@ public class Albums  implements Serializable {
   private String  ascOrder;
   @Column(name = "`timestamp`")
   private Date timestamp;
+  @NotNull
   @Column(name = "author_id")
   private String authorId;
 

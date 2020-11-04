@@ -13,8 +13,33 @@ public  interface albumsService {
      * @return
      */
      SimpleMessage addAlbums(Albums albums);
-     SimpleMessage editAlbums(String id);
+
+ /**
+  * @author huangjiusong
+  * @param id
+  * @return
+  */
+ SimpleMessage editAlbums(String id);
+
+ /**
+  *
+  * @param albumsId
+  * @return
+  */
      SimpleMessage getAlbumsById(String albumsId);
-     SimpleMessage  deleteAlbums(String albumsId);
+
+ /**
+  *
+  * @param albumsId
+  * @return
+  */
+ SimpleMessage  deleteAlbums(String albumsId);
+
+ /**
+  *
+  * @param albumsId
+  * @param userId
+  * @return
+  */
      SimpleMessage focusAlbums(String albumsId,String userId);
 }

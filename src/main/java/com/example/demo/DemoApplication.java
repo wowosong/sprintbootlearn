@@ -1,10 +1,12 @@
 package com.example.demo;
 
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import tk.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+@EnableTransactionManagement
 @MapperScan(basePackages = "com.example.demo.mapper")
 public class DemoApplication {
 

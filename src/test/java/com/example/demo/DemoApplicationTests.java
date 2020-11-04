@@ -9,7 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
@@ -44,7 +44,7 @@ class DemoApplicationTests {
 //        assert (new HelloWorldController().index()=="Hello World");
 //        log.info("{}",HelloWorldController.class);
 //    }
-    @Test
+//    @Test
     public void queryInfo () throws IOException {
         this.before();
         try (SqlSession sqlSession = this.sqlSessionFactory.openSession(true);) {

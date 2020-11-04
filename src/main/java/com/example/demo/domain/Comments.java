@@ -1,17 +1,18 @@
 package com.example.demo.domain;
 
 
-//import lombok.Data;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import java.util.Date;
-//@Data
+@Data
 public class Comments {
   @Id
   private String id;
   @Column(name = "body")
   private String body;
+  @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
   @Column(name = "`timestamp`")
   private Date timestamp;
   @Column(name = "disabled")

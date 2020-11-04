@@ -2,13 +2,12 @@ package com.example.demo.controller;
 
 import com.example.demo.SimpleMessage.SimpleMessage;
 import com.example.demo.domain.Messages;
-import com.example.demo.domain.Photos;
+import com.example.demo.service.messageService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.example.demo.service.messageService;
 @RestController
 @Api(value = "评论管理")
 public class MessagesContoller {

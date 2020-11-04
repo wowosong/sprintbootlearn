@@ -11,12 +11,14 @@ import com.example.demo.mapper.UserMapper;
 import com.example.demo.service.photoService;
 import com.example.demo.utils.MD5;
 //import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -54,7 +56,7 @@ public class photosServiceImpl implements photoService {
     public SimpleMessage getPhotoByAlbums(String albumId) {
         Albums albums=albumsMapper.getAlbumsById(albumId);
         if(Objects.isNull(albums)){
-            SimpleMessage.warn("不存在该相册");
+           return SimpleMessage.warn("不存在该相册");
         }
         List<Photos> photosList=photoMapper.getPhotosByAlbumsId(albumId);
         return SimpleMessage.info(photosList);
@@ -66,7 +68,6 @@ public class photosServiceImpl implements photoService {
         for(Comments comment:comments){
             commentsMapper.delete(comment);
         }
-//        commentsMapper.delete()
         Photos photosInfo=photoMapper.getPhotosById(photos.getId());
         if(Objects.isNull(photosInfo)){
             return  SimpleMessage.warn("照片不存在！");
@@ -77,6 +78,8 @@ public class photosServiceImpl implements photoService {
 
     @Override
     public SimpleMessage editPhoto(Photos photos) {
+        Photos photos1=new Photos();
+        photos1.setAlbumId(photos.getAlbumId());
         photoMapper.updateByPrimaryKeySelective(photos);
         return SimpleMessage.info("操作成功");
     }

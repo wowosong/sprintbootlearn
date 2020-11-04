@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,6 +30,7 @@ import org.springframework.validation.Validator;
 //@CrossOrigin(origins = "http://localhost:8081")
 //@RequestMapping(value = "demo")
 public class HelloWorldController {
+    @Autowired
     private  userService userService;
     public HelloWorldController(){
 
@@ -77,9 +81,24 @@ public class HelloWorldController {
         Map map1=new HashMap();
         map1.keySet();
         map1.values();
+        Properties properties=new Properties();
+        try {
+            properties.load(new FileInputStream("a"));
+            properties.getProperty("username");
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         map1.entrySet();
         List<Users> usersList=new ArrayList<>();
         System.out.println(strring+random.nextFloat());
+        try{
+            System.out.println();
+        }catch (Exception e){
+            e.getMessage();
+            e.toString();
+        }
         return userService.getAll();
     }
     @ApiOperation(value = "分页查询用户", notes = "filter:keywords=;status=;", response = Users.class)
@@ -110,6 +129,11 @@ public class HelloWorldController {
     @GetMapping(value="/{id}")
     public SimpleMessage getUserById(@PathVariable String id){
         return  userService.getUserById(id);
+    }
+
+    @GetMapping(value="/test/{id}")
+    public SimpleMessage getUserById1(@PathVariable String id){
+        return  userService.getUserById1(id);
     }
     @ApiOperation(value="插入用户",notes = "插入用户")
     @PostMapping(value = "/insertUser")

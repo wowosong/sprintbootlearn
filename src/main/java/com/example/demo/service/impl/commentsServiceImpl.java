@@ -11,9 +11,12 @@ import com.example.demo.utils.MD5;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import tk.mybatis.orderbyhelper.OrderByHelper;
@@ -26,21 +29,26 @@ import java.util.Objects;
 @Validated
 //@Slf4j
 @Service
-@Transactional(rollbackFor = Exception.class)
+@Transactional(rollbackFor = Exception.class,propagation = Propagation.REQUIRED)
 public class commentsServiceImpl  implements commentsService {
+    private static final Logger logger= LoggerFactory.getLogger(commentsServiceImpl.class);
     @Autowired
     private CommentsMapper commentsMapper;
     @Override
     public SimpleMessage postComments(Comments comments) {
         comments.setTimestamp(MD5.getTimestamp());
         comments.setDisabled(true);
+        logger.debug(comments.toString());
        commentsMapper.postComments(comments);
        return SimpleMessage.info("评论成功");
     }
 
     @Override
     public SimpleMessage editComments(Comments comments) {
-        return  SimpleMessage.info(comments);
+        commentsMapper.existsWithPrimaryKey(comments.getId());
+        commentsMapper.postComments(comments);
+
+        return  SimpleMessage.info("编辑评论成功");
     }
 
     @Override
@@ -72,9 +80,6 @@ public class commentsServiceImpl  implements commentsService {
         List<?> list = commentsMapper.queryComment(map);
         PageInfo pageInfo = new PageInfo(list);
         return new SimplePage<Comments>().convert(pageInfo);
-//        List<Comments> comments=commentsMapper.getComments();
-//        List<Comments> comments=commentsMapperpper.selectAll();
-//        return  SimpleMessage.info(comments);
     }
 
 }

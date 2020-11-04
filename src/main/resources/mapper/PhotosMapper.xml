@@ -7,20 +7,30 @@
 <!--        <constructor>-->
 <!--            <idArg  column="id" javaType="string"></idArg>-->
 <!--        </constructor>-->
-        <id property="id" column="id"/>
+        <id property="id" column="id" />
         <result property="url" column="url"/>
         <result property="urlS" column="url_s"/>
         <result property="urlT" column="url_t"/>
         <result property="about" column="about"/>
         <result property="timestamp" column="timestamp"/>
         <result property="order" column="order"/>
-<!--        <result property="authorId"  column="author_id"/>-->
-        <association property="users"  column="id" javaType="com.example.demo.domain.Users"  fetchType="eager">
+        <association property="users"  column="id"   javaType="com.example.demo.domain.Users"  fetchType="eager">
             <result property="email" column="email"/>
             <result property="location" column="location"/>
             <result property="about_me" column="about_me"/>
             <result property="name" column="name"/>
             <result property="username" column="username"/>
+            <result property="password" column="password_hash"/>
+            <result property="liked" column="liked"/>
+            <result property="status" column="status"/>
+            <result property="website"  column="website"/>
+            <result property="confirmed" column="confirmed"/>
+            <result property="background" column="background"/>
+            <result property="avatar_hash" column="avatar_hash"/>
+            <result property="last_seen" column="last_seen"/>
+            <result property="like_public" column="like_public"/>
+            <result property="member_since" column="member_since"/>
+            <result property="role_Id" column="role_id"/>
         </association>
 <!--        <result property="albumId" column="album_id"/>-->
         <association property="albums" column="id"  javaType="com.example.demo.domain.Albums"  fetchType="eager">
@@ -98,7 +108,7 @@
         select  * from photos where  id=#{id}
     </select>
     <select id="getinfo" resultMap="photoResultMap">
-        select p.id, p.url, p.url_s, p.url_t, p.about, p.`timestamp`, p.`order`, p.author_id, p.album_id, a.id, a.title, a.about, a.cover, a.type, a.tag, a.author_id,a.asc_order,a.no_comment,a.no_public, u.id,u.email, u.username , u.name, u.location, u.website, u.background, u.about_me from photos p left join albums a on p.album_id = a.id left join users u on a.author_id = u.id;
+        select p.id, p.url, p.url_s, p.url_t, p.about, p.`timestamp`, p.`order`, p.author_id, p.album_id, a.id, a.title, a.about, a.cover, a.type, a.tag, a.author_id,a.asc_order,a.no_comment,a.no_public, u.id,u.email,u.username , u.name, u.location, u.website, u.background, u.about_me,u.liked,u.confirmed,u.member_since,u.password_hash,u.avatar_hash,u.last_seen,u.like_public,u.status ,u.role_id from photos p left join albums a on p.album_id = a.id left join users u on a.author_id = u.id;
     </select>
 <!--    <select id="getinfo" resultMap="photoResultMap">-->
 <!--        select * from photos;-->

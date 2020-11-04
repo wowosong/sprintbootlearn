@@ -25,12 +25,18 @@ public class albumsServiceImpl  implements albumsService {
 
     @Override
     public SimpleMessage addAlbums(Albums albums) {
-        albumsMapper.addAlbums(albums);
+//        albumsMapper.addAlbums(albums);
+        albumsMapper.insert(albums);
         return SimpleMessage.info("操作成功");
     }
 
     @Override
     public SimpleMessage editAlbums(String id) {
+        albumsMapper.updateByPrimaryKey(new Albums(){
+            {
+                setId(id);
+            }
+        });
         return SimpleMessage.info("操作成功");
     }
 

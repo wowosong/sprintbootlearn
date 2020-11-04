@@ -92,6 +92,12 @@
     <select id="getUser" resultMap="userResultMap">
         select * from users where id=#{id}
     </select>
+    <select id="getUserById" resultMap="userResultMap">
+        select username,email from users where id=#{id}
+    </select>
+    <select id="getUserById1" resultType="map">
+        select username,email from users where id=#{id}
+    </select>
     <select id="queryUserByEmail" resultType="com.example.demo.domain.Users">
          select id,name,email from users
          <where>

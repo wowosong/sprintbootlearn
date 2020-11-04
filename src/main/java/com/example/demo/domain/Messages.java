@@ -1,12 +1,11 @@
 package com.example.demo.domain;
 
 
-//import lombok.Data;
+import lombok.Data;
 
 import javax.persistence.Column;
-import javax.persistence.ManyToMany;
 import java.util.Date;
-//@Data
+@Data
 public class Messages {
 
   private String id;

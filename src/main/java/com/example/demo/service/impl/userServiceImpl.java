@@ -11,6 +11,7 @@ import com.example.demo.service.userService;
 import com.example.demo.utils.MD5;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.catalina.User;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
+//import sun.plugin.com.Utils;
 import tk.mybatis.orderbyhelper.OrderByHelper;
 
 import java.util.List;
@@ -62,8 +64,22 @@ public class userServiceImpl  implements userService {
 
     @Override
     public SimpleMessage getUserById(String id) {
+        if(Objects.isNull(id)){
+            return SimpleMessage.warn("");
+        }
 //        Users users= userMapper.queryInfoById(id);
-        Users users= userMapper.selectByPrimaryKey(id);
+//        Users users= userMapper.selectByPrimaryKey(id);
+        Users users=userMapper.getUserById(id);
+        if(Objects.isNull(users)){
+            return SimpleMessage.warn("用户不存在");
+        }
+        return SimpleMessage.info(users);
+    }
+    @Override
+    public SimpleMessage getUserById1(String id) {
+//        Users users= userMapper.queryInfoById(id);
+//        Users users= userMapper.selectByPrimaryKey(id);
+        Map users=userMapper.getUserById1(id);
         if(Objects.isNull(users)){
             return SimpleMessage.warn("用户不存在");
         }
@@ -108,7 +124,12 @@ public class userServiceImpl  implements userService {
 
     @Override
     public SimpleMessage queryUser(Map map) {
-        List<Users> users=userMapper.queryUser(map);
+        List<Users> users = null;
+        try {
+            users=userMapper.queryUser(map);
+        }catch (Exception e){
+            SimpleMessage.warn("请联系管理员");
+        }
         return SimpleMessage.info(users);
     }
 
@@ -116,7 +137,6 @@ public class userServiceImpl  implements userService {
     public SimplePage queryUserByPage(PageQuery pageQuery) {
         Map map = pageQuery.convertFilterToMap();
         OrderByHelper.orderBy(pageQuery.convertSort());
-
         PageHelper.startPage(pageQuery.getPage(), pageQuery.getSize());
         List<Users> list = userMapper.queryUser(map);
         PageInfo pageInfo = new PageInfo(list);
@@ -131,7 +151,6 @@ public class userServiceImpl  implements userService {
         }
         System.out.println(users);
         Users userEmail=userMapper.queryUserByEmail(users.getEmail());
-//        String md5=MD5.getMD5(users.getPassword(),64);
         BCryptPasswordEncoder encoder=new BCryptPasswordEncoder(10);
         String encodePassword=encoder.encode(users.getPassword());
         if(!Objects.isNull(userEmail)){

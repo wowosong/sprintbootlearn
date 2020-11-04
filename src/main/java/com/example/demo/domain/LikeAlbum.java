@@ -1,11 +1,11 @@
 package com.example.demo.domain;
 
 
-//import lombok.Data;
+import lombok.Data;
 
 import javax.persistence.Column;
 import java.util.Date;
-//@Data
+@Data
 public class LikeAlbum {
   @Column(name = "like_album_id")
   private String likeAlbumId;

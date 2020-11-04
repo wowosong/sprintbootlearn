@@ -1,10 +1,10 @@
 package com.example.demo.domain;
 
 
-//import lombok.Data;
+import lombok.Data;
 
 import javax.persistence.Column;
-//@Data
+@Data
 public class Roles {
 
   private String id;

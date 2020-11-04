@@ -1,22 +1,18 @@
 package com.example.demo.domain ;
-import com.fasterxml.jackson.annotation.JsonFormat;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-//import lombok.Data;
-import org.hibernate.annotations.Table;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
-
 import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.Date;
-//@Data
+
+import lombok.Data;
+@Data
 @JsonIgnoreProperties(value = "handler")
 public class Users implements Serializable {
   @NotNull
@@ -34,7 +30,7 @@ public class Users implements Serializable {
   @Column(name = "status")
   private String status;
   @Column(name = "liked")
-  private Long liked;
+  private long liked;
   @Column(name = "password_hash")
   private String password;
   @Column(name = "role_Id")
@@ -95,11 +91,11 @@ public class Users implements Serializable {
     this.status = status;
   }
 
-  public Long getLiked() {
+  public long getLiked() {
     return liked;
   }
 
-  public void setLiked(Long liked) {
+  public void setLiked(long liked) {
     this.liked = liked;
   }
 
