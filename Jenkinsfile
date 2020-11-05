@@ -1,13 +1,13 @@
  
 node('maven-slave-140') {
-    def docker_push_repo_url = '192.168.99.13:10001'
-    def docker_pull_repo_url = '192.168.99.13:10000'
+    def docker_push_repo_url = '47.105.184.98:10001'
+    def docker_pull_repo_url = '47.105.184.98:10000'
     def docker_image_name
     def tag = BUILD_ID
-    def docker_compose_path = '/root/docker/docker-compose/hbd'
+    def docker_compose_path = '/root/docker/demo'
     def docker_compose_service = 'demo-fxc-service'
     // 生成 jar 包路径
-    def jar_path = 'target/mobile-management-service.jar'
+    def jar_path = 'target/demo-0.0.1-SNAPSHOT.jar'
     // 开发、测试服务器地址
     def remote_servers = [
         'dev': '47.105.184.98',
@@ -15,7 +15,7 @@ node('maven-slave-140') {
 
     stage('Settings branch params') {
         println "设置分支参数"
-        if (BRANCH_NAME == 'develop') {
+        if (BRANCH_NAME == 'dev') {
             // 设置构建保留的最大个数，超过指定的个数则丢弃
             properties([buildDiscarder(logRotator(numToKeepStr: '3'))])
             docker_image_name = 'microservice/dev/demo-fxc-service'
