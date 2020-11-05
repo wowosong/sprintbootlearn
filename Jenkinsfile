@@ -1,5 +1,5 @@
  
-node('maven-slave-140') {
+node('master') {
     def docker_push_repo_url = '47.105.184.98:10001'
     def docker_pull_repo_url = '47.105.184.98:10000'
     def docker_image_name
